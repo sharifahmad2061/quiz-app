@@ -1,0 +1,19 @@
+{
+  "name": "quiz-app",
+  "version": "1.0.0",
+  "description": "a quiz app built using electronJS",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharifahmad2061/quiz-app.git"
+  },
+  "author": "sharifahmad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sharifahmad2061/quiz-app/issues"
+  },
+  "homepage": "https://github.com/sharifahmad2061/quiz-app#readme"
+}
