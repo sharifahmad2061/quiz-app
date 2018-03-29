@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sharifahmad2061/quiz-app/issues"
   },
-  "homepage": "https://github.com/sharifahmad2061/quiz-app#readme"
+  "homepage": "https://github.com/sharifahmad2061/quiz-app#readme",
+  "devDependencies": {
+    "electron": "^1.8.4"
+  }
 }
