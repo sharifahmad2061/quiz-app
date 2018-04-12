@@ -3,10 +3,13 @@ body{
 }
 
 #version{
-    background-color: rgba(0, 0, 255, 160);
-    /* height: 10%; */
+    background-color: #428bca;
     font-size: 24px;
     text-align: end;
+}
+
+.blue{
+    color: #428bca;
 }
 
 #grid-parent{
@@ -20,6 +23,25 @@ body{
     border-width: 1px;
     border-color: red;
     grid-column: 1/2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1em;
+}
+
+#student-info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.i-field{
+    display: flex;
+    justify-content: space-around;
+}
+
+#footer{
+    display: flex;
+    justify-content: space-around;
 }
 
 #grid-child-2{

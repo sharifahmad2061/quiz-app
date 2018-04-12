@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,27 +9,58 @@
     <link rel="stylesheet" href="homepage.css">
     <title>main page</title>
 </head>
+
 <body>
     <div id="version">version: 1.0.0</div>
     <main id="grid-parent">
         <section id="grid-child-1">
+            <div id="student-info">
+                <div class="i-field">
+                    <p class="blue">Name:</p>
+                    <p>Test</p>
+                </div>
+                <div class="i-field">
+                    <p class="blue">PAK NO / ID</p>
+                    <p>F317-36-0102</p>
+                </div>
+                <div class="i-field">
+                    <p class="blue">SUBJECT:</p>
+                    <p>INTELLIGENCE</p>
+                </div>
+                <div class="i-field">
+                    <p class="blue">EXAMINATION</p>
+                    <p>ACADEMIC TEST</p>
+                </div>
+            </div>
+            <div id="question-info">
 
+            </div>
+            <div id="question"></div>
+            <div id="mcqs"></div>
+            <div id="footer">
+                <p class="blue">LEGEND:</p>
+                <p id="unattempted-qs">X</p>
+                <p>unattempted Questions</p>
+                <p id="qs-marked-for-review">#</p>
+                <p>Marked For Review</p>
+            </div>
         </section>
         <section id="grid-child-2">
             <div id="pic"></div>
             <div id="time-alloted">
-                <p style="color:blue;">Time Alloted</p>
+                <p class="blue">Time Alloted</p>
                 <time>90:00</time>
             </div>
             <div id="time-remaining">
-                <p style="color: blue;">Time Remaining</p>
+                <p class="blue">Time Remaining</p>
                 <time>90:00</time>
             </div>
             <div id="start-button">
                 <button>START PAPER</button>
             </div>
             <div id="move-to-q">
-                Move to Q. No <select id="move-to-q-s"></select>
+                Move to Q. No
+                <select id="move-to-q-s"></select>
             </div>
             <div id="controls"></div>
             <div id="end-button">
@@ -38,4 +70,5 @@
     </main>
     <script src="homepage.js"></script>
 </body>
+
 </html>

@@ -4,7 +4,6 @@ for (let index = 0; index < 90; index++) {
     var option = document.createElement('option');
     option.appendChild(document.createTextNode(`${index}`));
     option.nodeValue = index;
-    // const str = `<option value=${index}>${index}</option>`;
     move_select.appendChild(option);
 }
 
