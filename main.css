@@ -1,0 +1,30 @@
+body{
+    height: 100vh;
+}
+
+#version{
+    background-color: rgba(0, 0, 255, 160);
+    /* height: 10%; */
+    font-size: 24px;
+    text-align: end;
+}
+
+#grid-parent{
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    height: 100%;
+}
+
+#grid-child-1{
+    border-style: solid;
+    border-width: 1px;
+    border-color: red;
+    grid-column: 1/2;
+}
+
+#grid-child-2{
+    border-style: solid;
+    border-width: 1px;
+    border-color: green;
+    grid-column: 2/3;
+}
