@@ -46,6 +46,10 @@ body {
     border: black 1px solid;
 }
 
+.t-sm{
+    font-size: 0.9rem;
+}
+
 #grid-parent {
     display: grid;
     grid-template-columns: 5px 8fr 2fr;
@@ -127,8 +131,15 @@ body {
     border-top: none;
 }
 
+#controls{
+    width: 90%;
+    /* padding: 0.4rem; */
+}
+
 #controls-grid{
     padding: 0.2rem;
+    /* overrides the value from i-field */
+    justify-content: space-between; 
 }
 
 #btn-first{
