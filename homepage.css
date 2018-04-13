@@ -2,7 +2,8 @@ body {
     height: 100vh;
     display: grid;
     grid-template-rows: 0.5fr 9.5fr;
-    grid-gap: 0.6em;
+    grid-gap: 0.2em;
+    font-family: 'century gothic', 'Arial Narrow', Arial, sans-serif;
 }
 
 #version {
@@ -17,6 +18,28 @@ body {
 
 .red {
     color: #ff4444;
+}
+
+.bg-blue{
+    background-color: #33b5e5;
+}
+
+.btn-md{
+    height: 1.8rem;
+    width: 10rem;
+}
+
+.btn-sm{
+    height: 1.8rem;
+    width: 2rem;
+}
+
+.font-md{
+    font-size: 1.2rem;
+}
+
+.font-white{
+    color: aliceblue;
 }
 
 .border {
@@ -78,19 +101,45 @@ body {
 }
 
 #pic {
-    width: 50%;
-    height: 110px;
+    width: 70%;
+    height: 8rem;
+    background: url('assets/user.svg') no-repeat center;
+}
+
+.t-field{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#ts-parent{
+    width: 80%;
 }
 
 #time-alloted {
-    width: 80%;
-    height: 60px;
+    height: 3rem;
     text-align: center;
 }
 
 #time-remaining {
-    width: 80%;
-    height: 60px;
+    height: 3rem;
     text-align: center;
+    border-top: none;
 }
 
+#controls-grid{
+    padding: 0.2rem;
+}
+
+#btn-first{
+    background: url('assets/fast-backward.svg') no-repeat center;
+}
+#btn-previous{
+    background: url('assets/step-backward.svg') no-repeat center;
+}
+#btn-next{
+    background: url('assets/step-forward.svg') no-repeat center;
+}
+#btn-last{
+    background: url('assets/fast-forward.svg') no-repeat center;
+}

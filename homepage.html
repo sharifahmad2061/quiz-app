@@ -72,24 +72,33 @@
         </section>
         <section id="grid-child-2">
             <div id="pic" class="border"></div>
-            <div id="time-alloted" class="border">
-                <p class="blue">Time Alloted</p>
-                <time>90:00</time>
-            </div>
-            <div id="time-remaining" class="border">
-                <p class="blue">Time Remaining</p>
-                <time id="time-ro">90:00</time>
+            <div id="ts-parent">
+                <div id="time-alloted" class="border t-field">
+                    <p class="blue">TIME ALLOTED</p>
+                    <time>90:00</time>
+                </div>
+                <div id="time-remaining" class="border t-field">
+                    <p class="blue">TIME REMAINING</p>
+                    <time id="time-ro">90:00</time>
+                </div>
             </div>
             <div id="start-button">
-                <button>START PAPER</button>
+                <button class="bg-blue btn-md font-md font-white">START PAPER</button>
             </div>
             <div id="move-to-q">
                 Move to Q. No
                 <select id="move-to-q-s"></select>
             </div>
-            <div id="controls"></div>
+            <div id="controls">
+                <div id="controls-grid" class="border">
+                    <button id="btn-first" class="btn-sm"></button>
+                    <button id="btn-previous" class="btn-sm"></button>
+                    <button id="btn-next" class="btn-sm"></button>
+                    <button id="btn-last" class="btn-sm"></button>
+                </div>
+            </div>
             <div id="end-button">
-                <button>END PAPER</button>
+                <button class="bg-blue btn-md font-md font-white">END PAPER</button>
             </div>
         </section>
     </main>
