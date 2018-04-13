@@ -1,3 +1,6 @@
+let q_for_review = [];
+
+
 //adding options to move to question select
 var move_select = document.querySelector("#move-to-q-s");
 for (let index = 0; index < 90; index++) {

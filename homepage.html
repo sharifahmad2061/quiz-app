@@ -14,7 +14,7 @@
     <div id="version">version: 1.0.0</div>
     <main id="grid-parent">
         <section id="grid-child-1">
-            <div id="student-info">
+            <div id="student-info" class="border">
                 <div class="i-field">
                     <p class="blue">Name:</p>
                     <p>Test</p>
@@ -32,12 +32,31 @@
                     <p>ACADEMIC TEST</p>
                 </div>
             </div>
-            <div id="question-info">
+            <div id="question-info" class="border">
+                <div class="i-field">
+                    <p class="blue">QUESTION NO</p>
+                    <p id="q-no-el"></p>
+                </div>
+                <div class="i-field">
+                    <p class="blue">TOTAL QUESTIONS</p>
+                    <p>120</p>
+                </div>
+            </div>
+            <div id="question" class="border">
 
             </div>
-            <div id="question"></div>
             <div id="mcqs"></div>
-            <div id="footer">
+            <div id="m-review" class="border">
+                <div class="i-field">
+                    <p class="red">NO SELECTION</p>
+                    <input type="radio" name="" id="">
+                </div>
+                <div class="i-field">
+                    <input type="checkbox" name="" id="">
+                    <p class="blue">MARK THIS QUESTION FOR REVIEW</p>
+                </div>
+            </div>
+            <div id="footer" class="border">
                 <p class="blue">LEGEND:</p>
                 <p id="unattempted-qs">X</p>
                 <p>unattempted Questions</p>
@@ -46,12 +65,12 @@
             </div>
         </section>
         <section id="grid-child-2">
-            <div id="pic"></div>
-            <div id="time-alloted">
+            <div id="pic" class="border"></div>
+            <div id="time-alloted" class="border">
                 <p class="blue">Time Alloted</p>
                 <time>90:00</time>
             </div>
-            <div id="time-remaining">
+            <div id="time-remaining" class="border">
                 <p class="blue">Time Remaining</p>
                 <time id="time-ro">90:00</time>
             </div>
