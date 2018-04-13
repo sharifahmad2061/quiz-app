@@ -1,90 +1,96 @@
-body{
+body {
     height: 100vh;
     display: grid;
     grid-template-rows: 0.5fr 9.5fr;
+    grid-gap: 0.6em;
 }
 
-#version{
+#version {
     background-color: #428bca;
     font-size: 24px;
     text-align: end;
 }
 
-.blue{
+.blue {
     color: #33b5e5;
 }
 
-.red{
+.red {
     color: #ff4444;
 }
 
-.border{
+.border {
     border: black 1px solid;
 }
 
-#grid-parent{
+#grid-parent {
     display: grid;
-    grid-template-columns: 7fr 3fr;
-    height: 95%;
+    grid-template-columns: 5px 8fr 2fr;
+    justify-content: space-evenly;
 }
 
-#grid-child-1{
-    grid-column: 1/2;
+#grid-child-1 {
+    grid-column: 2/3;
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-rows: 1.5fr 1fr 4fr 4fr 1fr 1fr;
     grid-gap: 1em;
+    /* height: max-content; */
 }
 
-#student-info{
+#student-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
 }
 
-.i-field{
+.i-field {
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
-#question-info{
+#question-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* height: max-content; */
+}
+
+#question {}
+
+#m-review {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-#question{
-}
-
-#m-review{
+#footer {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr 2fr;
+    /* justify-content: space-around; */
 }
 
-#footer{
-    display: flex;
-    justify-content: space-around;
-}
-
-#grid-child-2{
-    grid-column: 2/3;
+#grid-child-2 {
+    grid-column: 3/4;
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 2em;
     justify-items: center;
 }
 
-#pic{
+#pic {
     width: 50%;
     height: 110px;
 }
 
-#time-alloted{
+#time-alloted {
     width: 80%;
     height: 60px;
     text-align: center;
 }
 
-#time-remaining{
+#time-remaining {
     width: 80%;
     height: 60px;
     text-align: center;
 }
+

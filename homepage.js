@@ -1,5 +1,11 @@
 let q_for_review = [];
 
+//handling the questions marked for review display element
+let qm_for_review = document.querySelector('#qs-marked-for-review');
+let re_ch = document.querySelector('#re-ch');
+re_ch.addEventListener('change', () => {
+
+});
 
 //adding options to move to question select
 var move_select = document.querySelector("#move-to-q-s");
@@ -44,7 +50,7 @@ function displayTimeLeft(seconds) {
 
 // start button functionality
 let start_btn = document.querySelector('#start-button > button');
-start_btn.addEventListener('click',()=>{
+start_btn.addEventListener('click', () => {
     timer();
 });
 
