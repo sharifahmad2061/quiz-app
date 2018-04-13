@@ -19,7 +19,6 @@ function timer() {
     const now = Date.now();
     const then = now + (2 * 60 * 1000); //90min * 60sec * 1000ms
     const diff = (then - now) / 1000;
-    console.log({'diff':diff});
     displayTimeLeft(diff);
 
     countdown = setInterval(() => {
@@ -37,7 +36,6 @@ function displayTimeLeft(seconds) {
     const min = Math.floor(seconds / 60);
     const sec = seconds % 60;
     const display = `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
-    console.log(display);
     time_el.textContent = display;
 }
 
