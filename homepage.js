@@ -1,4 +1,5 @@
 let q_for_review = [];
+let unattempted_qs = 0;
 
 //handling the questions marked for review display element
 let qm_for_review = document.querySelector('#qs-marked-for-review');
