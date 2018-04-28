@@ -1,0 +1,204 @@
+{
+	"If a body is dropped from ? meters height, it meets the ground after 3sec": [
+		"25",
+		"100",
+		"19",
+		"44.1",
+		"3"
+	],
+	"The ratio of output and input is called ?": [
+		"Mechanical advantage",
+		"Velocity",
+		"Efficiency",
+		"Power",
+		"2"
+	],
+	"Total internal reflection takes place when ?": [
+		"Less than critical angle",
+		"Greater than critical angle",
+		"Enter from denser medium to rare medium",
+		"None of these",
+		"1"
+	],
+	"The light reaches on earth from sun through": [
+		"Conduction",
+		"Retardation",
+		"Radiation",
+		"vibration",
+		"2"
+	],
+	"Turning effect of a body is called ?": [
+		"Velocity",
+		"Speed",
+		"Torque",
+		"Force",
+		"2"
+	],
+	"Which of the following statement is true ?": [
+		"t = \frac{Vf + Vi}{a}",
+		"at = Vi - Vf",
+		"at = - Vi - Vf",
+		"at = Vf - Vi",
+		"3"
+	],
+	"If a pencil is dropped in water, it bends in ? direction": [
+		"Outside",
+		"Inside",
+		"Outward",
+		"None",
+		"3"
+	],
+	"Laser is a ? part of Physics.": [
+		"Mathematical",
+		"Atomic",
+		"Chemical",
+		"None",
+		"1"
+	],
+	"Seasaw is ? kind of liver": [
+		"Second",
+		"Third",
+		"First",
+		"None",
+		"2"
+	],
+	"The freezing point of water at kelvin degree centrigrate is ?": [
+		"746",
+		"212",
+		"273",
+		"743",
+		"2"
+	],
+	"The attraction of moon is ? than the earth.": [
+		"3 x 10^{8}",
+		"9 x 10^{-16}",
+		"6 times less",
+		"None",
+		"2"
+	],
+	"The floating of a ship on the surface of a sea is due to ? law.": [
+		"Newton's",
+		"Archemadus",
+		"Pascal's",
+		"Hook's",
+		"1"
+	],
+	"In equation E = mc^{2}, c represents ?": [
+		"Velocity of sound",
+		"Velocity of air",
+		"Velocity of light",
+		"None",
+		"2"
+	],
+	"In friction Fs = ?": [
+		"R",
+		"Voltage",
+		"Ohm",
+		"Current",
+		"0"
+	],
+	"In law of gravitation F = ?": [
+		"",
+		"",
+		"",
+		"",
+		"1"
+	],
+	"The unit of charge is equal to ? coulombs.": [
+		"6.25 x 10^{-18}",
+		"6.25 x 10^{18}",
+		"7.25 x 10^{16}",
+		"6.25 x 10^{21}",
+		"1"
+	],
+	"In centripetal force F = ?": [
+		"",
+		"",
+		"",
+		"",
+		"1"
+	],
+	"The value of G in Gravitational const is ?": [
+		"6.67 ",
+		"",
+		"",
+		"",
+		"1"
+	],
+	"The radius of earth is ? meter": [
+		"6.4 x 10^{-6}",
+		"6.67 x 10^{6}",
+		"7.4 x 10^{6}",
+		"6.4 x 10^{6}",
+		"3"
+	],
+	"If P = 60 and Q = 20 then from law of magnification ?": [
+		"3",
+		"4",
+		"9",
+		"15",
+		"0"
+	],
+	"In simple pendulum if 'm' is mass and 'k' is spring constant then its time period is equal to ?": [
+		"",
+		"",
+		"",
+		"",
+		"0"
+	],
+	"The Newton's first law of motion is also called the law of ?": [
+		"Ohm's",
+		"Inertia",
+		"Coulombs",
+		"Faraday's",
+		"1"
+	],
+	"A transparent body whose three sides are rectangular and two sides are triangular is called ?": [
+		"Telescope",
+		"Mirror",
+		"Lenses",
+		"Prism",
+		"3"
+	],
+	"Light is a form of ?": [
+		"Mass",
+		"Heat",
+		"Temperature",
+		"Energy",
+		"3"
+	],
+	"At 4deg the density of water is ?": [
+		"Lesser",
+		"Equal",
+		"Greater",
+		"No change",
+		"2"
+	],
+	"urdu":[
+		"جب کسی جسم کو ۔۔۔۔۔ میٹر کی بلندی سے گرايا جاۓ تو 3 سکينڈ میں زميں پر پہنچتا ھے",
+		"آوٹ پٹ اور ان پٹ کی درمیانی نسبت۔۔۔۔۔۔۔کہلاتی ہے",
+		"کلی داخلی انعکاس اس وقت ہوتا ہے جب۔۔۔۔۔۔۔",
+		"سورج سے زمیں تک روشنی۔۔۔۔۔۔۔ کے ذريعے پہنچتی ہے",
+		"کسی جسم کے گھمانے کے اثر کو ۔۔۔۔۔۔۔ کہتے ہیں",
+		"نیچے دی گئ مقداروں ميں کونسی ٹھیک ہے",
+		"اگر پنسل کو پانی ڈوبویا جاۓ تو۔۔۔۔۔۔ کی طرف جھک جاتی ہے",
+		"لیزر ۔۔۔۔۔۔۔ طبیعات کا ایک حصہ ہے",
+		"سی سا لیور کی ۔۔۔۔۔۔ قسم ہے۔",
+		"پانی کا نقطہ انجماد کیلون سکیل پر ۔۔۔۔۔۔ ہوتا ہے۔",
+		"چاند کی کشش زمین سے ۔۔۔۔۔۔ ہوتی ہے۔",
+		"بحری جہاز کا زمین کی سطح پر تیرنا ۔۔۔۔۔ کے اصول کے مطابق ہوتا ہے۔",
+		"۔۔۔۔۔ کو ظاہر کرتا ہے۔ c میں E=mc^{2}",
+		"Fs= رگڑ کے معيار ميں۔۔۔۔۔۔۔",
+		"F= قانون تجاذب میں ۔۔۔۔۔۔۔۔",
+		"چارج کی اکائی ۔۔۔۔۔۔۔۔ کولمب کے برابر ہوتی ہے۔",
+		"F = مرکز مائل قوت میں ۔۔۔۔۔۔۔ ",
+		"تجاذبی مستقل میں G کی قیمت ۔۔۔۔۔۔ ہوتی ہے۔",
+		"زمین کا رداس ۔۔۔۔۔ میٹر ہوتا ہے۔",
+		"اگر P=60 اور Q=20 تو تکبیر کے کلیہ سے ۔۔۔۔۔۔۔",
+		"اگر سادے پنڈولم میں کمیت m ہو اور سپرنگ کا مستقل k ہو تو اسکا ٹائم پریڈ ۔۔۔۔۔۔۔ ہوتا ہے۔",
+		"نیوٹن کے پہلے قانون حرکت کو ۔۔۔۔۔۔۔ کا قانون بھی کہتے ہیں۔",
+		"ایک ایسا شفاف جسم جسکی تین سطحیں مستطیل نما ہو اور دو سطحیں مثلث نما ہوں ۔۔۔۔۔۔۔ کہلاتا ہے۔",
+		"روشنی ۔۔۔۔۔۔ کی ایک شکل ہے۔",
+		"4C سینٹی گریڈ پر پانی کی کثافت ۔۔۔۔۔۔۔ ہوتی ہے۔"
+	]
+}
