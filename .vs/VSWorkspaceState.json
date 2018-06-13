@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\libs",
+    "\\question"
   ],
+  "SelectedNode": "\\question\\Physics.json",
   "PreviewInSolutionExplorer": false
 }

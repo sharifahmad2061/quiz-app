@@ -35,10 +35,10 @@
 		"2"
 	],
 	"Which of the following statement is true ?": [
-		"t = \frac{Vf + Vi}{a}",
-		"at = Vi - Vf",
-		"at = - Vi - Vf",
-		"at = Vf - Vi",
+		"$$ t = \\frac{Vf + Vi}{a} $$",
+		"$$ at = {V_i - V_f} $$",
+		"$$ at = {-V_i - V_f} $$",
+		"$$ at = {V_f - V_i} $$",
 		"3"
 	],
 	"If a pencil is dropped in water, it bends in ? direction": [
@@ -70,8 +70,8 @@
 		"2"
 	],
 	"The attraction of moon is ? than the earth.": [
-		"3 x 10^{8}",
-		"9 x 10^{-16}",
+		"$$3 x 10^{8}$$",
+		"$$9 x 10^{-16}$$",
 		"6 times less",
 		"None",
 		"2"
@@ -83,14 +83,14 @@
 		"Hook's",
 		"1"
 	],
-	"In equation E = mc^{2}, c represents ?": [
+	"In equation $ E = mc^{2} $, c represents ?": [
 		"Velocity of sound",
 		"Velocity of air",
 		"Velocity of light",
 		"None",
 		"2"
 	],
-	"In friction Fs = ?": [
+	"In friction $F_s$ = ?": [
 		"R",
 		"Voltage",
 		"Ohm",
@@ -98,38 +98,38 @@
 		"0"
 	],
 	"In law of gravitation F = ?": [
-		"",
-		"",
-		"",
-		"",
+		"$$\\frac{gMem}{r^2}$$",
+		"$$\\frac{GMem}{r^2}$$",
+		"$$\\frac{gMem}{r}$$",
+		"$$\\frac{gMeM}{r^2}$$",
 		"1"
 	],
 	"The unit of charge is equal to ? coulombs.": [
-		"6.25 x 10^{-18}",
-		"6.25 x 10^{18}",
-		"7.25 x 10^{16}",
-		"6.25 x 10^{21}",
+		"$$6.25 x 10^{-18}$$",
+		"$$6.25 x 10^{18}$$",
+		"$$7.25 x 10^{16}$$",
+		"$$6.25 x 10^{21}$$",
 		"1"
 	],
 	"In centripetal force F = ?": [
-		"",
-		"",
-		"",
-		"",
+		"$$\\frac{mv}{r^2}$$",
+		"$$\\frac{mv^2}{r}$$",
+		"$$\\frac{Mv^2}{r}$$",
+		"$$\\frac{mv^2}{r^2}$$",
 		"1"
 	],
 	"The value of G in Gravitational const is ?": [
-		"6.67 ",
-		"",
-		"",
-		"",
+		"$$6.67 Nm^2 / kg^2$$",
+		"$$6.67 \\times 10^-11 Nm^2 / kg^2$$",
+		"$$7.7 \\times 10^-11 Nm$$",
+		"$$6.67 \\times 10^11 Nm^2 / kg^2$$",
 		"1"
 	],
 	"The radius of earth is ? meter": [
-		"6.4 x 10^{-6}",
-		"6.67 x 10^{6}",
-		"7.4 x 10^{6}",
-		"6.4 x 10^{6}",
+		"$$6.4 x 10^{-6}$$",
+		"$$6.67 x 10^{6}$$}",
+		"$$7.4 x 10^{6}$$",
+		"$$6.4 x 10^{6}$$",
 		"3"
 	],
 	"If P = 60 and Q = 20 then from law of magnification ?": [
