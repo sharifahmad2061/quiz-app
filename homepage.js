@@ -1,13 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 
-//load the file that is to be read first
+//read the medadata files
 let file_and_order = JSON.parse(fs.readFileSync(path.join(__dirname, '/imp/fileToRead.json')));
 let timing_and_marks = JSON.parse(fs.readFileSync(path.join(__dirname, '/imp/timing.json')));
 
 //time for current test
 const time_for_c_test = timing_and_marks[file_and_order['file']][0];
 
+//load the first test and then start displaying it on start button click
 
 
 //variables
