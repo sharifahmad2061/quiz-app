@@ -6,14 +6,23 @@ let file_and_order = JSON.parse(fs.readFileSync(path.join(__dirname, '/imp/fileT
 let timing_and_marks = JSON.parse(fs.readFileSync(path.join(__dirname, '/imp/timing.json')));
 
 //time for current test
+//attempt time should be greater than total time minus 3 minutes
 const time_for_c_test = timing_and_marks[file_and_order['file']][0];
 
 //load the first test and then start displaying it on start button click
-
+const c_test = file_and_order['file'];
+let test_data = JSON.parse(fs.readFileSync(path.join(__dirname, `/question/${c_test}.json`)));
+// console.log(test_data);
 
 //variables
 let q_for_review = [];
-let unattempted_qs = 0;
+let unattempted_qs = timing_and_marks[file_and_order['file']][1]; //initialize it total marks , each q has 1 mark
+
+//handling the footer data
+let un_qs_el = document.querySelector('#unattempted-qs');
+let qs_ma_4_re = document.querySelector('#qs-marked-for-review');
+un_qs_el.textContent = unattempted_qs;
+qs_ma_4_re.textContent = q_for_review.length;
 
 //handling the questions marked for review display element
 let qm_for_review = document.querySelector('#qs-marked-for-review');
@@ -85,3 +94,40 @@ end_btn.addEventListener('click', () => {
 });
 
 //count the score and show the result
+
+
+//functions for setting subject and total questions in the header
+
+function setSubject(subject) {
+    let el = document.querySelectorAll('#student-info > div')[2].children[1];
+    // console.log(el);
+    // return;
+    switch (subject) {
+        case 'phy':
+            el.textContent = 'Physics';
+            break;
+        case 'math':
+            el.textContent = 'Math';
+            break;
+        case 'it1':
+            el.textContent = 'Intelligence 1';
+            break;
+        case 'it2':
+            el.textContent = 'Intelligence 2';
+            break;
+        case 'brs':
+            el.textContent = 'Basic Religious sense';
+            break;
+        case 'eng':
+            el.textContent = 'English';
+            break;
+        default:
+            break;
+    }
+}
+
+function setTotalQs(total_qs) {
+    let el = document.querySelectorAll('#question-info > div')[1].children[1];
+    el.textContent = total_qs;
+}
+setTotalQs(30);
