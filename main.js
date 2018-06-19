@@ -16,6 +16,7 @@ function createWindow() {
     win.setResizable(false);
     //disable the windows maximize
     // win.setMaximizable(false);
+    win.maximize();
 
     // and load the index.html of the app.
     win.loadURL(url.format({

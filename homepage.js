@@ -142,9 +142,21 @@ btn_next.addEventListener('click', () => {
     current_qs++;
 });
 
+//unchecking all radio buttons
+let ns_ra = document.querySelector('#ns-ra');
+ns_ra.addEventListener('change', () => {
+    document.querySelectorAll('#mcqs > #second-col > input[name=mcq-answer]').forEach((element) => {
+        element.checked = false;
+    });
+    ns_ra.checked = false;
+});
+
+
 //function for displaying next question and its options
 function showNextQuestion(num) {
-    let num = num || current_qs + 1;
+    let next = num || current_qs + 1;
+    let question_el = document.querySelector('#question');
+    let mcq_el = document.querySelector('#mcqs');
 
 }
 
