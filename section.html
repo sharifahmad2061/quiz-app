@@ -8,23 +8,40 @@
     <title>Quiz Selection</title>
 
     <link rel="stylesheet" href="libs/bootstrap.min.css">
+    <style>
+    body{
+        height: 100vh;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    main{
+        grid-row: 2/3;
+    }
+    </style>
 </head>
 
 <body>
     <main class="container">
-        <div class="row">
-            <button class="col btn btn-block btn-lg btn-outline-primary">Intelligence 1</button>
-            <button class="col btn btn-block btn-lg btn-outline-primary">Intelligence 2</button>
+        <div class="row py-1">
+            <button class="col btn btn-block btn-lg btn-outline-primary" disabled>Intelligence 1</button>
         </div>
-        <div class="row">
+        <div class="row py-1">
+            <button class="col btn btn-block btn-lg btn-outline-primary" disabled>Intelligence 2</button>            
+        </div>
+        <div class="row py-1">
             <button class="col btn btn-block btn-lg btn-outline-primary">English</button>
-            <button class="col btn btn-block btn-lg btn-outline-primary">BRS</button>
         </div>
-        <div class="row">
+        <div class="row py-1">
+            <button class="col btn btn-block btn-lg btn-outline-primary">Basic Religious Sense</button>
+        </div>
+        <div class="row py-1">
             <button class="col btn btn-block btn-lg btn-outline-primary">Physics</button>
+        </div>
+        <div class="row py-1">
             <button class="col btn btn-block btn-lg btn-outline-primary">Maths</button>
         </div>
     </main>
+    <script src="section.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,16 @@
+const fs = require('fs');
+const path = require('path');
+
+//load the file that is to be read first
+let file_and_order = JSON.parse(fs.readFileSync(path.join(__dirname, '/imp/fileToRead.json')));
+let timing_and_marks = JSON.parse(fs.readFileSync(path.join(__dirname, '/imp/timing.json')));
+
+//time for current test
+const time_for_c_test = timing_and_marks[file_and_order['file']][0];
+
+
+
+//variables
 let q_for_review = [];
 let unattempted_qs = 0;
 
@@ -22,40 +35,52 @@ move_select.addEventListener('change', function () {
 
 });
 
-// time remaining clock
+// console.log(obj);
+
+// time clocks
 let time_el = document.querySelector("#time-ro");
+let time_al = document.querySelector("#time-al");
+
 let countdown;
-function timer() {
-    const now = Date.now();
-    const then = now + (2 * 60 * 1000); //90min * 60sec * 1000ms
-    const diff = (then - now) / 1000;
-    displayTimeLeft(diff);
+function timer(minutes) {
+    // const now = Date.now();
+    let seconds = minutes * 60; //90min * 60sec * 1000ms
+    // const diff = (then - now) / 1000;
+    displayTimeLeft(seconds);
 
     countdown = setInterval(() => {
-        const secondsLeft = Math.round((then - Date.now()) / 1000);
-        if (secondsLeft < 0) {
+        // const secondsLeft = Math.round((then - Date.now()) / 1000);
+        seconds--;
+        if (seconds < 0) {
             //clear the interval
             clearInterval(countdown);
             //stop the quiz and show the score
             return;
         }
-        displayTimeLeft(secondsLeft);
+        displayTimeLeft(seconds);
     }, 1000);
 }
+
 function displayTimeLeft(seconds) {
+    const hour = Math.floor(seconds / 3600);
+    seconds %= 3600;
     const min = Math.floor(seconds / 60);
     const sec = seconds % 60;
-    const display = `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
+    const display = `${hour < 10 ? '0' : ''}${hour}:${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
+    // console.log(display);
     time_el.textContent = display;
 }
 
 // start button functionality
 let start_btn = document.querySelector('#start-button > button');
 start_btn.addEventListener('click', () => {
-    timer();
+    timer(time_for_c_test);
 });
 
 //end button functionality
-
+let end_btn = document.querySelector('#end-button > button');
+end_btn.addEventListener('click', () => {
+    clearInterval(countdown);
+});
 
 //count the score and show the result
