@@ -109,7 +109,12 @@ body {
     /* height: max-content; */
 }
 
-#question {}
+#question {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
 
 #m-review {
     display: grid;

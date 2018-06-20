@@ -16,41 +16,14 @@ test_data = arrayFromDictionary(test_data);
 // console.log(test_data);
 
 //variables
-let current_qs;
-let qs_attempted;
+let current_qs = 0;
+let previous_qs = 0;
+let next_qs = 0;
+let qs_attempted = 0;
 let q_for_review = [];
 let total_qs = timing_and_marks[file_and_order['file']][1];
 let unattempted_qs = timing_and_marks[file_and_order['file']][1]; //initialize it total marks , each q has 1 mark
 
-
-
-//handling the questions marked for review display element
-let qm_for_review = document.querySelector('#qs-marked-for-review');
-let re_ch = document.querySelector('#re-ch');
-re_ch.addEventListener('change', () => {
-    if (current_qs == null || current_qs == undefined) {
-        console.log('hello');
-        return;
-    }
-    q_for_review.push(current_qs);
-    qm_for_review.textContent = q_for_review.length;
-});
-
-//adding options to move to question select
-var move_select = document.querySelector("#move-to-q-s");
-for (let index = 0; index < total_qs; index++) {
-    var option = document.createElement('option');
-    option.appendChild(document.createTextNode(`${index}`));
-    option.nodeValue = index;
-    move_select.appendChild(option);
-}
-
-//move to question event listener
-move_select.addEventListener('change', function () {
-
-});
-
-// console.log(obj);
 
 // time clocks
 let time_el = document.querySelector("#time-ro");
@@ -91,55 +64,17 @@ function displayTimeLeft(element, seconds) {
     element.textContent = display;
 }
 
-// start button functionality
-let start_btn = document.querySelector('#start-button > button');
-start_btn.addEventListener('click', () => {
-    timer(time_for_c_test);
-}, { once: true });
 
-//end button functionality
-let end_btn = document.querySelector('#end-button > button');
-end_btn.addEventListener('click', () => {
-    clearInterval(countdown);
-});
-
-//count the score and show the result
-
-//function data into an array for indexing
-function arrayFromDictionary(data) {
-    var r_data = [];
-    for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-            r_data.push({
-                key: key,
-                value: data[key]
-            });
-        }
+//handling the questions marked for review display element
+let qm_for_review = document.querySelector('#qs-marked-for-review');
+let re_ch = document.querySelector('#re-ch');
+re_ch.addEventListener('change', () => {
+    if (current_qs == null || current_qs == undefined) {
+        // console.log('hello');
+        return;
     }
-    return r_data;
-}
-
-//event handlers for previous, next, first and last
-let btn_first = document.querySelector('#btn-first');
-let btn_last = document.querySelector('#btn-last');
-let btn_previous = document.querySelector('#btn-previous');
-let btn_next = document.querySelector('#btn-next');
-
-btn_first.addEventListener('click', () => {
-    showNextQuestion(0);
-    current_qs = 0;
-});
-btn_last.addEventListener('click', () => {
-    showNextQuestion(-1);
-    current_qs = total_qs - 1;
-});
-btn_previous.addEventListener('click', () => {
-    showNextQuestion(current_qs - 1);
-    current_qs--;
-});
-btn_next.addEventListener('click', () => {
-    showNextQuestion();
-    current_qs++;
+    q_for_review.push(current_qs);
+    qm_for_review.textContent = q_for_review.length;
 });
 
 //unchecking all radio buttons
@@ -151,12 +86,110 @@ ns_ra.addEventListener('change', () => {
     ns_ra.checked = false;
 });
 
+//------------------------------------------
+//question navigation
+//------------------------------------------
+
+//adding options to move to question select
+var move_select = document.querySelector("#move-to-q-s");
+for (let index = 0; index < total_qs; index++) {
+    var option = document.createElement('option');
+    option.appendChild(document.createTextNode(`${index}`));
+    option.nodeValue = index;
+    move_select.appendChild(option);
+}
+
+//move to question event listener
+move_select.addEventListener('change', function () {
+    showNextQuestion(move_select.value);
+});
+
+//event handlers for previous, next, first and last
+let btn_first = document.querySelector('#btn-first');
+let btn_last = document.querySelector('#btn-last');
+let btn_previous = document.querySelector('#btn-previous');
+let btn_next = document.querySelector('#btn-next');
+
+btn_first.addEventListener('click', () => {
+    console.log('first button');
+    showNextQuestion(0);
+    // current_qs = 0;
+});
+btn_last.addEventListener('click', () => {
+    console.log('last button');
+    showNextQuestion(total_qs - 1);
+    // current_qs = total_qs - 1;
+});
+btn_previous.addEventListener('click', () => {
+    console.log('previous button');
+    if (previous_qs < 0) return;
+    showNextQuestion(previous_qs);
+    // current_qs--;
+});
+btn_next.addEventListener('click', () => {
+    console.log('next button');
+    if (next_qs > total_qs - 1) return;
+    showNextQuestion();
+    // current_qs++;
+});
+
+//-------------------------------------
+// start and end button functionality
+//-------------------------------------
+let start_btn = document.querySelector('#start-button > button');
+start_btn.addEventListener('click', () => {
+    showNextQuestion();
+    timer(time_for_c_test);
+}, { once: true });
+
+//end button functionality
+let end_btn = document.querySelector('#end-button > button');
+end_btn.addEventListener('click', () => {
+    clearInterval(countdown);
+});
+
+//count the score and show the result
+
+
+//---------------------------------------
+//functions for different things
+//---------------------------------------
+//function data into an array for indexing
+function arrayFromDictionary(data) {
+    var r_data = [];
+    for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+            r_data.push({
+                key: key.replace('?', '________'),
+                value: data[key]
+            });
+        }
+    }
+    return r_data;
+}
+
 
 //function for displaying next question and its options
 function showNextQuestion(num) {
-    let next = num || current_qs + 1;
+    let next;
+    if (num == null || num == undefined) next = next_qs;
+    else next = num;
+    // let next = num || next_qs;
     let question_el = document.querySelector('#question');
-    let mcq_el = document.querySelector('#mcqs');
+    let mcq_el = document.querySelectorAll('#mcqs > #third-col > div');
+    //before inserting new question remove the previous one
+    while (question_el.firstChild) {
+        question_el.removeChild(question_el.firstChild);
+    }
+    //now insert new question
+    let el = document.createElement('p');
+    let tn = document.createTextNode(test_data[next].key);
+    el.appendChild(tn);
+    question_el.appendChild(el);
+    previous_qs = next <= 1 ? 0 : next - 1;
+    current_qs = next;
+    next_qs = next >= total_qs ? 0 : next + 1;
+    console.log(previous_qs, current_qs, next_qs);
 
 }
 
