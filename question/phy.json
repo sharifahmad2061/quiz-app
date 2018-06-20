@@ -120,9 +120,9 @@
 	],
 	"The value of $G$ in Gravitational const is ?": [
 		"$6.67 Nm^2 / kg^2$",
-		"$6.67 \\times 10^-11 Nm^2 / kg^2$",
-		"$7.7 \\times 10^-11 Nm$",
-		"$6.67 \\times 10^11 Nm^2 / kg^2$",
+		"$6.67 \\times 10^{-11} Nm^2 / kg^2$",
+		"$7.7 \\times 10^{-11} Nm$",
+		"$6.67 \\times 10^{11} Nm^2 / kg^2$",
 		"1"
 	],
 	"The radius of earth is ? meter": [

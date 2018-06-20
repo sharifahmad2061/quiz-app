@@ -1,4 +1,11 @@
 {
-  "file": "phy",
-  "order": ["it1","it2","eng","phy","math","brs"]
+  "file": "brs",
+  "order": [
+    "it1",
+    "it2",
+    "eng",
+    "phy",
+    "math",
+    "brs"
+  ]
 }

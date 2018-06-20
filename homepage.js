@@ -1,6 +1,9 @@
 const fs = require('fs');
 const path = require('path');
 
+//initialize the number of tests attempted
+sessionStorage.setItem('tests_attempted', 0);
+
 
 //read the medadata files
 let file_and_order = JSON.parse(fs.readFileSync(path.join(__dirname, '/imp/fileToRead.json')));
@@ -8,10 +11,10 @@ let timing_and_marks = JSON.parse(fs.readFileSync(path.join(__dirname, '/imp/tim
 
 //time for current test
 //attempt time should be greater than total time minus 3 minutes
-const time_for_c_test = timing_and_marks[file_and_order['file']][0];
+let time_for_c_test = timing_and_marks[file_and_order['file']][0];
 
 //load the first test and then start displaying it on start button click
-const c_test = file_and_order['file'];
+let c_test = file_and_order['file'];
 let test_data = JSON.parse(fs.readFileSync(path.join(__dirname, `/question/${c_test}.json`)));
 test_data = arrayFromDictionary(test_data);
 // console.log(test_data);
@@ -20,7 +23,7 @@ test_data = arrayFromDictionary(test_data);
 let current_qs = 0;
 let previous_qs = 0;
 let next_qs = 0;
-let qs_attempted = 0;
+// let qs_attempted = 0;
 let q_for_review = [];
 let total_qs = timing_and_marks[file_and_order['file']][1];
 let unattempted_qs = timing_and_marks[file_and_order['file']][1]; //initialize it total marks , each q has 1 mark
@@ -149,7 +152,7 @@ btn_previous.addEventListener('click', () => {
 });
 btn_next.addEventListener('click', () => {
     // console.log('next button');
-    if (next_qs > total_qs - 1) return;
+    if (next_qs == total_qs) return;
     // console.log(current_qs, returnAnswer());
     storeAnswers(current_qs, returnAnswer());
     uncheckAllRadioButtons();
@@ -162,13 +165,8 @@ btn_next.addEventListener('click', () => {
 // start and end button functionality
 //-------------------------------------
 let start_btn = document.querySelector('#start-button > button');
-start_btn.addEventListener('click', () => {
-    setSubject(c_test);
-    setTotalQs(total_qs);
-    manipulateQsLeftAndMarkedForReviewAndCurrentQ();
-    showNextQuestion();
-    timer(time_for_c_test);
-}, { once: true });
+
+start_btn.addEventListener('click', startButtonHandler, { once: true });
 
 //end button functionality
 let end_btn = document.querySelector('#end-button > button');
@@ -177,17 +175,68 @@ end_btn.addEventListener('click', () => {
     clearInterval(countdown);
 
     //if time is not in limit then fail the test and move to next page
-    console.log('required time: ', timing_and_marks[c_test][0] - 3);
-    console.log('elapsed time: ', (timing_and_marks[c_test][0]) - Math.floor(seconds % 60));
+    // console.log('required time: ', timing_and_marks[c_test][0] - 3);
+    // console.log('elapsed time: ', (timing_and_marks[c_test][0]) - Math.floor(seconds % 60));
     if ((timing_and_marks[c_test][0] - 3) > ((timing_and_marks[c_test][0]) - Math.floor(seconds % 60))) {
         //fail all tests and show the next page
         sessionStorage.setItem('outcome', 'fail_time');
+        //move to next page and show result
+
     }
     //mark store for the current test
+    markCurrentTest();
 
-    //store the score for the current test
+    //if the current test is failed then show result page
+    let c_test_score = sessionStorage.getItem(c_test);
+    let passing_marks = timing_and_marks[c_test][2];
+    if (c_test_score < passing_marks) {
+        sessionStorage.setItem('outcome', 'fail_score');
+        //move to new page
+    }
+
+    //store the number of tests attempted if it is the last move to the next page
+    let tests_attempted = sessionStorage.getItem('tests_attempted');
+    sessionStorage.setItem('tests_attempted', 1 + tests_attempted);
+    if (tests_attempted == 4) {
+        //all test completed hence move to new page
+    }
 
     //move to the next test
+    //change c_test, load test data and change variables
+    let next_test = file_and_order['order'].indexOf(c_test) + 1;
+    c_test = file_and_order['order'][next_test];
+    file_and_order['file'] = c_test;
+    //variables
+    time_for_c_test = timing_and_marks[c_test][0];
+    current_qs = 0; previous_qs = 0; next_qs = 0; q_for_review = [];
+    total_qs = timing_and_marks[c_test][1];
+    unattempted_qs = timing_and_marks[c_test][1];
+
+    //re-initialize clocks
+    displayTimeLeft(time_el, time_for_c_test * 60);
+    displayTimeLeft(time_al, time_for_c_test * 60);
+
+    //load test data
+    test_data = JSON.parse(fs.readFileSync(path.join(__dirname, `/question/${c_test}.json`), { encoding: utf8 }));
+    test_data = arrayFromDictionary(test_data);
+
+    //set subjects and other interface elements and empty question and mcq elements
+    let question_el = document.querySelector('#question');
+    let mcq_el = document.querySelectorAll('#mcqs > #third-col > div');
+    while (question_el.firstChild) {
+        question_el.removeChild(question_el.firstChild);
+    }
+    mcq_el.forEach((element) => {
+        while (element.firstChild) {
+            element.removeChild(element.firstChild);
+        }
+    });
+
+    start_btn.addEventListener('click', startButtonHandler, { once: true });
+
+    // setSubject(c_test);
+    // setTotalQs(total_qs);
+    // manipulateQsLeftAndMarkedForReviewAndCurrentQ();
 });
 
 //count the score and show the result
@@ -199,13 +248,21 @@ let answers = {};
 answers['phy'] = {}; answers['math'] = {}; answers['brs'] = {}; answers['eng'] = {};
 answers['it1'] = {}; answers['it2'] = {};
 
+function startButtonHandler() {
+    setSubject(c_test);
+    setTotalQs(total_qs);
+    manipulateQsLeftAndMarkedForReviewAndCurrentQ();
+    showNextQuestion();
+    timer(time_for_c_test);
+}
+
 function storeAnswers(questionNo, answer) {
     // console.log(answers['phy']);
     if (answer == null) {
         return;
     }
     answers[c_test][questionNo] = answer;
-    unattempted_qs -= Object.keys(answers[c_test]).length;
+    unattempted_qs = total_qs - Object.keys(answers[c_test]).length;
 }
 function returnAnswer() {
     let ans = document.querySelectorAll('input[name=mcq-answer]');
@@ -222,14 +279,14 @@ function markCurrentTest() {
     for (const key in ans) {
         if (ans.hasOwnProperty(key)) {
             const opt = ans[key];
-            console.log(ans[key], test_data[key].value[4]);
+            // console.log(ans[key], test_data[key].value[4]);
             if (ans[key] == test_data[key].value[4]) {
                 score++;
             }
         }
     }
     sessionStorage.setItem(c_test, score);
-    console.log(score);
+    // console.log(score);
 }
 
 //---------------------------------------
@@ -267,6 +324,7 @@ function showNextQuestion(num) {
     let el = document.createElement('p');
     let tn = document.createTextNode(test_data[next].key);
     el.appendChild(tn);
+    if (c_test == 'brs') el.classList.add('urdu');
     question_el.appendChild(el);
     //insert the urdu part if necessary
     if (c_test == 'phy' || c_test == 'math') {
@@ -296,6 +354,7 @@ function showNextQuestion(num) {
                 el = document.createElement('p');
                 tn = document.createTextNode(element1);
                 el.appendChild(tn);
+                if (c_test == 'brs') el.classList.add('urdu');
                 element.appendChild(el);
             }
         });
