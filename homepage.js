@@ -24,8 +24,9 @@ let qs_attempted = 0;
 let q_for_review = [];
 let total_qs = timing_and_marks[file_and_order['file']][1];
 let unattempted_qs = timing_and_marks[file_and_order['file']][1]; //initialize it total marks , each q has 1 mark
+
 //score
-let score = 0;
+// let score = 0;
 
 // time clocks
 let time_el = document.querySelector("#time-ro");
@@ -37,9 +38,10 @@ displayTimeLeft(time_al, time_for_c_test * 60);
 
 
 let countdown;
+let seconds;
 function timer(minutes) {
     // const now = Date.now();
-    let seconds = minutes * 60; //90min * 60sec * 1000ms
+    seconds = minutes * 60; //90min * 60sec * 1000ms
     // const diff = (then - now) / 1000;
     displayTimeLeft(time_el, seconds);
 
@@ -101,7 +103,7 @@ ns_ra.addEventListener('change', () => {
 
 //adding options to move to question select
 var move_select = document.querySelector("#move-to-q-s");
-for (let index = 0; index < total_qs; index++) {
+for (let index = 1; index <= total_qs; index++) {
     var option = document.createElement('option');
     option.appendChild(document.createTextNode(`${index}`));
     option.nodeValue = index;
@@ -110,7 +112,8 @@ for (let index = 0; index < total_qs; index++) {
 
 //move to question event listener
 move_select.addEventListener('change', function () {
-    showNextQuestion(move_select.value);
+    // console.log(move_select.value);
+    showNextQuestion(move_select.value - 1);
 });
 
 //event handlers for previous, next, first and last
@@ -170,7 +173,21 @@ start_btn.addEventListener('click', () => {
 //end button functionality
 let end_btn = document.querySelector('#end-button > button');
 end_btn.addEventListener('click', () => {
+    //stop timer for current test
     clearInterval(countdown);
+
+    //if time is not in limit then fail the test and move to next page
+    console.log('required time: ', timing_and_marks[c_test][0] - 3);
+    console.log('elapsed time: ', (timing_and_marks[c_test][0]) - Math.floor(seconds % 60));
+    if ((timing_and_marks[c_test][0] - 3) > ((timing_and_marks[c_test][0]) - Math.floor(seconds % 60))) {
+        //fail all tests and show the next page
+        sessionStorage.setItem('outcome', 'fail_time');
+    }
+    //mark store for the current test
+
+    //store the score for the current test
+
+    //move to the next test
 });
 
 //count the score and show the result
@@ -200,19 +217,18 @@ function returnAnswer() {
     });
     return returnValue;
 }
-function markQuestion() {
-    let ans = document.querySelectorAll('input[name=mcq-answer]');
-    ans.forEach((element, index) => {
-        if (element.checked) {
-            if (index == test_data[current_qs].value[4]) {
-                console.log(index, test_data[current_qs].value[4]);
+function markCurrentTest() {
+    let ans = answers[c_test], score = 0;
+    for (const key in ans) {
+        if (ans.hasOwnProperty(key)) {
+            const opt = ans[key];
+            console.log(ans[key], test_data[key].value[4]);
+            if (ans[key] == test_data[key].value[4]) {
                 score++;
             }
-            else {
-                score--;
-            }
         }
-    });
+    }
+    sessionStorage.setItem(c_test, score);
     console.log(score);
 }
 
@@ -298,7 +314,8 @@ function manipulateQsLeftAndMarkedForReviewAndCurrentQ() {
     let c_q = document.querySelector('#q-no-el');
     un_qs_el.textContent = unattempted_qs;
     qs_ma_4_re.textContent = q_for_review.length;
-    c_q.textContent = current_qs + 1;
+    // console.log(current_qs);
+    c_q.textContent = 1 + current_qs;
 }
 
 //functions for setting subject and total questions in the header
