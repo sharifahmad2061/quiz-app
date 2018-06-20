@@ -111,23 +111,23 @@ let btn_previous = document.querySelector('#btn-previous');
 let btn_next = document.querySelector('#btn-next');
 
 btn_first.addEventListener('click', () => {
-    console.log('first button');
+    // console.log('first button');
     showNextQuestion(0);
     // current_qs = 0;
 });
 btn_last.addEventListener('click', () => {
-    console.log('last button');
+    // console.log('last button');
     showNextQuestion(total_qs - 1);
     // current_qs = total_qs - 1;
 });
 btn_previous.addEventListener('click', () => {
-    console.log('previous button');
+    // console.log('previous button');
     if (previous_qs < 0) return;
     showNextQuestion(previous_qs);
     // current_qs--;
 });
 btn_next.addEventListener('click', () => {
-    console.log('next button');
+    // console.log('next button');
     if (next_qs > total_qs - 1) return;
     showNextQuestion();
     // current_qs++;
@@ -177,6 +177,7 @@ function showNextQuestion(num) {
     // let next = num || next_qs;
     let question_el = document.querySelector('#question');
     let mcq_el = document.querySelectorAll('#mcqs > #third-col > div');
+
     //before inserting new question remove the previous one
     while (question_el.firstChild) {
         question_el.removeChild(question_el.firstChild);
@@ -189,7 +190,27 @@ function showNextQuestion(num) {
     previous_qs = next <= 1 ? 0 : next - 1;
     current_qs = next;
     next_qs = next >= total_qs ? 0 : next + 1;
-    console.log(previous_qs, current_qs, next_qs);
+    // console.log(previous_qs, current_qs, next_qs);
+
+    //before inserting new mcqs remove the previous ones
+    mcq_el.forEach((element) => {
+        while (element.firstChild) {
+            element.removeChild(element.firstChild);
+        }
+    });
+    //now insert new options
+    let mcq_arr = test_data[next].value;
+    mcq_el.forEach((element, index) => {
+        mcq_arr.forEach((element1, index1) => {
+            if (index == index1) {
+                el = document.createElement('p');
+                tn = document.createTextNode(element1);
+                el.appendChild(tn);
+                element.appendChild(el);
+            }
+        });
+    });
+
 
 }
 
