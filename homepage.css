@@ -1,3 +1,8 @@
+@font-face {
+    font-family: NotoNastaliq;
+    src: url('assets/NotoNastaliqUrdu-Regular.ttf');
+}
+
 body {
     height: 100vh;
     display: grid;
@@ -114,6 +119,11 @@ body {
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
+}
+
+.urdu {
+    font-family: NotoNastaliq, sans-serif;
+    font-size: 24px;
 }
 
 #m-review {

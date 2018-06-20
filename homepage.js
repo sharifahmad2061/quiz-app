@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
+
 //read the medadata files
 let file_and_order = JSON.parse(fs.readFileSync(path.join(__dirname, '/imp/fileToRead.json')));
 let timing_and_marks = JSON.parse(fs.readFileSync(path.join(__dirname, '/imp/timing.json')));
@@ -23,7 +24,8 @@ let qs_attempted = 0;
 let q_for_review = [];
 let total_qs = timing_and_marks[file_and_order['file']][1];
 let unattempted_qs = timing_and_marks[file_and_order['file']][1]; //initialize it total marks , each q has 1 mark
-
+//score
+let score = 0;
 
 // time clocks
 let time_el = document.querySelector("#time-ro");
@@ -65,6 +67,11 @@ function displayTimeLeft(element, seconds) {
 }
 
 
+//--------------------------------------------------------------
+// handling the no selection and marked for review functionality
+//--------------------------------------------------------------
+
+
 //handling the questions marked for review display element
 let qm_for_review = document.querySelector('#qs-marked-for-review');
 let re_ch = document.querySelector('#re-ch');
@@ -72,9 +79,10 @@ re_ch.addEventListener('change', () => {
     if (current_qs == null || current_qs == undefined) {
         // console.log('hello');
         return;
+    } else if (re_ch.checked && q_for_review.indexOf(current_qs) == -1) {
+        q_for_review.push(current_qs);
+        qm_for_review.textContent = q_for_review.length;
     }
-    q_for_review.push(current_qs);
-    qm_for_review.textContent = q_for_review.length;
 });
 
 //unchecking all radio buttons
@@ -85,6 +93,7 @@ ns_ra.addEventListener('change', () => {
     });
     ns_ra.checked = false;
 });
+
 
 //------------------------------------------
 //question navigation
@@ -112,23 +121,36 @@ let btn_next = document.querySelector('#btn-next');
 
 btn_first.addEventListener('click', () => {
     // console.log('first button');
+    storeAnswers(current_qs, returnAnswer());
+    uncheckAllRadioButtons();
+    uncheckCheckBox();
     showNextQuestion(0);
     // current_qs = 0;
 });
 btn_last.addEventListener('click', () => {
     // console.log('last button');
+    storeAnswers(current_qs, returnAnswer());
+    uncheckAllRadioButtons();
+    uncheckCheckBox();
     showNextQuestion(total_qs - 1);
     // current_qs = total_qs - 1;
 });
 btn_previous.addEventListener('click', () => {
     // console.log('previous button');
     if (previous_qs < 0) return;
+    storeAnswers(current_qs, returnAnswer());
+    uncheckAllRadioButtons();
+    uncheckCheckBox();
     showNextQuestion(previous_qs);
     // current_qs--;
 });
 btn_next.addEventListener('click', () => {
     // console.log('next button');
     if (next_qs > total_qs - 1) return;
+    // console.log(current_qs, returnAnswer());
+    storeAnswers(current_qs, returnAnswer());
+    uncheckAllRadioButtons();
+    uncheckCheckBox();
     showNextQuestion();
     // current_qs++;
 });
@@ -138,6 +160,9 @@ btn_next.addEventListener('click', () => {
 //-------------------------------------
 let start_btn = document.querySelector('#start-button > button');
 start_btn.addEventListener('click', () => {
+    setSubject(c_test);
+    setTotalQs(total_qs);
+    manipulateQsLeftAndMarkedForReviewAndCurrentQ();
     showNextQuestion();
     timer(time_for_c_test);
 }, { once: true });
@@ -150,6 +175,46 @@ end_btn.addEventListener('click', () => {
 
 //count the score and show the result
 
+//---------------------------------------
+//handle the question attempt functionality
+//---------------------------------------
+let answers = {};
+answers['phy'] = {}; answers['math'] = {}; answers['brs'] = {}; answers['eng'] = {};
+answers['it1'] = {}; answers['it2'] = {};
+
+function storeAnswers(questionNo, answer) {
+    // console.log(answers['phy']);
+    if (answer == null) {
+        return;
+    }
+    answers[c_test][questionNo] = answer;
+    unattempted_qs -= Object.keys(answers[c_test]).length;
+}
+function returnAnswer() {
+    let ans = document.querySelectorAll('input[name=mcq-answer]');
+    let returnValue = null;
+    ans.forEach((element, index) => {
+        if (element.checked) {
+            returnValue = index;
+        }
+    });
+    return returnValue;
+}
+function markQuestion() {
+    let ans = document.querySelectorAll('input[name=mcq-answer]');
+    ans.forEach((element, index) => {
+        if (element.checked) {
+            if (index == test_data[current_qs].value[4]) {
+                console.log(index, test_data[current_qs].value[4]);
+                score++;
+            }
+            else {
+                score--;
+            }
+        }
+    });
+    console.log(score);
+}
 
 //---------------------------------------
 //functions for different things
@@ -187,6 +252,15 @@ function showNextQuestion(num) {
     let tn = document.createTextNode(test_data[next].key);
     el.appendChild(tn);
     question_el.appendChild(el);
+    //insert the urdu part if necessary
+    if (c_test == 'phy' || c_test == 'math') {
+        el = document.createElement('p');
+        tn = document.createTextNode(test_data[total_qs].value[next]);
+        el.appendChild(tn);
+        el.classList.add('urdu');
+        question_el.appendChild(el);
+    }
+
     previous_qs = next <= 1 ? 0 : next - 1;
     current_qs = next;
     next_qs = next >= total_qs ? 0 : next + 1;
@@ -211,15 +285,20 @@ function showNextQuestion(num) {
         });
     });
 
+    //dynamically typesetting the mcqs and question
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 
+    manipulateQsLeftAndMarkedForReviewAndCurrentQ();
 }
 
 //function for manipulating qs left and marked for review
-function manipulateQsLeftAndMarkedForReview() {
+function manipulateQsLeftAndMarkedForReviewAndCurrentQ() {
     let un_qs_el = document.querySelector('#unattempted-qs');
     let qs_ma_4_re = document.querySelector('#qs-marked-for-review');
+    let c_q = document.querySelector('#q-no-el');
     un_qs_el.textContent = unattempted_qs;
     qs_ma_4_re.textContent = q_for_review.length;
+    c_q.textContent = current_qs + 1;
 }
 
 //functions for setting subject and total questions in the header
@@ -255,3 +334,12 @@ function setTotalQs(total_qs) {
     el.textContent = total_qs;
 }
 
+function uncheckAllRadioButtons() {
+    document.querySelectorAll('#mcqs > #second-col > input[name=mcq-answer]').forEach((element) => {
+        element.checked = false;
+    });
+}
+
+function uncheckCheckBox() {
+    document.querySelector('#re-ch').checked = false;
+}

@@ -7,6 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="homepage.css">
+    <script src="./libs/MathJax-2.7.4/MathJax.js"></script>
+    <script>
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+            tex2jax: {
+                inlineMath: [['$', '$'], ["\\(", "\\)"]],
+                displayMath: [['$$', '$$'], ["\\[", "\\]"]],
+                processEscapes: true
+            },
+            showMathMenu: false
+        });
+    </script>
     <title>main page</title>
 </head>
 
@@ -53,10 +66,10 @@
                     <p>D</p>
                 </div>
                 <div id="second-col" class="i-field">
-                    <input type="radio" name="mcq-answer">
-                    <input type="radio" name="mcq-answer">
-                    <input type="radio" name="mcq-answer">
-                    <input type="radio" name="mcq-answer">
+                    <input type="radio" name="mcq-answer" value="0">
+                    <input type="radio" name="mcq-answer" value="1">
+                    <input type="radio" name="mcq-answer" value="2">
+                    <input type="radio" name="mcq-answer" value="3">
                 </div>
                 <div id="third-col">
                     <div class="border"></div>
