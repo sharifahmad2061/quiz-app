@@ -9,36 +9,37 @@
 
     <link rel="stylesheet" href="libs/bootstrap.min.css">
     <style>
-    body{
-        height: 100vh;
-        display: grid;
-        grid-template-rows: 1fr 1fr 1fr;
-    }
-    main{
-        grid-row: 2/3;
-    }
+        body {
+            height: 100vh;
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+        }
+
+        main {
+            grid-row: 2/3;
+        }
     </style>
 </head>
 
 <body>
     <main class="container">
         <div class="row py-1">
-            <button class="col btn btn-block btn-lg btn-outline-primary" disabled>Intelligence 1</button>
+            <button class="col btn btn-block btn-lg btn-outline-primary" value="it1" disabled>Intelligence 1</button>
         </div>
         <div class="row py-1">
-            <button class="col btn btn-block btn-lg btn-outline-primary" disabled>Intelligence 2</button>            
+            <button class="col btn btn-block btn-lg btn-outline-primary" value="it2" disabled>Intelligence 2</button>
         </div>
         <div class="row py-1">
-            <button class="col btn btn-block btn-lg btn-outline-primary">English</button>
+            <button class="col btn btn-block btn-lg btn-outline-primary" value="eng">English</button>
         </div>
         <div class="row py-1">
-            <button class="col btn btn-block btn-lg btn-outline-primary">Basic Religious Sense</button>
+            <button class="col btn btn-block btn-lg btn-outline-primary" value="brs">Basic Religious Sense</button>
         </div>
         <div class="row py-1">
-            <button class="col btn btn-block btn-lg btn-outline-primary">Physics</button>
+            <button class="col btn btn-block btn-lg btn-outline-primary" value="phy">Physics</button>
         </div>
         <div class="row py-1">
-            <button class="col btn btn-block btn-lg btn-outline-primary">Maths</button>
+            <button class="col btn btn-block btn-lg btn-outline-primary" value="math">Maths</button>
         </div>
     </main>
     <script src="section.js"></script>

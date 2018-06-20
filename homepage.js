@@ -181,7 +181,7 @@ end_btn.addEventListener('click', () => {
         //fail all tests and show the next page
         sessionStorage.setItem('outcome', 'fail_time');
         //move to next page and show result
-
+        location.replace('result.html');
     }
     //mark store for the current test
     markCurrentTest();
@@ -192,6 +192,7 @@ end_btn.addEventListener('click', () => {
     if (c_test_score < passing_marks) {
         sessionStorage.setItem('outcome', 'fail_score');
         //move to new page
+        location.replace('result.html');
     }
 
     //store the number of tests attempted if it is the last move to the next page
@@ -199,6 +200,8 @@ end_btn.addEventListener('click', () => {
     sessionStorage.setItem('tests_attempted', 1 + tests_attempted);
     if (tests_attempted == 4) {
         //all test completed hence move to new page
+        sessionStorage.setItem('outcome', 'passed');
+        location.replace('result.html');
     }
 
     //move to the next test
