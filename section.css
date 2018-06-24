@@ -1,0 +1,9 @@
+body {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+main {
+    grid-row: 2/3;
+}
