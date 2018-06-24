@@ -130,6 +130,9 @@ btn_first.addEventListener('click', () => {
     storeAnswers(current_qs, returnAnswer());
     uncheckAllRadioButtons();
     uncheckCheckBox();
+    //loadSolvedAnswers is before showNextQuestion because the latter changes next, previous and current question
+    // variables hence messes the question no.
+    loadSolvedAnswers(0);
     showNextQuestion(0);
     // current_qs = 0;
 });
@@ -138,15 +141,19 @@ btn_last.addEventListener('click', () => {
     storeAnswers(current_qs, returnAnswer());
     uncheckAllRadioButtons();
     uncheckCheckBox();
+    loadSolvedAnswers(total_qs - 1);
     showNextQuestion(total_qs - 1);
     // current_qs = total_qs - 1;
 });
 btn_previous.addEventListener('click', () => {
     // console.log('previous button');
     if (previous_qs < 0) return;
+    // console.log('returned answer: ', returnAnswer());
     storeAnswers(current_qs, returnAnswer());
+    // console.log('stored answer: ', answers[c_test][current_qs]);
     uncheckAllRadioButtons();
     uncheckCheckBox();
+    loadSolvedAnswers(previous_qs);
     showNextQuestion(previous_qs);
     // current_qs--;
 });
@@ -154,9 +161,12 @@ btn_next.addEventListener('click', () => {
     // console.log('next button');
     if (next_qs == total_qs) return;
     // console.log(current_qs, returnAnswer());
+    // console.log('returned answer: ', returnAnswer());
     storeAnswers(current_qs, returnAnswer());
+    // console.log('stored answer: ', answers[c_test][current_qs]);
     uncheckAllRadioButtons();
     uncheckCheckBox();
+    loadSolvedAnswers(next_qs);
     showNextQuestion();
     // current_qs++;
 });
@@ -421,4 +431,15 @@ function uncheckAllRadioButtons() {
 
 function uncheckCheckBox() {
     document.querySelector('#re-ch').checked = false;
+}
+
+function loadSolvedAnswers(questionNo) {
+    let str = '';
+    str = `${questionNo} : ${answers[c_test][questionNo]}`;
+    // console.log(str);
+    let ans = document.querySelectorAll('input[name=mcq-answer]');
+    if (answers[c_test][questionNo] != undefined || answers[c_test][questionNo] != null) {
+        // console.log('loading previous answer');
+        ans[answers[c_test][questionNo]].checked = true;
+    }
 }
