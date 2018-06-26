@@ -35,6 +35,11 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
+}
+
+#third-col>div {
+    flex-grow: 1;
 }
 
 #version {
@@ -44,7 +49,7 @@ body {
 }
 
 .blue {
-    color: #33b5e5;
+    color: #007bff;
 }
 
 .red {
@@ -52,7 +57,7 @@ body {
 }
 
 .bg-blue {
-    background-color: #33b5e5;
+    background-color: #007bff;
 }
 
 .btn-md {
