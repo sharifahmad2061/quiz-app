@@ -433,6 +433,7 @@ function uncheckCheckBox() {
     document.querySelector('#re-ch').checked = false;
 }
 
+//loads the previous entered answers
 function loadSolvedAnswers(questionNo) {
     let str = '';
     str = `${questionNo} : ${answers[c_test][questionNo]}`;
