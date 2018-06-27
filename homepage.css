@@ -37,11 +37,12 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: center;
 }
 
 #third-col>div {
     flex-grow: 1;
+    padding-top: 0.8em;
+    padding-left: 1em;
 }
 
 #version {
