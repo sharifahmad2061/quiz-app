@@ -284,18 +284,48 @@ function showNextQuestion(num) {
         question_el.removeChild(question_el.firstChild);
     }
     //now insert new question
-    let el = document.createElement('p');
-    let tn = document.createTextNode(test_data[next].key);
-    el.appendChild(tn);
-    if (c_test == 'brs') el.classList.add('urdu');
-    question_el.appendChild(el);
-    //insert the urdu part if necessary
-    if (c_test == 'phy' || c_test == 'math') {
-        el = document.createElement('p');
-        tn = document.createTextNode(test_data[total_qs].value[next]);
-        el.appendChild(tn);
-        el.classList.add('urdu');
+    let el, tn;
+    if (c_test == "it1" || c_test == "it2") {
+        //if test is intelligence then set flex direction to row
+        question_el.style.flexDirection = "row";
+
+        el = document.createElement('img');
+        el.setAttribute('src', `${test_data[next].key}Artboard 1.json}`);
         question_el.appendChild(el);
+
+        el = document.createElement('p');
+        tn = document.createTextNode('IS TO');
+        el.appendChild(tn);
+        question_el.appendChild(el);
+
+        el = document.createElement('img');
+        el.setAttribute('src', `${test_data[next].key}Artboard 2.json}`);
+        question_el.appendChild(el);
+
+        el = document.createElement('p');
+        tn = document.createTextNode('AS');
+        el.appendChild(tn);
+        question_el.appendChild(el);
+
+        el = document.createElement('img');
+        el.setAttribute('src', `${test_data[next].key}Artboard 3.json}`);
+        question_el.appendChild(el);
+
+    } else {
+
+        el = document.createElement('p');
+        tn = document.createTextNode(test_data[next].key);
+        el.appendChild(tn);
+        if (c_test == 'brs') el.classList.add('urdu');
+        question_el.appendChild(el);
+        //insert the urdu part if necessary
+        if (c_test == 'phy' || c_test == 'math') {
+            el = document.createElement('p');
+            tn = document.createTextNode(test_data[total_qs].value[next]);
+            el.appendChild(tn);
+            el.classList.add('urdu');
+            question_el.appendChild(el);
+        }
     }
 
     previous_qs = next <= 1 ? 0 : next - 1;
@@ -309,19 +339,40 @@ function showNextQuestion(num) {
             element.removeChild(element.firstChild);
         }
     });
-    //now insert new options
-    let mcq_arr = test_data[next].value;
-    mcq_el.forEach((element, index) => {
-        mcq_arr.forEach((element1, index1) => {
-            if (index == index1) {
-                el = document.createElement('p');
-                tn = document.createTextNode(element1);
-                el.appendChild(tn);
-                if (c_test == 'brs') el.classList.add('urdu');
-                element.appendChild(el);
-            }
+
+    if (c_test == "it1" || c_test == "it2") {
+
+        el = document.createElement('img');
+        el.setAttribute('src', `${test_data[next].key}Artboard 4.json}`);
+        mcq_el[0].appendChild(el);
+
+        el = document.createElement('img');
+        el.setAttribute('src', `${test_data[next].key}Artboard 5.json}`);
+        mcq_el[1].appendChild(el);
+
+        el = document.createElement('img');
+        el.setAttribute('src', `${test_data[next].key}Artboard 6.json}`);
+        mcq_el[2].appendChild(el);
+
+        el = document.createElement('img');
+        el.setAttribute('src', `${test_data[next].key}Artboard 7.json}`);
+        mcq_el[3].appendChild(el);
+
+    } else {
+        //now insert new options
+        let mcq_arr = test_data[next].value;
+        mcq_el.forEach((element, index) => {
+            mcq_arr.forEach((element1, index1) => {
+                if (index == index1) {
+                    el = document.createElement('p');
+                    tn = document.createTextNode(element1);
+                    el.appendChild(tn);
+                    if (c_test == 'brs') el.classList.add('urdu');
+                    element.appendChild(el);
+                }
+            });
         });
-    });
+    }
 
     //dynamically typesetting the mcqs and question
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
@@ -417,7 +468,7 @@ function quizCompletion() {
     //store the number of tests attempted if it is the last move to the next page
     let tests_attempted = sessionStorage.getItem('tests_attempted');
     sessionStorage.setItem('tests_attempted', 1 + tests_attempted);
-    if (tests_attempted == 4) {
+    if (tests_attempted == 5) {
         //all test completed hence move to new page
         sessionStorage.setItem('outcome', 'passed');
         location.replace('result.html');
@@ -440,7 +491,7 @@ function quizCompletion() {
     displayTimeLeft(time_al, time_for_c_test * 60);
 
     //load test data
-    test_data = JSON.parse(fs.readFileSync(path.join(__dirname, `/question/${c_test}.json`), { encoding: utf8 }));
+    test_data = JSON.parse(fs.readFileSync(path.join(__dirname, `/question/${c_test}.json`)));
     test_data = arrayFromDictionary(test_data);
 
     //set subjects and other interface elements and empty question and mcq elements

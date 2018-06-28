@@ -15,6 +15,12 @@ if (outcome == 'fail_time') {
     populateMarksTable();
 }
 
+//retry test button
+let retry_test = document.querySelector('#retry-test');
+retry_test.addEventListener('click', () => {
+    location.replace('section.html');
+});
+
 //--------------------------------------
 //functions for doing different things
 //---------------------------------------
