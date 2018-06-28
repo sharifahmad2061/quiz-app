@@ -289,8 +289,9 @@ function showNextQuestion(num) {
         //if test is intelligence then set flex direction to row
         question_el.style.flexDirection = "row";
 
+        // console.log(`${test_data[next].key}Artboard 1.json`);
         el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard 1.json}`);
+        el.setAttribute('src', `${test_data[next].key}Artboard1.json`);
         question_el.appendChild(el);
 
         el = document.createElement('p');
@@ -299,7 +300,7 @@ function showNextQuestion(num) {
         question_el.appendChild(el);
 
         el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard 2.json}`);
+        el.setAttribute('src', `${test_data[next].key}Artboard2.json`);
         question_el.appendChild(el);
 
         el = document.createElement('p');
@@ -308,7 +309,7 @@ function showNextQuestion(num) {
         question_el.appendChild(el);
 
         el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard 3.json}`);
+        el.setAttribute('src', `${test_data[next].key}Artboard3.json`);
         question_el.appendChild(el);
 
     } else {
@@ -343,19 +344,19 @@ function showNextQuestion(num) {
     if (c_test == "it1" || c_test == "it2") {
 
         el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard 4.json}`);
+        el.setAttribute('src', `${test_data[next].key}Artboard4.json`);
         mcq_el[0].appendChild(el);
 
         el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard 5.json}`);
+        el.setAttribute('src', `${test_data[next].key}Artboard5.json`);
         mcq_el[1].appendChild(el);
 
         el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard 6.json}`);
+        el.setAttribute('src', `${test_data[next].key}Artboard6.json`);
         mcq_el[2].appendChild(el);
 
         el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard 7.json}`);
+        el.setAttribute('src', `${test_data[next].key}Artboard7.json`);
         mcq_el[3].appendChild(el);
 
     } else {
