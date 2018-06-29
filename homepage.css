@@ -125,8 +125,20 @@ body {
 #question {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    /* align-items: center; */
     flex-direction: column;
+}
+
+#question-portion {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#mcq-portion {
+    display: none;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .urdu {
@@ -204,4 +216,31 @@ body {
 
 #btn-last {
     background: url('assets/fast-forward.svg') no-repeat center;
+}
+
+/* temporary */
+
+svg {
+    width: 100;
+    height: 100px;
+}
+
+#int-sect {
+    display: none;
+    justify-content: space-around;
+    /* align-items: center; */
+    /* width: 100%; */
+    height: 100%;
+    text-align: center;
+}
+
+#int-sect>* {
+    flex-grow: 1;
+    padding-top: 15px;
+    /* padding-left: 40px; */
+    /* margin: auto; */
+}
+
+#int-sect>input {
+    align-self: center;
 }

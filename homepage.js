@@ -215,6 +215,32 @@ function startButtonHandler() {
     setSubject(c_test);
     setTotalQs(total_qs);
     manipulateQsLeftAndMarkedForReviewAndCurrentQ();
+
+    //if test is intelligence then hide first-col , second-col and third-col and unhide int-sect
+    if (c_test == "it1" || c_test == "it2") {
+        document.querySelector('#first-col').style.display = 'none';
+        document.querySelector('#second-col').style.display = 'none';
+        document.querySelector('#third-col').style.display = 'none';
+        document.querySelector('#int-sect').style.display = 'flex';
+        document.querySelector('#mcqs').style.display = "block";
+        document.querySelector('#mcq-portion').style.display = "flex";
+
+        //change grid layout and bring back in
+        document.querySelector('#grid-child-1').style.gridTemplateRows = '1.5fr 1fr 7fr 1fr 1fr 1fr';
+
+
+    }
+    else {
+        document.querySelector('#grid-child-1').style.gridTemplateRows = '1.5fr 1fr 4fr 4fr 1fr 1fr';
+        document.querySelector('#mcqs').style.display = 'grid';
+        document.querySelector('#first-col').style.display = 'flex';
+        document.querySelector('#second-col').style.display = 'flex';
+        document.querySelector('#third-col').style.display = 'flex';
+        document.querySelector('#int-sect').style.display = 'none';
+        document.querySelector('#mcq-portion').style.display = "none";
+
+    }
+
     showNextQuestion();
     timer(time_for_c_test);
 }
@@ -276,41 +302,70 @@ function showNextQuestion(num) {
     if (num == null || num == undefined) next = next_qs;
     else next = num;
     // let next = num || next_qs;
-    let question_el = document.querySelector('#question');
+    let question_el = document.querySelector('#question > #question-portion');
     let mcq_el = document.querySelectorAll('#mcqs > #third-col > div');
+    let mcq_po = document.querySelector('#mcq-portion');
 
     //before inserting new question remove the previous one
     while (question_el.firstChild) {
+        // if (question_el.children.length == 2) break;
         question_el.removeChild(question_el.firstChild);
     }
     //now insert new question
-    let el, tn;
+    let el, tn, svg_data;
     if (c_test == "it1" || c_test == "it2") {
+
         //if test is intelligence then set flex direction to row
         question_el.style.flexDirection = "row";
+        // question_el.style.flexWrap = "wrap";
+
+        svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard1.svg`), 'utf8');
+        el = htmlToElements(svg_data);
+        question_el.appendChild(el);
+        // question_el.insertBefore(el, mcq_po);
 
         // console.log(`${test_data[next].key}Artboard 1.json`);
-        el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard1.json`);
-        question_el.appendChild(el);
+        // el = document.createElement('img');
+        // el.setAttribute('src', `${test_data[next].key}Artboard1.svg`);
+        // el.setAttribute('width', '200px');
+        // el.setAttribute('height', '300px');
+        // question_el.appendChild(el);
 
         el = document.createElement('p');
         tn = document.createTextNode('IS TO');
         el.appendChild(tn);
         question_el.appendChild(el);
+        // question_el.insertBefore(el, mcq_po);
 
-        el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard2.json`);
+        svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard2.svg`), 'utf8');
+        el = htmlToElements(svg_data);
         question_el.appendChild(el);
+        // question_el.insertBefore(el, mcq_po);
+
+        // el = document.createElement('img');
+        // el.setAttribute('src', `${test_data[next].key}Artboard2.svg`);
+        // question_el.appendChild(el);
 
         el = document.createElement('p');
         tn = document.createTextNode('AS');
         el.appendChild(tn);
         question_el.appendChild(el);
+        // question_el.insertBefore(el, mcq_po);
 
-        el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard3.json`);
+        svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard3.svg`), 'utf8');
+        el = htmlToElements(svg_data);
         question_el.appendChild(el);
+        // question_el.insertBefore(el, mcq_po);
+
+        el = document.createElement('p');
+        tn = document.createTextNode('IS TO');
+        el.appendChild(tn);
+        question_el.appendChild(el);
+        // question_el.insertBefore(el, mcq_po);
+
+        // el = document.createElement('img');
+        // el.setAttribute('src', `${test_data[next].key}Artboard3.svg`);
+        // question_el.appendChild(el);
 
     } else {
 
@@ -335,29 +390,73 @@ function showNextQuestion(num) {
     // console.log(previous_qs, current_qs, next_qs);
 
     //before inserting new mcqs remove the previous ones
-    mcq_el.forEach((element) => {
-        while (element.firstChild) {
-            element.removeChild(element.firstChild);
+    if (c_test == "it1" || c_test == "it2") {
+        while (mcq_po.firstChild) {
+            mcq_po.removeChild(mcq_po.firstChild);
         }
-    });
+    } else {
+        mcq_el.forEach((element) => {
+            while (element.firstChild) {
+                element.removeChild(element.firstChild);
+            }
+        });
+    }
 
     if (c_test == "it1" || c_test == "it2") {
+        //set flex-direction to row
+        // document.querySelector('#third-col').style.flexDirection = "row";
+        // document.querySelector('#question > #mcq-portion').style.display = "flex";
 
-        el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard4.json`);
-        mcq_el[0].appendChild(el);
 
-        el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard5.json`);
-        mcq_el[1].appendChild(el);
+        el = document.createElement('p');
+        tn = document.createTextNode('A');
+        el.appendChild(tn);
+        mcq_po.appendChild(el);
 
-        el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard6.json`);
-        mcq_el[2].appendChild(el);
+        svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard4.svg`), 'utf8');
+        el = htmlToElements(svg_data);
+        mcq_po.appendChild(el);
+        // el = document.createElement('img');
+        // el.setAttribute('src', `${test_data[next].key}Artboard4.svg`);
+        // mcq_el[0].appendChild(el);
 
-        el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard7.json`);
-        mcq_el[3].appendChild(el);
+        el = document.createElement('p');
+        tn = document.createTextNode('B');
+        el.appendChild(tn);
+        mcq_po.appendChild(el);
+
+        svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard5.svg`), 'utf8');
+        el = htmlToElements(svg_data);
+        mcq_po.appendChild(el);
+
+        // el = document.createElement('img');
+        // el.setAttribute('src', `${test_data[next].key}Artboard5.svg`);
+        // mcq_el[1].appendChild(el);
+        el = document.createElement('p');
+        tn = document.createTextNode('C');
+        el.appendChild(tn);
+        mcq_po.appendChild(el);
+
+
+        svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard6.svg`), 'utf8');
+        el = htmlToElements(svg_data);
+        mcq_po.appendChild(el);
+        // el = document.createElement('img');
+        // el.setAttribute('src', `${test_data[next].key}Artboard6.svg`);
+        // mcq_el[2].appendChild(el);
+
+        el = document.createElement('p');
+        tn = document.createTextNode('D');
+        el.appendChild(tn);
+        mcq_po.appendChild(el);
+
+
+        svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard7.svg`), 'utf8');
+        el = htmlToElements(svg_data);
+        mcq_po.appendChild(el);
+        // el = document.createElement('img');
+        // el.setAttribute('src', `${test_data[next].key}Artboard7.svg`);
+        // mcq_el[3].appendChild(el);
 
     } else {
         //now insert new options
@@ -496,9 +595,10 @@ function quizCompletion() {
     test_data = arrayFromDictionary(test_data);
 
     //set subjects and other interface elements and empty question and mcq elements
-    let question_el = document.querySelector('#question');
+    let question_el = document.querySelector('#question > #question-portion');
     let mcq_el = document.querySelectorAll('#mcqs > #third-col > div');
     while (question_el.firstChild) {
+        // if (question_el.children.length == 2) break;
         question_el.removeChild(question_el.firstChild);
     }
     mcq_el.forEach((element) => {
@@ -519,4 +619,13 @@ function congratsToast() {
 
     // After 3 seconds, remove the show class from DIV
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+}
+
+//string to element
+function htmlToElements(html) {
+    var template = document.createElement('template');
+    template.innerHTML = html;
+    // console.log(template);
+    // console.log(template.content.firstChild);
+    return template.content.firstChild;
 }
