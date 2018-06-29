@@ -18,6 +18,7 @@ if (outcome == 'fail_time') {
 //retry test button
 let retry_test = document.querySelector('#retry-test');
 retry_test.addEventListener('click', () => {
+    sessionStorage.clear();
     location.replace('section.html');
 });
 

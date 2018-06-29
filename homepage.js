@@ -95,7 +95,7 @@ re_ch.addEventListener('change', () => {
 //unchecking all radio buttons
 let ns_ra = document.querySelector('#ns-ra');
 ns_ra.addEventListener('change', () => {
-    document.querySelectorAll('#mcqs > #second-col > input[name=mcq-answer]').forEach((element) => {
+    document.querySelectorAll('input[name=mcq-answer]').forEach((element) => {
         element.checked = false;
     });
     ns_ra.checked = false;
@@ -400,6 +400,7 @@ function showNextQuestion(num) {
                 element.removeChild(element.firstChild);
             }
         });
+
     }
 
     if (c_test == "it1" || c_test == "it2") {
@@ -525,7 +526,7 @@ function setTotalQs(total_qs) {
 }
 
 function uncheckAllRadioButtons() {
-    document.querySelectorAll('#mcqs > #second-col > input[name=mcq-answer]').forEach((element) => {
+    document.querySelectorAll('input[name=mcq-answer]').forEach((element) => {
         element.checked = false;
     });
 }
