@@ -226,12 +226,12 @@ function startButtonHandler() {
         document.querySelector('#mcq-portion').style.display = "flex";
 
         //change grid layout and bring back in
-        document.querySelector('#grid-child-1').style.gridTemplateRows = '1.5fr 1fr 7fr 1fr 1fr 1fr';
+        document.querySelector('#grid-child-1').style.gridTemplateRows = '1.2fr 1fr 7fr 1fr 1fr 1fr';
 
 
     }
     else {
-        document.querySelector('#grid-child-1').style.gridTemplateRows = '1.5fr 1fr 4fr 4fr 1fr 1fr';
+        document.querySelector('#grid-child-1').style.gridTemplateRows = '1.2fr 1fr 4fr 4fr 1fr 1fr';
         document.querySelector('#mcqs').style.display = 'grid';
         document.querySelector('#first-col').style.display = 'flex';
         document.querySelector('#second-col').style.display = 'flex';
@@ -319,17 +319,18 @@ function showNextQuestion(num) {
         question_el.style.flexDirection = "row";
         // question_el.style.flexWrap = "wrap";
 
-        svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard1.svg`), 'utf8');
-        el = htmlToElements(svg_data);
-        question_el.appendChild(el);
+        // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard1.svg`), 'utf8');
+        // el = htmlToElements(svg_data);
+        // question_el.appendChild(el);
         // question_el.insertBefore(el, mcq_po);
 
         // console.log(`${test_data[next].key}Artboard 1.json`);
-        // el = document.createElement('img');
-        // el.setAttribute('src', `${test_data[next].key}Artboard1.svg`);
+        el = document.createElement('img');
+        el.setAttribute('src', `${test_data[next].key}Artboard1.svg`);
+        el.classList.add('svg');
         // el.setAttribute('width', '200px');
         // el.setAttribute('height', '300px');
-        // question_el.appendChild(el);
+        question_el.appendChild(el);
 
         el = document.createElement('p');
         tn = document.createTextNode('IS TO');
@@ -337,14 +338,15 @@ function showNextQuestion(num) {
         question_el.appendChild(el);
         // question_el.insertBefore(el, mcq_po);
 
-        svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard2.svg`), 'utf8');
-        el = htmlToElements(svg_data);
-        question_el.appendChild(el);
+        // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard2.svg`), 'utf8');
+        // el = htmlToElements(svg_data);
+        // question_el.appendChild(el);
         // question_el.insertBefore(el, mcq_po);
 
-        // el = document.createElement('img');
-        // el.setAttribute('src', `${test_data[next].key}Artboard2.svg`);
-        // question_el.appendChild(el);
+        el = document.createElement('img');
+        el.setAttribute('src', `${test_data[next].key}Artboard2.svg`);
+        el.classList.add('svg');
+        question_el.appendChild(el);
 
         el = document.createElement('p');
         tn = document.createTextNode('AS');
@@ -352,9 +354,14 @@ function showNextQuestion(num) {
         question_el.appendChild(el);
         // question_el.insertBefore(el, mcq_po);
 
-        svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard3.svg`), 'utf8');
-        el = htmlToElements(svg_data);
+        el = document.createElement('img');
+        el.setAttribute('src', `${test_data[next].key}Artboard3.svg`);
+        el.classList.add('svg');
         question_el.appendChild(el);
+
+        // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard3.svg`), 'utf8');
+        // el = htmlToElements(svg_data);
+        // question_el.appendChild(el);
         // question_el.insertBefore(el, mcq_po);
 
         el = document.createElement('p');
@@ -363,9 +370,6 @@ function showNextQuestion(num) {
         question_el.appendChild(el);
         // question_el.insertBefore(el, mcq_po);
 
-        // el = document.createElement('img');
-        // el.setAttribute('src', `${test_data[next].key}Artboard3.svg`);
-        // question_el.appendChild(el);
 
     } else {
 
@@ -414,37 +418,41 @@ function showNextQuestion(num) {
         el.appendChild(tn);
         mcq_po.appendChild(el);
 
-        svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard4.svg`), 'utf8');
-        el = htmlToElements(svg_data);
+        // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard4.svg`), 'utf8');
+        // el = htmlToElements(svg_data);
+        // mcq_po.appendChild(el);
+        el = document.createElement('img');
+        el.setAttribute('src', `${test_data[next].key}Artboard4.svg`);
+        el.classList.add('svg');
         mcq_po.appendChild(el);
-        // el = document.createElement('img');
-        // el.setAttribute('src', `${test_data[next].key}Artboard4.svg`);
-        // mcq_el[0].appendChild(el);
 
         el = document.createElement('p');
         tn = document.createTextNode('B');
         el.appendChild(tn);
         mcq_po.appendChild(el);
 
-        svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard5.svg`), 'utf8');
-        el = htmlToElements(svg_data);
+        // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard5.svg`), 'utf8');
+        // el = htmlToElements(svg_data);
+        // mcq_po.appendChild(el);
+
+        el = document.createElement('img');
+        el.setAttribute('src', `${test_data[next].key}Artboard5.svg`);
+        el.classList.add('svg');
         mcq_po.appendChild(el);
 
-        // el = document.createElement('img');
-        // el.setAttribute('src', `${test_data[next].key}Artboard5.svg`);
-        // mcq_el[1].appendChild(el);
         el = document.createElement('p');
         tn = document.createTextNode('C');
         el.appendChild(tn);
         mcq_po.appendChild(el);
 
 
-        svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard6.svg`), 'utf8');
-        el = htmlToElements(svg_data);
+        // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard6.svg`), 'utf8');
+        // el = htmlToElements(svg_data);
+        // mcq_po.appendChild(el);
+        el = document.createElement('img');
+        el.setAttribute('src', `${test_data[next].key}Artboard6.svg`);
+        el.classList.add('svg');
         mcq_po.appendChild(el);
-        // el = document.createElement('img');
-        // el.setAttribute('src', `${test_data[next].key}Artboard6.svg`);
-        // mcq_el[2].appendChild(el);
 
         el = document.createElement('p');
         tn = document.createTextNode('D');
@@ -452,12 +460,13 @@ function showNextQuestion(num) {
         mcq_po.appendChild(el);
 
 
-        svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard7.svg`), 'utf8');
-        el = htmlToElements(svg_data);
+        // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard7.svg`), 'utf8');
+        // el = htmlToElements(svg_data);
+        // mcq_po.appendChild(el);
+        el = document.createElement('img');
+        el.setAttribute('src', `${test_data[next].key}Artboard7.svg`);
+        el.classList.add('svg');
         mcq_po.appendChild(el);
-        // el = document.createElement('img');
-        // el.setAttribute('src', `${test_data[next].key}Artboard7.svg`);
-        // mcq_el[3].appendChild(el);
 
     } else {
         //now insert new options

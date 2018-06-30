@@ -28,6 +28,21 @@ function createWindow() {
     // Open the DevTools.
     win.webContents.openDevTools()
 
+    //clear the cache
+    // win.webContents.session.clearCache((data) => {
+    //     console.log(data);
+    // })
+    // win.webContents.session.clearStorageData({
+    //     origin: 'file:///C:/Users/sharifahmad/Desktop/quiz-app/homepage.html',
+    //     storages: ['appcache', 'cookies', 'filesystem', 'indexdb', 'localstorage', 'shadercache', 'websql', 'serviceworkers'],
+    //     quotas: 'persistent'
+    // }, (data) => {
+    //     console.log(data);
+    // })
+    // win.webContents.session.getCacheSize((data) => {
+    //     console.log(data);
+    // })
+
     // Emitted when the window is closed.
     win.on('closed', () => {
         // Dereference the window object, usually you would store windows
@@ -35,6 +50,9 @@ function createWindow() {
         // when you should delete the corresponding element.
         win = null
     })
+
+    // win.on('close', () => {
+    // })
 }
 
 // This method will be called when Electron has finished
