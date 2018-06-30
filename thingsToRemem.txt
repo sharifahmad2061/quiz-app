@@ -1,6 +1,3 @@
 changing the move to question dropdown must change the subject in student info.
 
 use the line-height property
-
-it1 
-mcq 6 10 13 15 17 20 23 29

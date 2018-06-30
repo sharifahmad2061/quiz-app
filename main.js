@@ -26,7 +26,7 @@ function createWindow() {
     }))
 
     // Open the DevTools.
-    win.webContents.openDevTools()
+    // win.webContents.openDevTools()
 
     //clear the cache
     // win.webContents.session.clearCache((data) => {
