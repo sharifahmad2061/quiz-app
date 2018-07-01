@@ -16,7 +16,7 @@ function createWindow() {
     win.setResizable(false);
     //disable the windows maximize
     // win.setMaximizable(false);
-    // win.maximize();
+    win.maximize();
 
     // and load the index.html of the app.
     win.loadURL(url.format({
@@ -26,7 +26,7 @@ function createWindow() {
     }))
 
     // Open the DevTools.
-    // win.webContents.openDevTools()
+    win.webContents.openDevTools()
 
     //clear the cache
     // win.webContents.session.clearCache((data) => {
