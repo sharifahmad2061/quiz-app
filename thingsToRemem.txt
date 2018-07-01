@@ -1,5 +1,3 @@
-changing the move to question dropdown must change the subject in student info.
-
 use the line-height property
 
-store the answer of the last question
+add checkmarks to buttons

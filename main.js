@@ -20,13 +20,13 @@ function createWindow() {
 
     // and load the index.html of the app.
     win.loadURL(url.format({
-        pathname: path.join(__dirname, 'section.html'),
+        pathname: path.join(__dirname, 'login.html'),
         protocol: 'file:',
         slashes: true
     }))
 
     // Open the DevTools.
-    // win.webContents.openDevTools()
+    win.webContents.openDevTools()
 
     //clear the cache
     // win.webContents.session.clearCache((data) => {
