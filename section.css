@@ -7,3 +7,9 @@ body {
 main {
     grid-row: 2/3;
 }
+
+.tick button::after {
+    content: '\f00c';
+    font-family: 'Material Icons';
+    float: right;
+}

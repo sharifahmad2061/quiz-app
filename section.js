@@ -5,6 +5,12 @@ let btns = document.querySelectorAll('button');
 let test_completed = JSON.parse(sessionStorage.getItem('test_completed'));
 
 btns.forEach((element) => {
+    //add ticks if completed
+    if (test_completed != null && test_completed != undefined) {
+        if (-1 != test_completed.indexOf(element.value))
+            element.classList.add('tick');
+    }
+
     element.addEventListener('click', () => {
         if (test_completed != null && test_completed != undefined) {
             //if test is already taken then show the toast else move to it

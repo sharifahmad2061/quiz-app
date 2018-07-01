@@ -5,24 +5,19 @@ let login_btn = document.querySelector('#login');
 
 login_btn.addEventListener('click', () => {
     let uns_value = usn.value, psd_value = psd.value;
-    if (uns_value == "sharifahmad" && psd_value == "12345") {
+    if (uns_value == "ajmalkhan" && psd_value == "academyPlusStudents") {
         M.toast({
             html: 'Login Successful',
-            displayLength: 3000
+            displayLength: 1500
         });
         setTimeout(() => {
-            console.log('hello');
             location.replace('section.html');
-        }, 4000);
+        }, 1800);
     } else {
         M.toast({
             html: 'Login Unsuccessful',
-            displayLength: 3000
+            displayLength: 2000
         });
     }
     return;
 });
-
-// document.querySelector('form').addEventListener('submit', (e) => {
-//     return false;
-// });
