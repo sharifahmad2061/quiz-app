@@ -254,7 +254,11 @@ function storeAnswers(questionNo, answer) {
     unattempted_qs = total_qs - Object.keys(answers[c_test]).length;
 }
 function returnAnswer() {
-    let ans = document.querySelectorAll('input[name=mcq-answer]');
+    let ans;
+    if (c_test == 'it1' || c_test == 'it2')
+        ans = document.querySelectorAll('#int-sect > input[name=mcq-answer]');
+    else
+        ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
     let returnValue = null;
     ans.forEach((element, index) => {
         if (element.checked) {
