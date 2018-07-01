@@ -590,12 +590,15 @@ function quizCompletion() {
 
     //store the tests completed in the session storage
     let test_completed = [];
-    test_completed = JSON.parse(sessionStorage.getItem('test_completed'));
+    if (sessionStorage.getItem('test_completed') != null)
+        test_completed = JSON.parse(sessionStorage.getItem('test_completed'));
     test_completed.push(c_test);
     sessionStorage.setItem('test_completed', JSON.stringify(test_completed));
 
     //move to the selection page for the next test
-    location.replace('section.html');
+    setTimeout(() => {
+        location.replace('section.html');
+    }, 3000);
 
     // //move to the next test
     // //change c_test, load test data and change variables

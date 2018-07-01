@@ -80,6 +80,7 @@
         "Her mother asked her husband was sitting idle since morning.",
         "Her mother asked that her husband was sitting idle since morning.",
         "Her mother told that her husband had been sitting idle since morning.",
+        "Her mother asked to her husband was sitting idle since morning.",
         "2"
     ],
     "My brother said, \"It is four o clock now.\"": [
@@ -128,6 +129,7 @@
         "He wished not waste his time.",
         "He ordered not waste his time.",
         "He advised not waste his time.",
+        "None of these.",
         "2"
     ],
     "My brother said, \"House is not built in a day.\"": [
@@ -346,12 +348,5 @@
         "In",
         "With",
         "1"
-    ],
-    "Rizwan is ? boy.":[
-        "Good",
-        "Gooder",
-        "The good",
-        "None",
-        "0"
     ]
 }
