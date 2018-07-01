@@ -588,51 +588,49 @@ function quizCompletion() {
         location.replace('result.html');
     }
 
-    //move to the next test
-    //change c_test, load test data and change variables
-    let next_test = file_and_order['order'].indexOf(c_test) + 1;
-    c_test = file_and_order['order'][next_test];
-    file_and_order['file'] = c_test;
+    //store the tests completed in the session storage
+    let test_completed = [];
+    test_completed = JSON.parse(sessionStorage.getItem('test_completed'));
+    test_completed.push(c_test);
+    sessionStorage.setItem('test_completed', JSON.stringify(test_completed));
 
-    //renew the variables
-    time_for_c_test = timing_and_marks[c_test][0];
-    current_qs = 0; previous_qs = 0; next_qs = 0; q_for_review = [];
-    total_qs = timing_and_marks[c_test][1];
-    unattempted_qs = timing_and_marks[c_test][1];
+    //move to the selection page for the next test
+    location.replace('section.html');
 
-    //re-initialize clocks
-    displayTimeLeft(time_el, time_for_c_test * 60);
-    displayTimeLeft(time_al, time_for_c_test * 60);
+    // //move to the next test
+    // //change c_test, load test data and change variables
+    // let next_test = file_and_order['order'].indexOf(c_test) + 1;
+    // c_test = file_and_order['order'][next_test];
+    // file_and_order['file'] = c_test;
 
-    //load test data
-    test_data = JSON.parse(fs.readFileSync(path.join(__dirname, `/question/${c_test}.json`)));
-    test_data = arrayFromDictionary(test_data);
+    // //renew the variables
+    // time_for_c_test = timing_and_marks[c_test][0];
+    // current_qs = 0; previous_qs = 0; next_qs = 0; q_for_review = [];
+    // total_qs = timing_and_marks[c_test][1];
+    // unattempted_qs = timing_and_marks[c_test][1];
 
-    //set subjects and other interface elements and empty question and mcq elements
-    let question_el = document.querySelector('#question > #question-portion');
-    let mcq_el = document.querySelectorAll('#mcqs > #third-col > div');
-    while (question_el.firstChild) {
-        // if (question_el.children.length == 2) break;
-        question_el.removeChild(question_el.firstChild);
-    }
-    mcq_el.forEach((element) => {
-        while (element.firstChild) {
-            element.removeChild(element.firstChild);
-        }
-    });
+    // //re-initialize clocks
+    // displayTimeLeft(time_el, time_for_c_test * 60);
+    // displayTimeLeft(time_al, time_for_c_test * 60);
 
-    start_btn.addEventListener('click', startButtonHandler, { once: true });
-}
+    // //load test data
+    // test_data = JSON.parse(fs.readFileSync(path.join(__dirname, `/question/${c_test}.json`)));
+    // test_data = arrayFromDictionary(test_data);
 
-function congratsToast() {
-    // Get the snackbar DIV
-    var x = document.getElementById("snackbar");
+    // //set subjects and other interface elements and empty question and mcq elements
+    // let question_el = document.querySelector('#question > #question-portion');
+    // let mcq_el = document.querySelectorAll('#mcqs > #third-col > div');
+    // while (question_el.firstChild) {
+    //     // if (question_el.children.length == 2) break;
+    //     question_el.removeChild(question_el.firstChild);
+    // }
+    // mcq_el.forEach((element) => {
+    //     while (element.firstChild) {
+    //         element.removeChild(element.firstChild);
+    //     }
+    // });
 
-    // Add the "show" class to DIV
-    x.className = "show";
-
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    // start_btn.addEventListener('click', startButtonHandler, { once: true });
 }
 
 //string to element
