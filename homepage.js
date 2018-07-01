@@ -52,6 +52,10 @@ function timer(minutes) {
         // const secondsLeft = Math.round((then - Date.now()) / 1000);
         seconds--;
         if (seconds < 0) {
+
+            //maybe the last question was not stored so store it
+            storeAnswers(current_qs, returnAnswer());
+
             //clear the interval
             clearInterval(countdown);
 
@@ -183,6 +187,10 @@ start_btn.addEventListener('click', startButtonHandler, { once: true });
 //end button functionality
 let end_btn = document.querySelector('#end-button > button');
 end_btn.addEventListener('click', () => {
+
+    //maybe the last question was not stored so store it
+    storeAnswers(current_qs, returnAnswer());
+
     //stop timer for current test
     clearInterval(countdown);
 

@@ -13,7 +13,7 @@ function createWindow() {
     //hide the default menu
     win.setMenu(null)
     //disable the resizing of window
-    win.setResizable(false);
+    // win.setResizable(false);
     //disable the windows maximize
     // win.setMaximizable(false);
     // win.maximize();
@@ -26,7 +26,7 @@ function createWindow() {
     }))
 
     // Open the DevTools.
-    win.webContents.openDevTools()
+    // win.webContents.openDevTools()
 
     //clear the cache
     // win.webContents.session.clearCache((data) => {
