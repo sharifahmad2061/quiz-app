@@ -7,8 +7,14 @@ let test_completed = JSON.parse(sessionStorage.getItem('test_completed'));
 btns.forEach((element) => {
     //add ticks if completed
     if (test_completed != null && test_completed != undefined) {
-        if (-1 != test_completed.indexOf(element.value))
-            element.classList.add('tick');
+        if (-1 != test_completed.indexOf(element.value)) {
+            let el = document.createElement('i');
+            el.classList.add('material-icon');
+            el.textContent = 'check';
+            el.style.float = 'right'
+            element.appendChild(el);
+        }
+        // element.parentElement.classList.add('tick');
     }
 
     element.addEventListener('click', () => {

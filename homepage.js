@@ -558,10 +558,15 @@ function uncheckCheckBox() {
 
 //loads the previous entered answers
 function loadSolvedAnswers(questionNo) {
-    let str = '';
-    str = `${questionNo} : ${answers[c_test][questionNo]}`;
+    let ans;
+    // let str = '';
+    // str = `${questionNo} : ${answers[c_test][questionNo]}`;
     // console.log(str);
-    let ans = document.querySelectorAll('input[name=mcq-answer]');
+    if (c_test == 'it1' || c_test == 'it2') {
+        ans = document.querySelectorAll('#int-sect > input[name=mcq-answer]');
+    } else {
+        ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
+    }
     if (answers[c_test][questionNo] != undefined || answers[c_test][questionNo] != null) {
         // console.log('loading previous answer');
         ans[answers[c_test][questionNo]].checked = true;
