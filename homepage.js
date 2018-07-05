@@ -99,6 +99,14 @@ re_ch.addEventListener('change', () => {
         el[current_qs].style.backgroundColor = "#007bff";
         el[current_qs].style.color = "#fff";
 
+    } else if (q_for_review.indexOf(current_qs) != -1) {
+        // console.log(q_for_review);
+        q_for_review.splice(q_for_review.indexOf(current_qs), 1);
+        // console.log(q_for_review);
+        //make the item bold in the dropdown
+        let el = document.querySelectorAll("#move-to-q-s > option");
+        el[current_qs].style.backgroundColor = "";
+        el[current_qs].style.color = "#000";
     }
 });
 
@@ -506,6 +514,13 @@ function showNextQuestion(num) {
 
     //dynamically typesetting the mcqs and question
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+
+    //check the checkbox if the item is item is selected for review
+    if (q_for_review.indexOf(current_qs) != -1) {
+        re_ch.checked = true;
+    } else {
+        re_ch.checked = false;
+    }
 
     manipulateQsLeftAndMarkedForReviewAndCurrentQ();
 }
