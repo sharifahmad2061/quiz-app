@@ -93,6 +93,12 @@ re_ch.addEventListener('change', () => {
     } else if (re_ch.checked && q_for_review.indexOf(current_qs) == -1) {
         q_for_review.push(current_qs);
         qm_for_review.textContent = q_for_review.length;
+
+        //make the item bold in the dropdown
+        let el = document.querySelectorAll("#move-to-q-s > option");
+        el[current_qs].style.backgroundColor = "#007bff";
+        el[current_qs].style.color = "#fff";
+
     }
 });
 
@@ -279,10 +285,12 @@ function markCurrentTest() {
     let ans = answers[c_test], score = 0;
     for (const key in ans) {
         if (ans.hasOwnProperty(key)) {
-            const opt = ans[key];
+            // const opt = ans[key];
             // console.log(ans[key], test_data[key].value[4]);
             if (ans[key] == test_data[key].value[4]) {
                 score++;
+            } else {
+                // console.log('given ', ans[key], 'stored ', test_data[key].value[4]);
             }
         }
     }
