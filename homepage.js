@@ -136,6 +136,12 @@ for (let index = 1; index <= total_qs; index++) {
 //move to question event listener
 move_select.addEventListener('change', function () {
     // console.log(move_select.value);
+    storeAnswers(current_qs, returnAnswer());
+    uncheckAllRadioButtons();
+    uncheckCheckBox();
+    loadSolvedAnswers(move_select.value - 1);
+    loadMarkForReviewCheckbox(move_select.value - 1);
+
     showNextQuestion(move_select.value - 1);
 });
 
@@ -153,6 +159,7 @@ btn_first.addEventListener('click', () => {
     //loadSolvedAnswers is before showNextQuestion because the latter changes next, previous and current question
     // variables hence messes the question no.
     loadSolvedAnswers(0);
+    loadMarkForReviewCheckbox(0);
     showNextQuestion(0);
     // current_qs = 0;
 });
@@ -162,6 +169,7 @@ btn_last.addEventListener('click', () => {
     uncheckAllRadioButtons();
     uncheckCheckBox();
     loadSolvedAnswers(total_qs - 1);
+    loadMarkForReviewCheckbox(total_qs - 1);
     showNextQuestion(total_qs - 1);
     // current_qs = total_qs - 1;
 });
@@ -174,6 +182,7 @@ btn_previous.addEventListener('click', () => {
     uncheckAllRadioButtons();
     uncheckCheckBox();
     loadSolvedAnswers(previous_qs);
+    loadMarkForReviewCheckbox(previous_qs);
     showNextQuestion(previous_qs);
     // current_qs--;
 });
@@ -187,6 +196,7 @@ btn_next.addEventListener('click', () => {
     uncheckAllRadioButtons();
     uncheckCheckBox();
     loadSolvedAnswers(next_qs);
+    loadMarkForReviewCheckbox(next_qs);
     showNextQuestion();
     // current_qs++;
 });
@@ -400,6 +410,7 @@ function showNextQuestion(num) {
 
 
     } else {
+        question_el.style.flexDirection = "column";
 
         el = document.createElement('p');
         tn = document.createTextNode(test_data[next].key);
@@ -515,14 +526,16 @@ function showNextQuestion(num) {
     //dynamically typesetting the mcqs and question
     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 
-    //check the checkbox if the item is item is selected for review
-    if (q_for_review.indexOf(current_qs) != -1) {
+    manipulateQsLeftAndMarkedForReviewAndCurrentQ();
+}
+
+function loadMarkForReviewCheckbox(questionNo) {
+    if (q_for_review.indexOf(questionNo) != -1) {
         re_ch.checked = true;
-    } else {
+    }
+    else {
         re_ch.checked = false;
     }
-
-    manipulateQsLeftAndMarkedForReviewAndCurrentQ();
 }
 
 //function for manipulating qs left and marked for review
