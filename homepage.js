@@ -23,13 +23,13 @@ test_data = arrayFromDictionary(test_data);
 let current_qs = 0;
 let previous_qs = 0;
 let next_qs = 0;
-// let qs_attempted = 0;
+
 let q_for_review = [];
 let total_qs = timing_and_marks[file_and_order['file']][1];
 let unattempted_qs = timing_and_marks[file_and_order['file']][1]; //initialize it total marks , each q has 1 mark
 
-//score
-// let score = 0;
+//current UI layout
+let layout = "text";
 
 // time clocks
 let time_el = document.querySelector("#time-ro");
@@ -338,34 +338,16 @@ function showNextQuestion(num) {
         question_el.style.flexDirection = "row";
         // question_el.style.flexWrap = "wrap";
 
-        // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard1.svg`), 'utf8');
-        // el = htmlToElements(svg_data);
-        // question_el.appendChild(el);
-        // question_el.insertBefore(el, mcq_po);
-
         // console.log(`${test_data[next].key}Artboard 1.json`);
-        appendImages(question_el, "Artboard1.svg");
-
+        appendImages(question_el, "Artboard1.svg", next);
         appendParagraphs(question_el, "IS TO");
         // question_el.insertBefore(el, mcq_po);
 
-        // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard2.svg`), 'utf8');
-        // el = htmlToElements(svg_data);
-        // question_el.appendChild(el);
-        // question_el.insertBefore(el, mcq_po);
-
-        appendImages(question_el, "Artboard2.svg");
-
+        appendImages(question_el, "Artboard2.svg", next);
         appendParagraphs(question_el, "AS");
         // question_el.insertBefore(el, mcq_po);
 
-        appendImages(question_el, "Artboard3.svg");
-
-        // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard3.svg`), 'utf8');
-        // el = htmlToElements(svg_data);
-        // question_el.appendChild(el);
-        // question_el.insertBefore(el, mcq_po);
-
+        appendImages(question_el, "Artboard3.svg", next);
         appendParagraphs(question_el, "IS TO");
         // question_el.insertBefore(el, mcq_po);
 
@@ -375,49 +357,36 @@ function showNextQuestion(num) {
         question_el.style.flexDirection = "row";
 
         // hard coding for questions range
-        if (next < 38) {
-            el = document.createElement('img');
-            el.setAttribute('src', `${test_data[next].key}Artboard1.svg`);
-            el.classList.add('svg');
-            question_el.appendChild(el);
+        if (next < 37) {
+            if (layout == "text") changeLayoutOfUI("int");
+            appendImages(question_el, "Artboard1.svg", next);
 
-            el = document.createElement('p');
-            tn = document.createTextNode('IS TO');
-            el.appendChild(tn);
-            question_el.appendChild(el);
+            appendParagraphs(question_el, "IS TO");
 
-            el = document.createElement('img');
-            el.setAttribute('src', `${test_data[next].key}Artboard2.svg`);
-            el.classList.add('svg');
-            question_el.appendChild(el);
+            appendImages(question_el, "Artboard2.svg", next);
 
-            el = document.createElement('p');
-            tn = document.createTextNode('AS');
-            el.appendChild(tn);
-            question_el.appendChild(el);
+            appendParagraphs(question_el, "AS");
 
-            el = document.createElement('img');
-            el.setAttribute('src', `${test_data[next].key}Artboard3.svg`);
-            el.classList.add('svg');
-            question_el.appendChild(el);
+            appendImages(question_el, "Artboard3.svg", next);
 
-            el = document.createElement('p');
-            tn = document.createTextNode('IS TO');
-            el.appendChild(tn);
-            question_el.appendChild(el);
-        } else if (next >= 38 && next < 62) {
-            el = document.createElement('img');
-            el.setAttribute('src', `${test_data[next].key}Artboard1.svg`);
-            el.classList.add('svg');
-            question_el.appendChild(el);
-        } else {
+            appendParagraphs(question_el, "IS TO");
+        }
+        else if (next >= 37 && next < 62) {
+            if (layout == "text") changeLayoutOfUI("int");
+            appendImages(question_el, "Artboard1.svg", next);
+
+        }
+        else {
+            if (layout == "int") changeLayoutOfUI("text");
             if (next == 68 || next == 77) {
-
-            } else {
-
+                appendImages(question_el, "Artboard1.svg", next);
+            }
+            else {
+                appendParagraphs(question_el, test_data[next].key);
             }
         }
-    } else {
+    }
+    else {
         question_el.style.flexDirection = "column";
 
         el = document.createElement('p');
@@ -445,7 +414,8 @@ function showNextQuestion(num) {
         while (mcq_po.firstChild) {
             mcq_po.removeChild(mcq_po.firstChild);
         }
-    } else {
+    }
+    else {
         mcq_el.forEach((element) => {
             while (element.firstChild) {
                 element.removeChild(element.firstChild);
@@ -461,128 +431,51 @@ function showNextQuestion(num) {
 
 
         appendParagraphs(mcq_po, "A");
-
-        // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard4.svg`), 'utf8');
-        // el = htmlToElements(svg_data);
-        // mcq_po.appendChild(el);
-        appendImages(mcq_po, "Artboard4.svg");
+        appendImages(mcq_po, "Artboard4.svg", next);
 
         appendParagraphs(mcq_po, "B");
-
-        // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard5.svg`), 'utf8');
-        // el = htmlToElements(svg_data);
-        // mcq_po.appendChild(el);
-
-        appendImages(mcq_po, "Artboard5.svg");
+        appendImages(mcq_po, "Artboard5.svg", next);
 
         appendParagraphs(mcq_po, "C");
-
-
-        // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard6.svg`), 'utf8');
-        // el = htmlToElements(svg_data);
-        // mcq_po.appendChild(el);
-        appendImages(mcq_po, "Artboard6.svg");
+        appendImages(mcq_po, "Artboard6.svg", next);
 
         appendParagraphs(mcq_po, "D");
-
-
-        // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard7.svg`), 'utf8');
-        // el = htmlToElements(svg_data);
-        // mcq_po.appendChild(el);
-        appendImages(mcq_po, "Artboard7.svg");
+        appendImages(mcq_po, "Artboard7.svg", next);
 
     }
     else if (c_test == "it2") {
-        if (next < 38) {
-            el = document.createElement('p');
-            tn = document.createTextNode('A');
-            el.appendChild(tn);
-            mcq_po.appendChild(el);
+        if (next < 37) {
+            appendParagraphs(mcq_po, "A");
+            appendImages(mcq_po, "Artboard4.svg", next);
 
-            el = document.createElement('img');
-            el.setAttribute('src', `${test_data[next].key}Artboard4.svg`);
-            el.classList.add('svg');
-            mcq_po.appendChild(el);
+            appendParagraphs(mcq_po, "B");
+            appendImages(mcq_po, "Artboard5.svg", next);
 
-            el = document.createElement('p');
-            tn = document.createTextNode('B');
-            el.appendChild(tn);
-            mcq_po.appendChild(el);
+            appendParagraphs(mcq_po, "C");
+            appendImages(mcq_po, "Artboard6.svg", next);
 
-            el = document.createElement('img');
-            el.setAttribute('src', `${test_data[next].key}Artboard5.svg`);
-            el.classList.add('svg');
-            mcq_po.appendChild(el);
-
-            el = document.createElement('p');
-            tn = document.createTextNode('C');
-            el.appendChild(tn);
-            mcq_po.appendChild(el);
-
-            el = document.createElement('img');
-            el.setAttribute('src', `${test_data[next].key}Artboard6.svg`);
-            el.classList.add('svg');
-            mcq_po.appendChild(el);
-
-            el = document.createElement('p');
-            tn = document.createTextNode('D');
-            el.appendChild(tn);
-            mcq_po.appendChild(el);
-
-            el = document.createElement('img');
-            el.setAttribute('src', `${test_data[next].key}Artboard7.svg`);
-            el.classList.add('svg');
-            mcq_po.appendChild(el);
+            appendParagraphs(mcq_po, "D");
+            appendImages(mcq_po, "Artboard7.svg", next);
         }
-        else if (next >= 38 && next < 62) {
-            el = document.createElement('p');
-            tn = document.createTextNode('A');
-            el.appendChild(tn);
-            mcq_po.appendChild(el);
+        else if (next >= 37 && next < 62) {
+            appendParagraphs(mcq_po, "A");
+            appendImages(mcq_po, "Artboard2.svg", next);
 
-            el = document.createElement('img');
-            el.setAttribute('src', `${test_data[next].key}Artboard2.svg`);
-            el.classList.add('svg');
-            mcq_po.appendChild(el);
+            appendParagraphs(mcq_po, "B");
+            appendImages(mcq_po, "Artboard3.svg", next);
 
-            el = document.createElement('p');
-            tn = document.createTextNode('B');
-            el.appendChild(tn);
-            mcq_po.appendChild(el);
+            appendParagraphs(mcq_po, "C");
+            appendImages(mcq_po, "Artboard4.svg", next);
 
-            el = document.createElement('img');
-            el.setAttribute('src', `${test_data[next].key}Artboard3.svg`);
-            el.classList.add('svg');
-            mcq_po.appendChild(el);
-
-            el = document.createElement('p');
-            tn = document.createTextNode('C');
-            el.appendChild(tn);
-            mcq_po.appendChild(el);
-
-            el = document.createElement('img');
-            el.setAttribute('src', `${test_data[next].key}Artboard4.svg`);
-            el.classList.add('svg');
-            mcq_po.appendChild(el);
-
-            el = document.createElement('p');
-            tn = document.createTextNode('D');
-            el.appendChild(tn);
-            mcq_po.appendChild(el);
-
-            el = document.createElement('img');
-            el.setAttribute('src', `${test_data[next].key}Artboard5.svg`);
-            el.classList.add('svg');
-            mcq_po.appendChild(el);
+            appendParagraphs(mcq_po, "D");
+            appendImages(mcq_po, "Artboard5.svg", next);
 
         } else {
             let mcq_arr = test_data[next].value;
             mcq_el.forEach((element, index) => {
                 mcq_arr.forEach((element1, index1) => {
                     if (index == index1) {
-                        el = document.createElement('p');
-                        tn = document.createTextNode(element1);
-                        el.appendChild(tn);
+                        appendParagraphs(element, element1);
                     }
                 });
             });
@@ -732,9 +625,9 @@ function quizCompletion() {
 }
 
 
-function appendImages(parentEl, childEl) {
+function appendImages(parentEl, childEl, questionNo) {
     let el = document.createElement('img');
-    el.setAttribute('src', `${test_data[next].key}${childEl}`);
+    el.setAttribute('src', `${test_data[questionNo].key}${childEl}`);
     el.classList.add('svg');
     parentEl.appendChild(el);
 }
@@ -757,6 +650,7 @@ function changeLayoutOfUI(testType) {
 
         //change grid layout and bring back in
         document.querySelector('#grid-child-1').style.gridTemplateRows = '1.2fr 1fr 7fr 1fr 1fr 1fr';
+        layout = "int";
     } else {
         document.querySelector('#grid-child-1').style.gridTemplateRows = '1.2fr 1fr 4fr 4fr 1fr 1fr';
         document.querySelector('#mcqs').style.display = 'grid';
@@ -765,7 +659,7 @@ function changeLayoutOfUI(testType) {
         document.querySelector('#third-col').style.display = 'flex';
         document.querySelector('#int-sect').style.display = 'none';
         document.querySelector('#mcq-portion').style.display = "none";
-
+        layout = "text";
     }
 }
 
