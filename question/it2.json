@@ -1,198 +1,695 @@
 {
-    "": [
+    "question/it1/q1/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q2/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q3/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q4/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q5/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q6/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q7/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q8/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q9/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q10/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q11/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q12/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q13/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q14/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q15/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q16/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q17/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q18/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q19/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q20/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q21/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q22/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q23/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q24/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q25/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q26/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q27/": [
         "",
         "",
         "",
         "",
         ""
     ],
-    "": [
+    "question/it1/q28/": [
         "",
         "",
         "",
         "",
         ""
     ],
+    "question/it1/q29/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q30/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q31/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q32/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q33/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q34/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q35/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q36/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q37/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q38/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q39/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q40/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q41/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q42/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q43/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q44/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q45/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q46/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q47/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q48/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q49/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q50/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q51/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q52/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q53/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q54/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q55/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q56/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q57/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q58/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q59/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q60/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q61/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "question/it1/q62/": [
+        "",
+        "",
+        "",
+        "",
+        ""
+    ],
+    "which of the following is different?": [
+        "Invention",
+        "Unearth",
+        "Discover",
+        "Locate",
+        "1"
+    ],
+    "What will come next in the series $\\frac{2}{4}$ $\\frac{4}{16}$ $\\frac{16}{256}$ $?$": [
+        "$\\frac{256}{65563}$",
+        "$\\frac{255}{65536}$",
+        "$\\frac{256}{65536}$",
+        "$\\frac{256}{63555}$",
+        "2"
+    ],
+    "Which one is different?": [
+        "Cow",
+        "Hen",
+        "Duck",
+        "Mare",
+        "3"
+    ],
+    "If shoes is to foot then helmet is to ?": [
+        "Steel",
+        "Combat",
+        "Baseball",
+        "Head",
+        "3"
+    ],
+    "What will come next $3 10 4 17 5 ?$": [
+        "25",
+        "24",
+        "26",
+        "29",
+        "1"
+    ],
+    "Which one is different from the rest?": [
+        "QS",
+        "EH",
+        "IL",
+        "MP",
+        "0"
+    ],
+    "question/it2/q69/": [
+        "0",
+        "3",
+        "8",
+        "6",
+        "3"
+    ],
+    "What will come next $ 4 8 24 96 ? $": [
+        "480",
+        "664",
+        "804",
+        "556",
+        "0"
+    ],
+    "March is to $\\frac{31}{3}$ and June is to ?": [
+        "$\\frac{31}{6}$",
+        "$\\frac{31}{8}$",
+        "$\\frac{30}{6}$",
+        "$\\frac{31}{5}$",
+        "0"
+    ],
+    "What will come next $ 63 3 44 0 91 ?$": [
+        "8",
+        "9",
+        "10",
+        "13",
+        "0"
+    ],
+    "What will come next $E J N Q ?$": [
+        "K",
+        "S",
+        "T",
+        "V",
+        "1"
+    ],
+    "Which is different ?": [
+        "Karachi",
+        "Kabul",
+        "Delhi",
+        "Dhaka",
+        "0"
+    ],
+    "What number comes next $62 3 84 2 93 ?$": [
+        "1",
+        "6",
+        "8",
+        "11",
+        "0"
+    ],
+    "What will come next $A C F ?$": [
+        "J",
+        "K",
+        "L",
+        "I",
+        "0"
+    ],
+    "Murree is to cold as Jacobabad is to ?": [
+        "Hot",
+        "Cold",
+        "Snow",
+        "Ice",
+        "0"
+    ],
+    "question/it2/q78/": [
+        "0",
+        "6",
+        "8",
+        "10",
+        "0"
+    ],
+    "What will come next $ 43--1  53--2  74--3  ? $": [
+        "$ 84--6 $",
+        "$ 84--5 $",
+        "$ 83--3 $",
+        "$ 84--4 $",
+        "3"
+    ],
+    "Which one is different ?": [
+        "Two",
+        "Four",
+        "Twenty",
+        "Five",
+        "3"
+    ],
+    "Hot is to burn and Cold is to ?": [
+        "Steam",
+        "Freeze",
+        "Ice",
+        "Oven",
+        "1"
+    ],
+    "Which one is odd out of the following?": [
+        "Oil",
+        "Petrol",
+        "Liquid",
+        "Spirit",
+        "2"
+    ],
+    "What number comes next $2 6 12 20 30 ?$": [
+        "42",
+        "40",
+        "46",
+        "49",
+        "0"
+    ],
+    "What will come next $4 8 12 16 ?$": [
+        "24",
+        "20",
+        "18",
+        "30",
+        "1"
+    ],
+    "Which letter comes next $ A C F J O ? $": [
+        "U",
+        "X",
+        "Y",
+        "W",
+        "0"
+    ],
+    "Single is to Double and One is to ?": [
+        "Zero",
+        "Two",
+        "Double",
+        "Ten",
+        "1"
+    ],
+    "Book is to Title as Man is to ?": [
+        "Name",
+        "Sir",
+        "Woman",
+        "Girl",
+        "2"
+    ],
+    "What will come next $8 2 8 6 8 18 ?$": [
+        "6",
+        "9",
+        "8",
+        "10",
+        "2"
+    ],
+    "What will come next $1 2 3 4 5 ?$": [
+        "7",
+        "8",
+        "9",
+        "6",
+        "3"
+    ],
+    "What comes next $2 4 12 48 240 ?$": [
+        "1440",
+        "1448",
+        "1348",
+        "1548",
+        "0"
+    ],
+    "Which one is different in the things given below ?": [
+        "RED",
+        "BLUE",
+        "GREEN",
+        "CHAIR",
+        "3"
+    ],
+    "Which one is different in the living things described below ?": [
+        "Sheep",
+        "Rat",
+        "Horse",
+        "Potato",
+        "3"
+    ],
+    "Which one is different in the objects described below ?": [
+        "Tooth",
+        "Spoon",
+        "Plate",
+        "Knife",
+        "3"
+    ],
+    "Find out the odd man out": [
+        "Cloth",
+        "Pen",
+        "Pencil",
+        "Rubber",
+        "0"
+    ],
+    "What will come next $\\frac{5}{6} \\frac{36}{25} \\frac{8}{7} ?$": [
+        "$\\frac{36}{64}$",
+        "$\\frac{49}{64}$",
+        "$\\frac{49}{40}$",
+        "$\\frac{36}{40}$",
+        "1"
+    ],
+    "Here is now there is to ?": [
+        "Then",
+        "Here",
+        "Than",
+        "Where",
+        "0"
+    ],
+    "C is to 3 then W is to ?": [
+        "2",
+        "21",
+        "23",
+        "24",
+        "2"
+    ],
+    "$1 2 4 8 16 32 ?$": [
+        "64",
+        "62",
+        "52",
+        "42",
+        "0"
+    ],
+    "$7 9 11 9 11 ?$": [
+        "11",
+        "9",
+        "7",
+        "8",
+        "1"
+    ]
 }
