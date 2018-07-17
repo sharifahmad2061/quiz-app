@@ -421,7 +421,14 @@ function showNextQuestion(num) {
                 element.removeChild(element.firstChild);
             }
         });
-
+    }
+    //if layout is changed for it2 then also delete mcq_el children
+    if (layout == "text" && c_test == "it2") {
+        mcq_el.forEach((element) => {
+            while (element.firstChild) {
+                element.removeChild(element.firstChild);
+            }
+        });
     }
 
     if (c_test == "it1") {
