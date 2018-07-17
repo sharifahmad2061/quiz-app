@@ -249,28 +249,9 @@ function startButtonHandler() {
     manipulateQsLeftAndMarkedForReviewAndCurrentQ();
 
     //if test is intelligence then hide first-col , second-col and third-col and unhide int-sect
-    if (c_test == "it1" || c_test == "it2") {
-        document.querySelector('#first-col').style.display = 'none';
-        document.querySelector('#second-col').style.display = 'none';
-        document.querySelector('#third-col').style.display = 'none';
-        document.querySelector('#int-sect').style.display = 'flex';
-        document.querySelector('#mcqs').style.display = "block";
-        document.querySelector('#mcq-portion').style.display = "flex";
-
-        //change grid layout and bring back in
-        document.querySelector('#grid-child-1').style.gridTemplateRows = '1.2fr 1fr 7fr 1fr 1fr 1fr';
-
-
-    }
+    if (c_test == "it1" || c_test == "it2") changeLayoutOfUI("int");
     else {
-        document.querySelector('#grid-child-1').style.gridTemplateRows = '1.2fr 1fr 4fr 4fr 1fr 1fr';
-        document.querySelector('#mcqs').style.display = 'grid';
-        document.querySelector('#first-col').style.display = 'flex';
-        document.querySelector('#second-col').style.display = 'flex';
-        document.querySelector('#third-col').style.display = 'flex';
-        document.querySelector('#int-sect').style.display = 'none';
-        document.querySelector('#mcq-portion').style.display = "none";
-
+        changeLayoutOfUI("text");
     }
 
     showNextQuestion();
@@ -695,6 +676,34 @@ function quizCompletion() {
     setTimeout(() => {
         location.replace('section.html');
     }, 3000);
+}
+
+
+function appendImagesOrParagraphs(parentEl, childElType, childEl) {
+
+}
+
+function changeLayoutOfUI(testType) {
+    if (testType == "int") {
+        document.querySelector('#first-col').style.display = 'none';
+        document.querySelector('#second-col').style.display = 'none';
+        document.querySelector('#third-col').style.display = 'none';
+        document.querySelector('#int-sect').style.display = 'flex';
+        document.querySelector('#mcqs').style.display = "block";
+        document.querySelector('#mcq-portion').style.display = "flex";
+
+        //change grid layout and bring back in
+        document.querySelector('#grid-child-1').style.gridTemplateRows = '1.2fr 1fr 7fr 1fr 1fr 1fr';
+    } else {
+        document.querySelector('#grid-child-1').style.gridTemplateRows = '1.2fr 1fr 4fr 4fr 1fr 1fr';
+        document.querySelector('#mcqs').style.display = 'grid';
+        document.querySelector('#first-col').style.display = 'flex';
+        document.querySelector('#second-col').style.display = 'flex';
+        document.querySelector('#third-col').style.display = 'flex';
+        document.querySelector('#int-sect').style.display = 'none';
+        document.querySelector('#mcq-portion').style.display = "none";
+
+    }
 }
 
 //string to element
