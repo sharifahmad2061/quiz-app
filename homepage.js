@@ -350,8 +350,8 @@ function showNextQuestion(num) {
         question_el.removeChild(question_el.firstChild);
     }
     //now insert new question
-    let el, tn, svg_data;
-    if (c_test == "it1" || c_test == "it2") {
+    let el, tn;
+    if (c_test == "it1") {
 
         //if test is intelligence then set flex direction to row
         question_el.style.flexDirection = "row";
@@ -409,6 +409,53 @@ function showNextQuestion(num) {
         // question_el.insertBefore(el, mcq_po);
 
 
+    } else if (c_test == 'it2') {
+        //if test is intelligence then set flex direction to row
+        question_el.style.flexDirection = "row";
+
+        // hard coding for questions range
+        if (next < 38) {
+            el = document.createElement('img');
+            el.setAttribute('src', `${test_data[next].key}Artboard1.svg`);
+            el.classList.add('svg');
+            question_el.appendChild(el);
+
+            el = document.createElement('p');
+            tn = document.createTextNode('IS TO');
+            el.appendChild(tn);
+            question_el.appendChild(el);
+
+            el = document.createElement('img');
+            el.setAttribute('src', `${test_data[next].key}Artboard2.svg`);
+            el.classList.add('svg');
+            question_el.appendChild(el);
+
+            el = document.createElement('p');
+            tn = document.createTextNode('AS');
+            el.appendChild(tn);
+            question_el.appendChild(el);
+
+            el = document.createElement('img');
+            el.setAttribute('src', `${test_data[next].key}Artboard3.svg`);
+            el.classList.add('svg');
+            question_el.appendChild(el);
+
+            el = document.createElement('p');
+            tn = document.createTextNode('IS TO');
+            el.appendChild(tn);
+            question_el.appendChild(el);
+        } else if (next >= 38 && next < 62) {
+            el = document.createElement('img');
+            el.setAttribute('src', `${test_data[next].key}Artboard1.svg`);
+            el.classList.add('svg');
+            question_el.appendChild(el);
+        } else {
+            if (next == 68 || next == 77) {
+
+            } else {
+
+            }
+        }
     } else {
         question_el.style.flexDirection = "column";
 
@@ -648,41 +695,6 @@ function quizCompletion() {
     setTimeout(() => {
         location.replace('section.html');
     }, 3000);
-
-    // //move to the next test
-    // //change c_test, load test data and change variables
-    // let next_test = file_and_order['order'].indexOf(c_test) + 1;
-    // c_test = file_and_order['order'][next_test];
-    // file_and_order['file'] = c_test;
-
-    // //renew the variables
-    // time_for_c_test = timing_and_marks[c_test][0];
-    // current_qs = 0; previous_qs = 0; next_qs = 0; q_for_review = [];
-    // total_qs = timing_and_marks[c_test][1];
-    // unattempted_qs = timing_and_marks[c_test][1];
-
-    // //re-initialize clocks
-    // displayTimeLeft(time_el, time_for_c_test * 60);
-    // displayTimeLeft(time_al, time_for_c_test * 60);
-
-    // //load test data
-    // test_data = JSON.parse(fs.readFileSync(path.join(__dirname, `/question/${c_test}.json`)));
-    // test_data = arrayFromDictionary(test_data);
-
-    // //set subjects and other interface elements and empty question and mcq elements
-    // let question_el = document.querySelector('#question > #question-portion');
-    // let mcq_el = document.querySelectorAll('#mcqs > #third-col > div');
-    // while (question_el.firstChild) {
-    //     // if (question_el.children.length == 2) break;
-    //     question_el.removeChild(question_el.firstChild);
-    // }
-    // mcq_el.forEach((element) => {
-    //     while (element.firstChild) {
-    //         element.removeChild(element.firstChild);
-    //     }
-    // });
-
-    // start_btn.addEventListener('click', startButtonHandler, { once: true });
 }
 
 //string to element
