@@ -344,17 +344,9 @@ function showNextQuestion(num) {
         // question_el.insertBefore(el, mcq_po);
 
         // console.log(`${test_data[next].key}Artboard 1.json`);
-        el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard1.svg`);
-        el.classList.add('svg');
-        // el.setAttribute('width', '200px');
-        // el.setAttribute('height', '300px');
-        question_el.appendChild(el);
+        appendImages(question_el, "Artboard1.svg");
 
-        el = document.createElement('p');
-        tn = document.createTextNode('IS TO');
-        el.appendChild(tn);
-        question_el.appendChild(el);
+        appendParagraphs(question_el, "IS TO");
         // question_el.insertBefore(el, mcq_po);
 
         // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard2.svg`), 'utf8');
@@ -362,31 +354,19 @@ function showNextQuestion(num) {
         // question_el.appendChild(el);
         // question_el.insertBefore(el, mcq_po);
 
-        el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard2.svg`);
-        el.classList.add('svg');
-        question_el.appendChild(el);
+        appendImages(question_el, "Artboard2.svg");
 
-        el = document.createElement('p');
-        tn = document.createTextNode('AS');
-        el.appendChild(tn);
-        question_el.appendChild(el);
+        appendParagraphs(question_el, "AS");
         // question_el.insertBefore(el, mcq_po);
 
-        el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard3.svg`);
-        el.classList.add('svg');
-        question_el.appendChild(el);
+        appendImages(question_el, "Artboard3.svg");
 
         // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard3.svg`), 'utf8');
         // el = htmlToElements(svg_data);
         // question_el.appendChild(el);
         // question_el.insertBefore(el, mcq_po);
 
-        el = document.createElement('p');
-        tn = document.createTextNode('IS TO');
-        el.appendChild(tn);
-        question_el.appendChild(el);
+        appendParagraphs(question_el, "IS TO");
         // question_el.insertBefore(el, mcq_po);
 
 
@@ -474,68 +454,141 @@ function showNextQuestion(num) {
 
     }
 
-    if (c_test == "it1" || c_test == "it2") {
+    if (c_test == "it1") {
         //set flex-direction to row
         // document.querySelector('#third-col').style.flexDirection = "row";
         // document.querySelector('#question > #mcq-portion').style.display = "flex";
 
 
-        el = document.createElement('p');
-        tn = document.createTextNode('A');
-        el.appendChild(tn);
-        mcq_po.appendChild(el);
+        appendParagraphs(mcq_po, "A");
 
         // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard4.svg`), 'utf8');
         // el = htmlToElements(svg_data);
         // mcq_po.appendChild(el);
-        el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard4.svg`);
-        el.classList.add('svg');
-        mcq_po.appendChild(el);
+        appendImages(mcq_po, "Artboard4.svg");
 
-        el = document.createElement('p');
-        tn = document.createTextNode('B');
-        el.appendChild(tn);
-        mcq_po.appendChild(el);
+        appendParagraphs(mcq_po, "B");
 
         // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard5.svg`), 'utf8');
         // el = htmlToElements(svg_data);
         // mcq_po.appendChild(el);
 
-        el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard5.svg`);
-        el.classList.add('svg');
-        mcq_po.appendChild(el);
+        appendImages(mcq_po, "Artboard5.svg");
 
-        el = document.createElement('p');
-        tn = document.createTextNode('C');
-        el.appendChild(tn);
-        mcq_po.appendChild(el);
+        appendParagraphs(mcq_po, "C");
 
 
         // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard6.svg`), 'utf8');
         // el = htmlToElements(svg_data);
         // mcq_po.appendChild(el);
-        el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard6.svg`);
-        el.classList.add('svg');
-        mcq_po.appendChild(el);
+        appendImages(mcq_po, "Artboard6.svg");
 
-        el = document.createElement('p');
-        tn = document.createTextNode('D');
-        el.appendChild(tn);
-        mcq_po.appendChild(el);
+        appendParagraphs(mcq_po, "D");
 
 
         // svg_data = fs.readFileSync(path.join(__dirname, `${test_data[next].key}Artboard7.svg`), 'utf8');
         // el = htmlToElements(svg_data);
         // mcq_po.appendChild(el);
-        el = document.createElement('img');
-        el.setAttribute('src', `${test_data[next].key}Artboard7.svg`);
-        el.classList.add('svg');
-        mcq_po.appendChild(el);
+        appendImages(mcq_po, "Artboard7.svg");
 
-    } else {
+    }
+    else if (c_test == "it2") {
+        if (next < 38) {
+            el = document.createElement('p');
+            tn = document.createTextNode('A');
+            el.appendChild(tn);
+            mcq_po.appendChild(el);
+
+            el = document.createElement('img');
+            el.setAttribute('src', `${test_data[next].key}Artboard4.svg`);
+            el.classList.add('svg');
+            mcq_po.appendChild(el);
+
+            el = document.createElement('p');
+            tn = document.createTextNode('B');
+            el.appendChild(tn);
+            mcq_po.appendChild(el);
+
+            el = document.createElement('img');
+            el.setAttribute('src', `${test_data[next].key}Artboard5.svg`);
+            el.classList.add('svg');
+            mcq_po.appendChild(el);
+
+            el = document.createElement('p');
+            tn = document.createTextNode('C');
+            el.appendChild(tn);
+            mcq_po.appendChild(el);
+
+            el = document.createElement('img');
+            el.setAttribute('src', `${test_data[next].key}Artboard6.svg`);
+            el.classList.add('svg');
+            mcq_po.appendChild(el);
+
+            el = document.createElement('p');
+            tn = document.createTextNode('D');
+            el.appendChild(tn);
+            mcq_po.appendChild(el);
+
+            el = document.createElement('img');
+            el.setAttribute('src', `${test_data[next].key}Artboard7.svg`);
+            el.classList.add('svg');
+            mcq_po.appendChild(el);
+        }
+        else if (next >= 38 && next < 62) {
+            el = document.createElement('p');
+            tn = document.createTextNode('A');
+            el.appendChild(tn);
+            mcq_po.appendChild(el);
+
+            el = document.createElement('img');
+            el.setAttribute('src', `${test_data[next].key}Artboard2.svg`);
+            el.classList.add('svg');
+            mcq_po.appendChild(el);
+
+            el = document.createElement('p');
+            tn = document.createTextNode('B');
+            el.appendChild(tn);
+            mcq_po.appendChild(el);
+
+            el = document.createElement('img');
+            el.setAttribute('src', `${test_data[next].key}Artboard3.svg`);
+            el.classList.add('svg');
+            mcq_po.appendChild(el);
+
+            el = document.createElement('p');
+            tn = document.createTextNode('C');
+            el.appendChild(tn);
+            mcq_po.appendChild(el);
+
+            el = document.createElement('img');
+            el.setAttribute('src', `${test_data[next].key}Artboard4.svg`);
+            el.classList.add('svg');
+            mcq_po.appendChild(el);
+
+            el = document.createElement('p');
+            tn = document.createTextNode('D');
+            el.appendChild(tn);
+            mcq_po.appendChild(el);
+
+            el = document.createElement('img');
+            el.setAttribute('src', `${test_data[next].key}Artboard5.svg`);
+            el.classList.add('svg');
+            mcq_po.appendChild(el);
+
+        } else {
+            let mcq_arr = test_data[next].value;
+            mcq_el.forEach((element, index) => {
+                mcq_arr.forEach((element1, index1) => {
+                    if (index == index1) {
+                        el = document.createElement('p');
+                        tn = document.createTextNode(element1);
+                        el.appendChild(tn);
+                    }
+                });
+            });
+        }
+    }
+    else {
         //now insert new options
         let mcq_arr = test_data[next].value;
         mcq_el.forEach((element, index) => {
@@ -679,8 +732,18 @@ function quizCompletion() {
 }
 
 
-function appendImagesOrParagraphs(parentEl, childElType, childEl) {
+function appendImages(parentEl, childEl) {
+    let el = document.createElement('img');
+    el.setAttribute('src', `${test_data[next].key}${childEl}`);
+    el.classList.add('svg');
+    parentEl.appendChild(el);
+}
 
+function appendParagraphs(parentEl, childEl) {
+    let el = document.createElement('p');
+    let tn = document.createTextNode(childEl);
+    el.appendChild(tn);
+    parentEl.appendChild(el);
 }
 
 function changeLayoutOfUI(testType) {
