@@ -1,16 +1,16 @@
-body {
+/* body {
     display: grid;
     grid-template-columns: 0.5fr 1fr 0.5fr;
-    /* grid-template-rows: 1 1fr; */
+    grid-template-rows: 1 1fr;
 }
 
 main {
     grid-column: 2/3;
-    /* grid-row: 2/3; */
+    grid-row: 2/3;
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 #icon:hover {
     cursor: pointer;
