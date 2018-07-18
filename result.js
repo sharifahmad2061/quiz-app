@@ -4,6 +4,21 @@ let eng_marks = sessionStorage.getItem('eng'), brs_marks = sessionStorage.getIte
 let it1_marks = sessionStorage.getItem('it1'), it2_marks = sessionStorage.getItem('it2');
 let marks_dict = { 'phy': phy_marks, 'math': math_marks, 'eng': eng_marks, 'brs': brs_marks, 'it1': it1_marks, 'it2': it2_marks };
 
+//student creds
+let std_name = sessionStorage.getItem('std_name');
+let f_name = sessionStorage.getItem('f_name');
+
+let con = document.querySelector('#student-cred');
+con.children[1].style.justifySelf = "flex-end";
+con.children[0].textContent = std_name;
+con.children[1].textContent = f_name;
+
+
+let print = document.querySelector('#icon');
+print.addEventListener('click', () => {
+    window.print();
+});
+
 let outcome = sessionStorage.getItem('outcome');
 let text_con = document.querySelector('#text-container');
 console.log(outcome);
