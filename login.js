@@ -5,7 +5,7 @@ let login_btn = document.querySelector('#login');
 
 login_btn.addEventListener('click', () => {
     let uns_value = usn.value, psd_value = psd.value;
-    if (uns_value == "Ceolnam" && psd_value == "academyPlusStudents") {
+    if (uns_value == "CeoInam" && psd_value == "academyPlusStudents") {
         M.toast({
             html: 'Login Successful',
             displayLength: 1500

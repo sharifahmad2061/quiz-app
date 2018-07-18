@@ -269,7 +269,10 @@ function storeAnswers(questionNo, answer) {
 function returnAnswer() {
     let ans;
     if (c_test == 'it1' || c_test == 'it2')
-        ans = document.querySelectorAll('#int-sect > input[name=mcq-answer]');
+        if (layout == "int")
+            ans = document.querySelectorAll('#int-sect > input[name=mcq-answer]');
+        else
+            ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
     else
         ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
     let returnValue = null;
@@ -580,7 +583,10 @@ function loadSolvedAnswers(questionNo) {
     // str = `${questionNo} : ${answers[c_test][questionNo]}`;
     // console.log(str);
     if (c_test == 'it1' || c_test == 'it2') {
-        ans = document.querySelectorAll('#int-sect > input[name=mcq-answer]');
+        if (layout == "int")
+            ans = document.querySelectorAll('#int-sect > input[name=mcq-answer]');
+        else
+            ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
     } else {
         ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
     }
