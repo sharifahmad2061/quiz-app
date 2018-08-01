@@ -139,6 +139,15 @@ move_select.addEventListener('change', function () {
     storeAnswers(current_qs, returnAnswer());
     uncheckAllRadioButtons();
     uncheckCheckBox();
+
+    if (c_test == 'it2') {
+        if (move_select.value - 1 < 62) {
+            changeLayoutOfUI('int');
+        } else {
+            changeLayoutOfUI('text');
+        }
+    }
+
     loadSolvedAnswers(move_select.value - 1);
     loadMarkForReviewCheckbox(move_select.value - 1);
 
@@ -582,12 +591,16 @@ function loadSolvedAnswers(questionNo) {
     // let str = '';
     // str = `${questionNo} : ${answers[c_test][questionNo]}`;
     // console.log(str);
-    if (c_test == 'it1' || c_test == 'it2') {
+    if (c_test == 'it2') {
         if (layout == "int")
             ans = document.querySelectorAll('#int-sect > input[name=mcq-answer]');
         else
             ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
-    } else {
+    }
+    else if (c_test == 'it1') {
+        ans = document.querySelectorAll('#int-sect > input[name=mcq-answer]');
+    }
+    else {
         ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
     }
     if (answers[c_test][questionNo] != undefined || answers[c_test][questionNo] != null) {
@@ -653,6 +666,9 @@ function appendParagraphs(parentEl, childEl) {
 }
 
 function changeLayoutOfUI(testType) {
+    if (layout == testType) {
+        return;
+    }
     if (testType == "int") {
         document.querySelector('#first-col').style.display = 'none';
         document.querySelector('#second-col').style.display = 'none';
