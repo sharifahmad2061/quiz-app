@@ -1,3 +1,5 @@
 use the line-height property
 
 add checkmarks to buttons
+
+* it2 has both text and image type questions
