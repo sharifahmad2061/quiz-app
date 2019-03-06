@@ -4,7 +4,8 @@
   "description": "a quiz app built using electronJS",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps"
   },
   "repository": {
     "type": "git",
@@ -17,11 +18,11 @@
   },
   "homepage": "https://github.com/sharifahmad2061/quiz-app#readme",
   "dependencies": {
-    "electron": "^2.0.3",
+    "electron": "^4.0.3",
     "sqlite3": "^4.0.6"
   },
   "devDependencies": {
-    "electron-packager": "^12.0.1",
-    "electron-reload": "^1.2.2"
+    "electron-builder": "^20.38.5",
+    "electron-packager": "^12.0.1"
   }
 }
