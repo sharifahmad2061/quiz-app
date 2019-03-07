@@ -8,7 +8,7 @@ let win
 
 function createWindow() {
     // Create the browser window.
-    win = new BrowserWindow({ width: 1000, height: 700 })
+    win = new BrowserWindow({ width: 1800, height: 700 })
 
     //hide the default menu
     win.setMenu(null)
@@ -20,7 +20,7 @@ function createWindow() {
 
     // and load the index.html of the app.
     win.loadURL(url.format({
-        pathname: path.join(__dirname, 'login.html'),
+        pathname: path.join(__dirname, 'homepage.html'),
         protocol: 'file:',
         slashes: true
     }))

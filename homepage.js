@@ -84,40 +84,40 @@ function displayTimeLeft(element, seconds) {
 
 
 //handling the questions marked for review display element
-let qm_for_review = document.querySelector('#qs-marked-for-review');
-let re_ch = document.querySelector('#re-ch');
-re_ch.addEventListener('change', () => {
-    if (current_qs == null || current_qs == undefined) {
-        // console.log('hello');
-        return;
-    } else if (re_ch.checked && q_for_review.indexOf(current_qs) == -1) {
-        q_for_review.push(current_qs);
-        qm_for_review.textContent = q_for_review.length;
+// let qm_for_review = document.querySelector('#qs-marked-for-review');
+// let re_ch = document.querySelector('#re-ch');
+// re_ch.addEventListener('change', () => {
+//     if (current_qs == null || current_qs == undefined) {
+//         // console.log('hello');
+//         return;
+//     } else if (re_ch.checked && q_for_review.indexOf(current_qs) == -1) {
+//         q_for_review.push(current_qs);
+//         qm_for_review.textContent = q_for_review.length;
 
-        //make the item bold in the dropdown
-        let el = document.querySelectorAll("#move-to-q-s > option");
-        el[current_qs].style.backgroundColor = "#007bff";
-        el[current_qs].style.color = "#fff";
+//         //make the item bold in the dropdown
+//         let el = document.querySelectorAll("#move-to-q-s > option");
+//         el[current_qs].style.backgroundColor = "#007bff";
+//         el[current_qs].style.color = "#fff";
 
-    } else if (q_for_review.indexOf(current_qs) != -1) {
-        // console.log(q_for_review);
-        q_for_review.splice(q_for_review.indexOf(current_qs), 1);
-        // console.log(q_for_review);
-        //make the item bold in the dropdown
-        let el = document.querySelectorAll("#move-to-q-s > option");
-        el[current_qs].style.backgroundColor = "";
-        el[current_qs].style.color = "#000";
-    }
-});
+//     } else if (q_for_review.indexOf(current_qs) != -1) {
+//         // console.log(q_for_review);
+//         q_for_review.splice(q_for_review.indexOf(current_qs), 1);
+//         // console.log(q_for_review);
+//         //make the item bold in the dropdown
+//         let el = document.querySelectorAll("#move-to-q-s > option");
+//         el[current_qs].style.backgroundColor = "";
+//         el[current_qs].style.color = "#000";
+//     }
+// });
 
-//unchecking all radio buttons
-let ns_ra = document.querySelector('#ns-ra');
-ns_ra.addEventListener('change', () => {
-    document.querySelectorAll('input[name=mcq-answer]').forEach((element) => {
-        element.checked = false;
-    });
-    ns_ra.checked = false;
-});
+// //unchecking all radio buttons
+// let ns_ra = document.querySelector('#ns-ra');
+// ns_ra.addEventListener('change', () => {
+//     document.querySelectorAll('input[name=mcq-answer]').forEach((element) => {
+//         element.checked = false;
+//     });
+//     ns_ra.checked = false;
+// });
 
 
 //------------------------------------------
@@ -125,90 +125,90 @@ ns_ra.addEventListener('change', () => {
 //------------------------------------------
 
 //adding options to move to question select
-var move_select = document.querySelector("#move-to-q-s");
-for (let index = 1; index <= total_qs; index++) {
-    var option = document.createElement('option');
-    option.appendChild(document.createTextNode(`${index}`));
-    option.nodeValue = index;
-    move_select.appendChild(option);
-}
+// var move_select = document.querySelector("#move-to-q-s");
+// for (let index = 1; index <= total_qs; index++) {
+//     var option = document.createElement('option');
+//     option.appendChild(document.createTextNode(`${index}`));
+//     option.nodeValue = index;
+//     move_select.appendChild(option);
+// }
 
 //move to question event listener
-move_select.addEventListener('change', function () {
-    // console.log(move_select.value);
-    storeAnswers(current_qs, returnAnswer());
-    uncheckAllRadioButtons();
-    uncheckCheckBox();
+// move_select.addEventListener('change', function () {
+//     // console.log(move_select.value);
+//     storeAnswers(current_qs, returnAnswer());
+//     uncheckAllRadioButtons();
+//     uncheckCheckBox();
 
-    if (c_test == 'it2') {
-        if (move_select.value - 1 < 62) {
-            changeLayoutOfUI('int');
-        } else {
-            changeLayoutOfUI('text');
-        }
-    }
+//     if (c_test == 'it2') {
+//         if (move_select.value - 1 < 62) {
+//             changeLayoutOfUI('int');
+//         } else {
+//             changeLayoutOfUI('text');
+//         }
+//     }
 
-    loadSolvedAnswers(move_select.value - 1);
-    loadMarkForReviewCheckbox(move_select.value - 1);
+//     loadSolvedAnswers(move_select.value - 1);
+//     loadMarkForReviewCheckbox(move_select.value - 1);
 
-    showNextQuestion(move_select.value - 1);
-});
+//     showNextQuestion(move_select.value - 1);
+// });
 
-//event handlers for previous, next, first and last
-let btn_first = document.querySelector('#btn-first');
-let btn_last = document.querySelector('#btn-last');
-let btn_previous = document.querySelector('#btn-previous');
-let btn_next = document.querySelector('#btn-next');
+// //event handlers for previous, next, first and last
+// let btn_first = document.querySelector('#btn-first');
+// let btn_last = document.querySelector('#btn-last');
+// let btn_previous = document.querySelector('#btn-previous');
+// let btn_next = document.querySelector('#btn-next');
 
-btn_first.addEventListener('click', () => {
-    // console.log('first button');
-    storeAnswers(current_qs, returnAnswer());
-    uncheckAllRadioButtons();
-    uncheckCheckBox();
-    //loadSolvedAnswers is before showNextQuestion because the latter changes next, previous and current question
-    // variables hence messes the question no.
-    loadSolvedAnswers(0);
-    loadMarkForReviewCheckbox(0);
-    showNextQuestion(0);
-    // current_qs = 0;
-});
-btn_last.addEventListener('click', () => {
-    // console.log('last button');
-    storeAnswers(current_qs, returnAnswer());
-    uncheckAllRadioButtons();
-    uncheckCheckBox();
-    loadSolvedAnswers(total_qs - 1);
-    loadMarkForReviewCheckbox(total_qs - 1);
-    showNextQuestion(total_qs - 1);
-    // current_qs = total_qs - 1;
-});
-btn_previous.addEventListener('click', () => {
-    // console.log('previous button');
-    if (previous_qs < 0) return;
-    // console.log('returned answer: ', returnAnswer());
-    storeAnswers(current_qs, returnAnswer());
-    // console.log('stored answer: ', answers[c_test][current_qs]);
-    uncheckAllRadioButtons();
-    uncheckCheckBox();
-    loadSolvedAnswers(previous_qs);
-    loadMarkForReviewCheckbox(previous_qs);
-    showNextQuestion(previous_qs);
-    // current_qs--;
-});
-btn_next.addEventListener('click', () => {
-    // console.log('next button');
-    if (next_qs == total_qs) return;
-    // console.log(current_qs, returnAnswer());
-    // console.log('returned answer: ', returnAnswer());
-    storeAnswers(current_qs, returnAnswer());
-    // console.log('stored answer: ', answers[c_test][current_qs]);
-    uncheckAllRadioButtons();
-    uncheckCheckBox();
-    loadSolvedAnswers(next_qs);
-    loadMarkForReviewCheckbox(next_qs);
-    showNextQuestion();
-    // current_qs++;
-});
+// btn_first.addEventListener('click', () => {
+//     // console.log('first button');
+//     storeAnswers(current_qs, returnAnswer());
+//     uncheckAllRadioButtons();
+//     uncheckCheckBox();
+//     //loadSolvedAnswers is before showNextQuestion because the latter changes next, previous and current question
+//     // variables hence messes the question no.
+//     loadSolvedAnswers(0);
+//     loadMarkForReviewCheckbox(0);
+//     showNextQuestion(0);
+//     // current_qs = 0;
+// });
+// btn_last.addEventListener('click', () => {
+//     // console.log('last button');
+//     storeAnswers(current_qs, returnAnswer());
+//     uncheckAllRadioButtons();
+//     uncheckCheckBox();
+//     loadSolvedAnswers(total_qs - 1);
+//     loadMarkForReviewCheckbox(total_qs - 1);
+//     showNextQuestion(total_qs - 1);
+//     // current_qs = total_qs - 1;
+// });
+// btn_previous.addEventListener('click', () => {
+//     // console.log('previous button');
+//     if (previous_qs < 0) return;
+//     // console.log('returned answer: ', returnAnswer());
+//     storeAnswers(current_qs, returnAnswer());
+//     // console.log('stored answer: ', answers[c_test][current_qs]);
+//     uncheckAllRadioButtons();
+//     uncheckCheckBox();
+//     loadSolvedAnswers(previous_qs);
+//     loadMarkForReviewCheckbox(previous_qs);
+//     showNextQuestion(previous_qs);
+//     // current_qs--;
+// });
+// btn_next.addEventListener('click', () => {
+//     // console.log('next button');
+//     if (next_qs == total_qs) return;
+//     // console.log(current_qs, returnAnswer());
+//     // console.log('returned answer: ', returnAnswer());
+//     storeAnswers(current_qs, returnAnswer());
+//     // console.log('stored answer: ', answers[c_test][current_qs]);
+//     uncheckAllRadioButtons();
+//     uncheckCheckBox();
+//     loadSolvedAnswers(next_qs);
+//     loadMarkForReviewCheckbox(next_qs);
+//     showNextQuestion();
+//     // current_qs++;
+// });
 
 //-------------------------------------
 // start and end button functionality
