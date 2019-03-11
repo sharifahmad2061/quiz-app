@@ -27,35 +27,50 @@
 <body>
     <!-- <div id="version">version: 1.0.0</div> -->
     <!-- <main id="grid-parent"> -->
-    <section id="grid-child-1">
-        <div id="student-info" class="border">
-            <div class="i-field">
-                <p class="blue">Name:</p>
-                <p>Test</p>
+    <div id="question-links" class="border"></div>
+    <div id="student-info" class="border">
+        <div class="i-field">
+            <p class="blue">Name:</p>
+            <p>Test</p>
+        </div>
+        <div class="i-field">
+            <p class="blue">PAK NO / ID</p>
+            <p>F317-36-0102</p>
+        </div>
+        <div class="i-field">
+            <p class="blue">SUBJECT:</p>
+            <p>INTELLIGENCE</p>
+        </div>
+        <div class="i-field">
+            <p class="blue">EXAMINATION</p>
+            <p>ACADEMIC TEST</p>
+        </div>
+    </div>
+    <div id="question-info" class="border">
+        <div class="i-field">
+            <p class="blue">QUESTION NO</p>
+            <p id="q-no-el"></p>
+        </div>
+        <div class="i-field">
+            <p class="blue">TOTAL QUESTIONS</p>
+            <p>120</p>
+        </div>
+    </div>
+    <section id="question-portion">
+        <div id="ts-parent" class="border">
+            <div id="time-alloted" class="t-field">
+                <p class="blue">TIME ALLOTED</p>
+                <time id="time-al">00:00:00</time>
             </div>
-            <div class="i-field">
-                <p class="blue">PAK NO / ID</p>
-                <p>F317-36-0102</p>
-            </div>
-            <div class="i-field">
-                <p class="blue">SUBJECT:</p>
-                <p>INTELLIGENCE</p>
-            </div>
-            <div class="i-field">
-                <p class="blue">EXAMINATION</p>
-                <p>ACADEMIC TEST</p>
+            <div id="time-remaining" class="t-field">
+                <p class="blue">TIME REMAINING</p>
+                <time id="time-ro">00:00:00</time>
             </div>
         </div>
-        <div id="question-info" class="border">
-            <div class="i-field">
-                <p class="blue">QUESTION NO</p>
-                <p id="q-no-el"></p>
-            </div>
-            <div class="i-field">
-                <p class="blue">TOTAL QUESTIONS</p>
-                <p>120</p>
-            </div>
-        </div>
+    </section>
+    <!-- <section id="grid-child-1">
+
+
         <div id="question" class="border">
             <div id="question-portion"></div>
             <div id="mcq-portion"></div>
@@ -91,7 +106,7 @@
                 <div class="border"></div>
             </div>
         </div>
-        <!-- <div id="m-review" class="border">
+        <div id="m-review" class="border">
                 <div class="i-field">
                     <p class="red">NO SELECTION</p>
                     <input type="radio" name="" id="ns-ra">
@@ -100,33 +115,27 @@
                     <input type="checkbox" name="" id="re-ch">
                     <p class="blue">MARK THIS QUESTION FOR REVIEW</p>
                 </div>
-            </div> -->
-        <div id="footer">
-            <div class="i-field">
-                <p class="blue">LEGEND:</p>
             </div>
-            <div class="i-field">
-                <p id="unattempted-qs">X</p>
-                <p>unattempted Questions</p>
-            </div>
-            <div class="i-field">
-                <p id="qs-marked-for-review">#</p>
-                <p>Marked For Review</p>
-            </div>
+
+    </section> -->
+    <div id="start-button"></div>
+    <div id="progress-bar" class="border"></div>
+    <div id="footer" class="border">
+        <div class="i-field">
+            <p class="blue">LEGEND:</p>
         </div>
-    </section>
+        <div class="i-field">
+            <p id="unattempted-qs">X</p>
+            <p>unattempted Questions</p>
+        </div>
+        <div class="i-field">
+            <p id="qs-marked-for-review">#</p>
+            <p>Marked For Review</p>
+        </div>
+    </div>
     <section id="grid-child-2">
         <div id="pic" class="border"></div>
-        <!-- <div id="ts-parent">
-                <div id="time-alloted" class="border t-field">
-                    <p class="blue">TIME ALLOTED</p>
-                    <time id="time-al">00:00:00</time>
-                </div>
-                <div id="time-remaining" class="border t-field">
-                    <p class="blue">TIME REMAINING</p>
-                    <time id="time-ro">00:00:00</time>
-                </div>
-            </div> -->
+
         <!-- <div id="start-button">
                 <button class="bg-blue btn-md font-md font-white">START PAPER</button>
             </div>
