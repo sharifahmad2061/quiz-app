@@ -26,72 +26,72 @@
 
 <body>
     <!-- <div id="version">version: 1.0.0</div> -->
-    <main id="grid-parent">
-        <section id="grid-child-1">
-            <div id="student-info" class="border">
-                <div class="i-field">
-                    <p class="blue">Name:</p>
-                    <p>Test</p>
-                </div>
-                <div class="i-field">
-                    <p class="blue">PAK NO / ID</p>
-                    <p>F317-36-0102</p>
-                </div>
-                <div class="i-field">
-                    <p class="blue">SUBJECT:</p>
-                    <p>INTELLIGENCE</p>
-                </div>
-                <div class="i-field">
-                    <p class="blue">EXAMINATION</p>
-                    <p>ACADEMIC TEST</p>
-                </div>
+    <!-- <main id="grid-parent"> -->
+    <section id="grid-child-1">
+        <div id="student-info" class="border">
+            <div class="i-field">
+                <p class="blue">Name:</p>
+                <p>Test</p>
             </div>
-            <div id="question-info" class="border">
-                <div class="i-field">
-                    <p class="blue">QUESTION NO</p>
-                    <p id="q-no-el"></p>
-                </div>
-                <div class="i-field">
-                    <p class="blue">TOTAL QUESTIONS</p>
-                    <p>120</p>
-                </div>
+            <div class="i-field">
+                <p class="blue">PAK NO / ID</p>
+                <p>F317-36-0102</p>
             </div>
-            <div id="question" class="border">
-                <div id="question-portion"></div>
-                <div id="mcq-portion"></div>
+            <div class="i-field">
+                <p class="blue">SUBJECT:</p>
+                <p>INTELLIGENCE</p>
             </div>
+            <div class="i-field">
+                <p class="blue">EXAMINATION</p>
+                <p>ACADEMIC TEST</p>
+            </div>
+        </div>
+        <div id="question-info" class="border">
+            <div class="i-field">
+                <p class="blue">QUESTION NO</p>
+                <p id="q-no-el"></p>
+            </div>
+            <div class="i-field">
+                <p class="blue">TOTAL QUESTIONS</p>
+                <p>120</p>
+            </div>
+        </div>
+        <div id="question" class="border">
+            <div id="question-portion"></div>
+            <div id="mcq-portion"></div>
+        </div>
 
-            <div id="mcqs" class="border">
-                <div id="int-sect">
-                    <p class="bg-blue">A</p>
-                    <input type="radio" name="mcq-answer" value="0">
-                    <p class="bg-blue">B</p>
-                    <input type="radio" name="mcq-answer" value="1">
-                    <p class="bg-blue">C</p>
-                    <input type="radio" name="mcq-answer" value="2">
-                    <p class="bg-blue">D</p>
-                    <input type="radio" name="mcq-answer" value="3">
-                </div>
-                <div id="first-col" class="i-field bg-blue">
-                    <p>A</p>
-                    <p>B</p>
-                    <p>C</p>
-                    <p>D</p>
-                </div>
-                <div id="second-col" class="i-field">
-                    <input type="radio" name="mcq-answer" value="0">
-                    <input type="radio" name="mcq-answer" value="1">
-                    <input type="radio" name="mcq-answer" value="2">
-                    <input type="radio" name="mcq-answer" value="3">
-                </div>
-                <div id="third-col">
-                    <div class="border"></div>
-                    <div class="border"></div>
-                    <div class="border"></div>
-                    <div class="border"></div>
-                </div>
+        <div id="mcqs" class="border">
+            <div id="int-sect">
+                <p class="bg-blue">A</p>
+                <input type="radio" name="mcq-answer" value="0">
+                <p class="bg-blue">B</p>
+                <input type="radio" name="mcq-answer" value="1">
+                <p class="bg-blue">C</p>
+                <input type="radio" name="mcq-answer" value="2">
+                <p class="bg-blue">D</p>
+                <input type="radio" name="mcq-answer" value="3">
             </div>
-            <!-- <div id="m-review" class="border">
+            <div id="first-col" class="i-field bg-blue">
+                <p>A</p>
+                <p>B</p>
+                <p>C</p>
+                <p>D</p>
+            </div>
+            <div id="second-col" class="i-field">
+                <input type="radio" name="mcq-answer" value="0">
+                <input type="radio" name="mcq-answer" value="1">
+                <input type="radio" name="mcq-answer" value="2">
+                <input type="radio" name="mcq-answer" value="3">
+            </div>
+            <div id="third-col">
+                <div class="border"></div>
+                <div class="border"></div>
+                <div class="border"></div>
+                <div class="border"></div>
+            </div>
+        </div>
+        <!-- <div id="m-review" class="border">
                 <div class="i-field">
                     <p class="red">NO SELECTION</p>
                     <input type="radio" name="" id="ns-ra">
@@ -101,23 +101,23 @@
                     <p class="blue">MARK THIS QUESTION FOR REVIEW</p>
                 </div>
             </div> -->
-            <div id="footer">
-                <div class="i-field">
-                    <p class="blue">LEGEND:</p>
-                </div>
-                <div class="i-field">
-                    <p id="unattempted-qs">X</p>
-                    <p>unattempted Questions</p>
-                </div>
-                <div class="i-field">
-                    <p id="qs-marked-for-review">#</p>
-                    <p>Marked For Review</p>
-                </div>
+        <div id="footer">
+            <div class="i-field">
+                <p class="blue">LEGEND:</p>
             </div>
-        </section>
-        <section id="grid-child-2">
-            <div id="pic" class="border"></div>
-            <!-- <div id="ts-parent">
+            <div class="i-field">
+                <p id="unattempted-qs">X</p>
+                <p>unattempted Questions</p>
+            </div>
+            <div class="i-field">
+                <p id="qs-marked-for-review">#</p>
+                <p>Marked For Review</p>
+            </div>
+        </div>
+    </section>
+    <section id="grid-child-2">
+        <div id="pic" class="border"></div>
+        <!-- <div id="ts-parent">
                 <div id="time-alloted" class="border t-field">
                     <p class="blue">TIME ALLOTED</p>
                     <time id="time-al">00:00:00</time>
@@ -127,7 +127,7 @@
                     <time id="time-ro">00:00:00</time>
                 </div>
             </div> -->
-            <!-- <div id="start-button">
+        <!-- <div id="start-button">
                 <button class="bg-blue btn-md font-md font-white">START PAPER</button>
             </div>
             <div id="move-to-q">
@@ -148,11 +148,11 @@
                     <p class="t-sm">last</p>
                 </div>
             </div> -->
-            <div id="end-button">
-                <button class="bg-blue btn-md font-md font-white">SUBMIT</button>
-            </div>
-        </section>
-    </main>
+        <div id="end-button">
+            <button class="bg-blue btn-md font-md font-white">SUBMIT</button>
+        </div>
+    </section>
+    <!-- </main> -->
     <div id="snackbar">Congratulions! Test Passed</div>
     <script src="homepage.js"></script>
     <script src="toast.js"></script>
