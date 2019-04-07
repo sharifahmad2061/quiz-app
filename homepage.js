@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const sqlite3 = require('sqlite3').verbose();
+
 
 //initialize the number of tests attempted
 sessionStorage.setItem('tests_attempted', 0);
@@ -15,16 +17,76 @@ let time_for_c_test = timing_and_marks[file_and_order['file']][0];
 
 //load the first test and then start displaying it on start button click
 let c_test = file_and_order['file'];
-let test_data = JSON.parse(fs.readFileSync(path.join(__dirname, `/question/${c_test}.json`)));
-test_data = arrayFromDictionary(test_data);
+// let test_data = JSON.parse(fs.readFileSync(path.join(__dirname, `/question/${c_test}.json`)));
+// test_data = arrayFromDictionary(test_data);
 // console.log(test_data);
+let db = new sqlite3.Database('db.sqlite3', sqlite3.OPEN_READONLY, (err) => {
+    if (err) console.error('error connecting to database');
+    else console.log('connected to database');
+});
+
+let sql = `SELECT * FROM ${c_test}`;
+let questions = [];
+db.all(sql, [], (err, rows) => {
+    if (c_test == 'it1') {
+        // console.log('do something for it1');
+        rows.forEach((row) => {
+            let temp = {};
+            temp['path'] = row.path;
+            temp['ca'] = row.ca;
+            questions.push(temp);
+        });
+    }
+    else if (c_test == 'it2') {
+        // console.log('do something for it2');
+        rows.forEach((row) => {
+            let temp = {};
+            temp['type'] = row.type;
+            temp['path'] = row.path;
+            temp['q'] = row.q;
+            temp['o1'] = row.o1;
+            temp['o2'] = row.o2;
+            temp['o3'] = row.o3;
+            temp['o4'] = row.o4;
+            temp['ca'] = row.ca;
+            questions.push(temp);
+        });
+    }
+    else if (c_test == 'math' || c_test == 'physics') {
+        // console.log('do something for them');
+        rows.forEach((row) => {
+            let temp = {};
+            temp['q'] = row.q;
+            temp['o1'] = row.o1;
+            temp['o2'] = row.o2;
+            temp['o3'] = row.o3;
+            temp['o4'] = row.o4;
+            temp['ca'] = row.ca;
+            temp['u'] = row.u;
+            questions.push(temp);
+        });
+    }
+    else { // for english and brs
+        rows.forEach((row) => {
+            let temp = {};
+            temp['q'] = row.q;
+            temp['o1'] = row.o1;
+            temp['o2'] = row.o2;
+            temp['o3'] = row.o3;
+            temp['o4'] = row.o4;
+            temp['ca'] = row.ca;
+            questions.push(temp);
+        });
+    }
+});
+
 
 //variables
 let current_qs = 0;
 let previous_qs = 0;
 let next_qs = 0;
 
-let q_for_review = [];
+// let q_for_review = [];
 let total_qs = timing_and_marks[file_and_order['file']][1];
 let unattempted_qs = timing_and_marks[file_and_order['file']][1]; //initialize it total marks , each q has 1 mark
 
@@ -249,19 +311,20 @@ end_btn.addEventListener('click', () => {
 //handle the question attempt functionality
 //---------------------------------------
 let answers = {};
-answers['phy'] = {}; answers['math'] = {}; answers['brs'] = {}; answers['eng'] = {};
+answers['physics'] = {}; answers['math'] = {}; answers['brs'] = {}; answers['english'] = {};
 answers['it1'] = {}; answers['it2'] = {};
 
 function startButtonHandler() {
     setSubject(c_test);
     setTotalQs(total_qs);
+    addButtons(total_qs);
     manipulateQsLeftAndMarkedForReviewAndCurrentQ();
 
     //if test is intelligence then hide first-col , second-col and third-col and unhide int-sect
-    if (c_test == "it1" || c_test == "it2") changeLayoutOfUI("int");
-    else {
-        changeLayoutOfUI("text");
-    }
+    // if (c_test == "it1" || c_test == "it2") changeLayoutOfUI("int");
+    // else {
+    // changeLayoutOfUI("text");
+    // }
 
     showNextQuestion();
     timer(time_for_c_test);
@@ -275,23 +338,25 @@ function storeAnswers(questionNo, answer) {
     answers[c_test][questionNo] = answer;
     unattempted_qs = total_qs - Object.keys(answers[c_test]).length;
 }
-function returnAnswer() {
-    let ans;
-    if (c_test == 'it1' || c_test == 'it2')
-        if (layout == "int")
-            ans = document.querySelectorAll('#int-sect > input[name=mcq-answer]');
-        else
-            ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
-    else
-        ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
-    let returnValue = null;
-    ans.forEach((element, index) => {
-        if (element.checked) {
-            returnValue = index;
-        }
-    });
-    return returnValue;
-}
+// function returnAnswer() {
+//     let ans = document.querySelectorAll('#mcqs > input[name=mcq-answer]');
+//     // if (c_test == 'it1' || c_test == 'it2')
+//     //     if (layout == "int")
+//     //         ans = document.querySelectorAll('#int-sect > input[name=mcq-answer]');
+//     //     else
+//     //         ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
+//     // else
+//     //     ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
+//     // let returnValue = null;
+//     ans.forEach((element, index) => {
+//         if (element.checked) {
+//             console.log(element.value);
+//             // returnValue = index;
+//             return index;
+//         }
+//     });
+//     // return returnValue;
+// }
 function markCurrentTest() {
     let ans = answers[c_test], score = 0;
     for (const key in ans) {
@@ -313,35 +378,41 @@ function markCurrentTest() {
 //functions for different things
 //---------------------------------------
 //function data into an array for indexing
-function arrayFromDictionary(data) {
-    var r_data = [];
-    for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-            r_data.push({
-                key: key.replace('?', '________'),
-                value: data[key]
-            });
-        }
-    }
-    return r_data;
-}
+// function arrayFromDictionary(data) {
+//     var r_data = [];
+//     for (const key in data) {
+//         if (data.hasOwnProperty(key)) {
+//             r_data.push({
+//                 key: key.replace('?', '________'),
+//                 value: data[key]
+//             });
+//         }
+//     }
+//     return r_data;
+// }
 
 
 //function for displaying next question and its options
 function showNextQuestion(num) {
+
     let next;
     if (num == null || num == undefined) next = next_qs;
     else next = num;
+
+    uncheckAllRadioButtons();
+    loadSolvedAnswers(next);
+
     // let next = num || next_qs;
-    let question_el = document.querySelector('#question > #question-portion');
-    let mcq_el = document.querySelectorAll('#mcqs > #third-col > div');
-    let mcq_po = document.querySelector('#mcq-portion');
+    let question_el = document.querySelector('#question-portion > #question');
+    let mcq_el = document.querySelectorAll('.option');
+    // let mcq_po = document.querySelector('#mcq-portion');
 
     //before inserting new question remove the previous one
     while (question_el.firstChild) {
         // if (question_el.children.length == 2) break;
         question_el.removeChild(question_el.firstChild);
     }
+
     //now insert new question
     let el, tn;
     if (c_test == "it1") {
@@ -352,68 +423,78 @@ function showNextQuestion(num) {
 
         // console.log(`${test_data[next].key}Artboard 1.json`);
         appendImages(question_el, "Artboard1.svg", next);
-        appendParagraphs(question_el, "IS TO");
+        appendParagraphs(question_el, "IS TO", false);
         // question_el.insertBefore(el, mcq_po);
 
         appendImages(question_el, "Artboard2.svg", next);
-        appendParagraphs(question_el, "AS");
+        appendParagraphs(question_el, "AS", false);
         // question_el.insertBefore(el, mcq_po);
 
         appendImages(question_el, "Artboard3.svg", next);
-        appendParagraphs(question_el, "IS TO");
+        appendParagraphs(question_el, "IS TO", false);
         // question_el.insertBefore(el, mcq_po);
 
 
-    } else if (c_test == 'it2') {
+    }
+    else if (c_test == 'it2') {
         //if test is intelligence then set flex direction to row
         question_el.style.flexDirection = "row";
 
         // hard coding for questions range
-        if (next < 37) {
-            if (layout == "text") changeLayoutOfUI("int");
+        if (questions[next]['type'] == 0) {
+            // if (layout == "text") changeLayoutOfUI("int");
             appendImages(question_el, "Artboard1.svg", next);
 
-            appendParagraphs(question_el, "IS TO");
+            appendParagraphs(question_el, "IS TO", false);
 
             appendImages(question_el, "Artboard2.svg", next);
 
-            appendParagraphs(question_el, "AS");
+            appendParagraphs(question_el, "AS", false);
 
             appendImages(question_el, "Artboard3.svg", next);
 
-            appendParagraphs(question_el, "IS TO");
+            appendParagraphs(question_el, "IS TO", false);
         }
-        else if (next >= 37 && next < 62) {
-            if (layout == "text") changeLayoutOfUI("int");
-            appendImages(question_el, "Artboard1.svg", next);
+        else if (questions[next]['type'] == 1) {
+            // if (layout == "text") changeLayoutOfUI("int");
+            appendParagraphs(question_el, questions[next]['q'], false);
 
         }
         else {
-            if (layout == "int") changeLayoutOfUI("text");
-            if (next == 68 || next == 77) {
-                appendImages(question_el, "Artboard1.svg", next);
-            }
-            else {
-                appendParagraphs(question_el, test_data[next].key);
-            }
+            // if (layout == "int") changeLayoutOfUI("text");
+            // if (next == 68 || next == 77) {
+            appendImages(question_el, "Artboard1.svg", next);
+            // }
+            // else {
+            // appendParagraphs(question_el, test_data[next].key);
+            // }
         }
     }
-    else {
+    else if (c_test == 'brs') {
+        question_el.style.flexDirection = "row";
+        appendParagraphs(question_el, questions[next]['q'], true);
+    }
+    else if (c_test == 'english') {
+        question_el.style.flexDirection = "row";
+        appendParagraphs(question_el, questions[next]['q'], false);
+    }
+    else { //physics & math
         question_el.style.flexDirection = "column";
-
-        el = document.createElement('p');
-        tn = document.createTextNode(test_data[next].key);
-        el.appendChild(tn);
-        if (c_test == 'brs') el.classList.add('urdu');
-        question_el.appendChild(el);
-        //insert the urdu part if necessary
-        if (c_test == 'phy' || c_test == 'math') {
-            el = document.createElement('p');
-            tn = document.createTextNode(test_data[total_qs].value[next]);
-            el.appendChild(tn);
-            el.classList.add('urdu');
-            question_el.appendChild(el);
-        }
+        appendParagraphs(question_el, questions[next]['q'], false);
+        appendParagraphs(question_el, questions[next]['u'], true);
+        // el = document.createElement('p');
+        // tn = document.createTextNode(test_data[next].key);
+        // el.appendChild(tn);
+        // if (c_test == 'brs') el.classList.add('urdu');
+        // question_el.appendChild(el);
+        // //insert the urdu part if necessary
+        // if (c_test == 'phy' || c_test == 'math') {
+        //     el = document.createElement('p');
+        //     tn = document.createTextNode(test_data[total_qs].value[next]);
+        //     el.appendChild(tn);
+        //     el.classList.add('urdu');
+        //     question_el.appendChild(el);
+        // }
     }
 
     previous_qs = next <= 1 ? 0 : next - 1;
@@ -422,26 +503,32 @@ function showNextQuestion(num) {
     // console.log(previous_qs, current_qs, next_qs);
 
     //before inserting new mcqs remove the previous ones
-    if (c_test == "it1" || c_test == "it2") {
-        while (mcq_po.firstChild) {
-            mcq_po.removeChild(mcq_po.firstChild);
+    mcq_el.forEach((el) => {
+        while (el.firstChild) {
+            el.removeChild(el.firstChild);
         }
-    }
-    else {
-        mcq_el.forEach((element) => {
-            while (element.firstChild) {
-                element.removeChild(element.firstChild);
-            }
-        });
-    }
-    //if layout is changed for it2 then also delete mcq_el children
-    if (layout == "text" && c_test == "it2") {
-        mcq_el.forEach((element) => {
-            while (element.firstChild) {
-                element.removeChild(element.firstChild);
-            }
-        });
-    }
+    });
+
+    // if (c_test == "it1" || c_test == "it2") {
+    //     while (mcq_po.firstChild) {
+    //         mcq_po.removeChild(mcq_po.firstChild);
+    //     }
+    // }
+    // else {
+    //     mcq_el.forEach((element) => {
+    //         while (element.firstChild) {
+    //             element.removeChild(element.firstChild);
+    //         }
+    //     });
+    // }
+    // //if layout is changed for it2 then also delete mcq_el children
+    // if (layout == "text" && c_test == "it2") {
+    //     mcq_el.forEach((element) => {
+    //         while (element.firstChild) {
+    //             element.removeChild(element.firstChild);
+    //         }
+    //     });
+    // }
 
     if (c_test == "it1") {
         //set flex-direction to row
@@ -449,71 +536,93 @@ function showNextQuestion(num) {
         // document.querySelector('#question > #mcq-portion').style.display = "flex";
 
 
-        appendParagraphs(mcq_po, "A");
-        appendImages(mcq_po, "Artboard4.svg", next);
+        // appendParagraphs(mcq_po, "A");
+        appendImages(mcq_el.item(0), "Artboard4.svg", next);
 
-        appendParagraphs(mcq_po, "B");
-        appendImages(mcq_po, "Artboard5.svg", next);
+        // appendParagraphs(mcq_po, "B");
+        appendImages(mcq_el.item(1), "Artboard5.svg", next);
 
-        appendParagraphs(mcq_po, "C");
-        appendImages(mcq_po, "Artboard6.svg", next);
+        // appendParagraphs(mcq_po, "C");
+        appendImages(mcq_el.item(2), "Artboard6.svg", next);
 
-        appendParagraphs(mcq_po, "D");
-        appendImages(mcq_po, "Artboard7.svg", next);
+        // appendParagraphs(mcq_po, "D");
+        appendImages(mcq_el.item(3), "Artboard7.svg", next);
 
     }
     else if (c_test == "it2") {
-        if (next < 37) {
-            appendParagraphs(mcq_po, "A");
-            appendImages(mcq_po, "Artboard4.svg", next);
+        if (questions[next]['type'] == 0) {
+            // appendParagraphs(mcq_po, "A");
+            appendImages(mcq_el.item(0), "Artboard4.svg", next);
 
-            appendParagraphs(mcq_po, "B");
-            appendImages(mcq_po, "Artboard5.svg", next);
+            // appendParagraphs(mcq_po, "B");
+            appendImages(mcq_el.item(1), "Artboard5.svg", next);
 
-            appendParagraphs(mcq_po, "C");
-            appendImages(mcq_po, "Artboard6.svg", next);
+            // appendParagraphs(mcq_po, "C");
+            appendImages(mcq_el.item(2), "Artboard6.svg", next);
 
-            appendParagraphs(mcq_po, "D");
-            appendImages(mcq_po, "Artboard7.svg", next);
+            // appendParagraphs(mcq_po, "D");
+            appendImages(mcq_el.item(3), "Artboard7.svg", next);
         }
-        else if (next >= 37 && next < 62) {
-            appendParagraphs(mcq_po, "A");
-            appendImages(mcq_po, "Artboard2.svg", next);
+        // else if (next >= 37 && next < 62) {
+        //     appendParagraphs(mcq_po, "A");
+        //     appendImages(mcq_po, "Artboard2.svg", next);
 
-            appendParagraphs(mcq_po, "B");
-            appendImages(mcq_po, "Artboard3.svg", next);
+        //     appendParagraphs(mcq_po, "B");
+        //     appendImages(mcq_po, "Artboard3.svg", next);
 
-            appendParagraphs(mcq_po, "C");
-            appendImages(mcq_po, "Artboard4.svg", next);
+        //     appendParagraphs(mcq_po, "C");
+        //     appendImages(mcq_po, "Artboard4.svg", next);
 
-            appendParagraphs(mcq_po, "D");
-            appendImages(mcq_po, "Artboard5.svg", next);
+        //     appendParagraphs(mcq_po, "D");
+        //     appendImages(mcq_po, "Artboard5.svg", next);
 
-        } else {
-            let mcq_arr = test_data[next].value;
-            mcq_el.forEach((element, index) => {
-                mcq_arr.forEach((element1, index1) => {
-                    if (index == index1) {
-                        appendParagraphs(element, element1);
-                    }
-                });
-            });
+        // }
+        else {
+            appendParagraphs(mcq_el.item(0), questions[next]['o1'], false);
+
+            // appendParagraphs(mcq_po, "B");
+            appendParagraphs(mcq_el.item(1), questions[next]['o2'], false);
+
+            // appendParagraphs(mcq_po, "C");
+            appendParagraphs(mcq_el.item(2), questions[next]['o3'], false);
+
+            // appendParagraphs(mcq_po, "D");
+            appendParagraphs(mcq_el.item(3), questions[next]['o4'], false);
+            // let mcq_arr = test_data[next].value;
+            // mcq_el.forEach((element, index) => {
+            //     mcq_arr.forEach((element1, index1) => {
+            //         if (index == index1) {
+            //             appendParagraphs(element, element1);
+            //         }
+            //     });
+            // });
         }
     }
-    else {
+    else if (c_test == "brs") {
+        appendParagraphs(mcq_el[0], questions[next]['o1'], true);
+        appendParagraphs(mcq_el[1], questions[next]['o2'], true);
+        appendParagraphs(mcq_el[2], questions[next]['o3'], true);
+        appendParagraphs(mcq_el[3], questions[next]['o4'], true);
+    }
+    else { //english , maths & physics
         //now insert new options
-        let mcq_arr = test_data[next].value;
-        mcq_el.forEach((element, index) => {
-            mcq_arr.forEach((element1, index1) => {
-                if (index == index1) {
-                    el = document.createElement('p');
-                    tn = document.createTextNode(element1);
-                    el.appendChild(tn);
-                    if (c_test == 'brs') el.classList.add('urdu');
-                    element.appendChild(el);
-                }
-            });
-        });
+        appendParagraphs(mcq_el.item(0), questions[next]['o1'], false);
+        appendParagraphs(mcq_el.item(1), questions[next]['o2'], false);
+        appendParagraphs(mcq_el.item(2), questions[next]['o3'], false);
+        appendParagraphs(mcq_el.item(3), questions[next]['o4'], false);
+
+        // let mcq_arr = test_data[next].value;
+        // mcq_el.forEach((element, index) => {
+        //     mcq_arr.forEach((element1, index1) => {
+        //         if (index == index1) {
+        //             el = document.createElement('p');
+        //             tn = document.createTextNode(element1);
+        //             el.appendChild(tn);
+        //             if (c_test == 'brs') el.classList.add('urdu');
+        //             element.appendChild(el);
+        //         }
+        //     });
+        // });
     }
 
     //dynamically typesetting the mcqs and question
@@ -522,22 +631,22 @@ function showNextQuestion(num) {
     manipulateQsLeftAndMarkedForReviewAndCurrentQ();
 }
 
-function loadMarkForReviewCheckbox(questionNo) {
-    if (q_for_review.indexOf(questionNo) != -1) {
-        re_ch.checked = true;
-    }
-    else {
-        re_ch.checked = false;
-    }
-}
+// function loadMarkForReviewCheckbox(questionNo) {
+//     if (q_for_review.indexOf(questionNo) != -1) {
+//         re_ch.checked = true;
+//     }
+//     else {
+//         re_ch.checked = false;
+//     }
+// }
 
 //function for manipulating qs left and marked for review
 function manipulateQsLeftAndMarkedForReviewAndCurrentQ() {
     let un_qs_el = document.querySelector('#unattempted-qs');
-    let qs_ma_4_re = document.querySelector('#qs-marked-for-review');
+    // let qs_ma_4_re = document.querySelector('#qs-marked-for-review');
     let c_q = document.querySelector('#q-no-el');
     un_qs_el.textContent = unattempted_qs;
-    qs_ma_4_re.textContent = q_for_review.length;
+    // qs_ma_4_re.textContent = q_for_review.length;
     // console.log(current_qs);
     c_q.textContent = 1 + current_qs;
 }
@@ -548,7 +657,7 @@ function setSubject(subject) {
     // console.log(el);
     // return;
     switch (subject) {
-        case 'phy':
+        case 'physics':
             el.textContent = 'Physics';
             break;
         case 'math':
@@ -563,7 +672,7 @@ function setSubject(subject) {
         case 'brs':
             el.textContent = 'Basic Religious sense';
             break;
-        case 'eng':
+        case 'english':
             el.textContent = 'English';
             break;
         default:
@@ -581,28 +690,28 @@ function uncheckAllRadioButtons() {
     });
 }
 
-function uncheckCheckBox() {
-    document.querySelector('#re-ch').checked = false;
-}
+// function uncheckCheckBox() {
+//     document.querySelector('#re-ch').checked = false;
+// }
 
 //loads the previous entered answers
 function loadSolvedAnswers(questionNo) {
-    let ans;
+    let ans = document.querySelectorAll('input[name=mcq-answer]');
     // let str = '';
     // str = `${questionNo} : ${answers[c_test][questionNo]}`;
     // console.log(str);
-    if (c_test == 'it2') {
-        if (layout == "int")
-            ans = document.querySelectorAll('#int-sect > input[name=mcq-answer]');
-        else
-            ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
-    }
-    else if (c_test == 'it1') {
-        ans = document.querySelectorAll('#int-sect > input[name=mcq-answer]');
-    }
-    else {
-        ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
-    }
+    // if (c_test == 'it2') {
+    //     if (layout == "int")
+    //         ans = document.querySelectorAll('#int-sect > input[name=mcq-answer]');
+    //     else
+    //         ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
+    // }
+    // else if (c_test == 'it1') {
+    //     ans = document.querySelectorAll('#int-sect > input[name=mcq-answer]');
+    // }
+    // else {
+    //     ans = document.querySelectorAll('#second-col > input[name=mcq-answer]');
+    // }
     if (answers[c_test][questionNo] != undefined || answers[c_test][questionNo] != null) {
         // console.log('loading previous answer');
         ans[answers[c_test][questionNo]].checked = true;
@@ -653,50 +762,88 @@ function quizCompletion() {
 
 function appendImages(parentEl, childEl, questionNo) {
     let el = document.createElement('img');
-    el.setAttribute('src', `${test_data[questionNo].key}${childEl}`);
+    el.setAttribute('src', `${questions[questionNo]['path']}${childEl}`);
     el.classList.add('svg');
     parentEl.appendChild(el);
 }
 
-function appendParagraphs(parentEl, childEl) {
+function appendParagraphs(parentEl, childEl, isUrdu) {
     let el = document.createElement('p');
     let tn = document.createTextNode(childEl);
+    if (isUrdu) el.classList.add('urdu');
     el.appendChild(tn);
     parentEl.appendChild(el);
 }
 
-function changeLayoutOfUI(testType) {
-    if (layout == testType) {
-        return;
-    }
-    if (testType == "int") {
-        document.querySelector('#first-col').style.display = 'none';
-        document.querySelector('#second-col').style.display = 'none';
-        document.querySelector('#third-col').style.display = 'none';
-        document.querySelector('#int-sect').style.display = 'flex';
-        document.querySelector('#mcqs').style.display = "block";
-        document.querySelector('#mcq-portion').style.display = "flex";
+// function changeLayoutOfUI(testType) {
+//     if (layout == testType) {
+//         return;
+//     }
+//     if (testType == "int") {
+//         document.querySelector('#first-col').style.display = 'none';
+//         document.querySelector('#second-col').style.display = 'none';
+//         document.querySelector('#third-col').style.display = 'none';
+//         document.querySelector('#int-sect').style.display = 'flex';
+//         document.querySelector('#mcqs').style.display = "block";
+//         document.querySelector('#mcq-portion').style.display = "flex";
 
-        //change grid layout and bring back in
-        document.querySelector('#grid-child-1').style.gridTemplateRows = '1.2fr 1fr 7fr 1fr 1fr 1fr';
-        layout = "int";
-    } else {
-        document.querySelector('#grid-child-1').style.gridTemplateRows = '1.2fr 1fr 4fr 4fr 1fr 1fr';
-        document.querySelector('#mcqs').style.display = 'grid';
-        document.querySelector('#first-col').style.display = 'flex';
-        document.querySelector('#second-col').style.display = 'flex';
-        document.querySelector('#third-col').style.display = 'flex';
-        document.querySelector('#int-sect').style.display = 'none';
-        document.querySelector('#mcq-portion').style.display = "none";
-        layout = "text";
-    }
-}
+//         //change grid layout and bring back in
+//         document.querySelector('#grid-child-1').style.gridTemplateRows = '1.2fr 1fr 7fr 1fr 1fr 1fr';
+//         layout = "int";
+//     } else {
+//         document.querySelector('#grid-child-1').style.gridTemplateRows = '1.2fr 1fr 4fr 4fr 1fr 1fr';
+//         document.querySelector('#mcqs').style.display = 'grid';
+//         document.querySelector('#first-col').style.display = 'flex';
+//         document.querySelector('#second-col').style.display = 'flex';
+//         document.querySelector('#third-col').style.display = 'flex';
+//         document.querySelector('#int-sect').style.display = 'none';
+//         document.querySelector('#mcq-portion').style.display = "none";
+//         layout = "text";
+//     }
+// }
 
 //string to element
-function htmlToElements(html) {
-    var template = document.createElement('template');
-    template.innerHTML = html;
-    // console.log(template);
-    // console.log(template.content.firstChild);
-    return template.content.firstChild;
+// function htmlToElements(html) {
+//     let template = document.createElement('template');
+//     template.innerHTML = html;
+//     // console.log(template);
+//     // console.log(template.content.firstChild);
+//     return template.content.firstChild;
+// }
+
+//add buttons for questions
+function addButtons(number) {
+    let placeholder = document.querySelector('#question-links');
+    for (let index = 1; index <= number; index++) {
+        let btn = document.createElement('button');
+        btn.classList.add('btn-circle');
+        btn.setAttribute('value', index);
+        btn.textContent = index;
+        btn.addEventListener('click', (element) => {
+            // console.log(element.currentTarget.value);
+            // the buttons start from 1 whereas questions array from 0
+            element.currentTarget.style.backgroundColor = 'green';
+            showNextQuestion(parseInt(element.currentTarget.value) - 1);
+        });
+        // let anchor = document.createElement('a');
+        // anchor.textContent = index;
+        // btn.appendChild(anchor)
+        placeholder.appendChild(btn);
+    }
 }
+
+
+let radioButtons = document.querySelectorAll('input[name=mcq-answer]');
+radioButtons.forEach((radioButton) => {
+    radioButton.addEventListener('change', (element) => {
+        console.log(next_qs);
+        storeAnswers(next_qs, element.currentTarget.value);
+    })
+});
+
+
+//close db
+db.close((err) => {
+    if (err) console.error('error closing database');
+    else console.log('db closed successfully');
+});

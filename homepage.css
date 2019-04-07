@@ -19,6 +19,12 @@ body {
     grid-row: 3/7;
     overflow-y: auto;
     border-top: none;
+    text-align: center;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* height: min-content; */
+    /* justify-content: space-around; */
+    /* align-items: center; */
 }
 
 #question-portion {
@@ -41,7 +47,17 @@ body {
 #mcqs>div {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    align-items: center;
+    padding-left: 30px;
+}
+
+div>p {
+    padding-right: 20px;
+}
+
+div>.option {
+    padding-left: 20px;
 }
 
 #first-col {
@@ -157,9 +173,9 @@ body {
 
 #question {
     display: flex;
-    justify-content: space-around;
-    /* align-items: center; */
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
     font-size: 1.2rem;
     /* line-height: 2rem; */
 }
@@ -171,12 +187,12 @@ body {
     line-height: 2;
 } */
 
-#mcq-portion {
+/* #mcq-portion {
     display: none;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-}
+} */
 
 .urdu {
     font-family: NotoNastaliq, sans-serif;
@@ -300,4 +316,11 @@ body {
 
 #int-sect>input {
     align-self: center;
+}
+
+.btn-circle {
+    background-color: darkorange;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
 }

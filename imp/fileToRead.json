@@ -1,1 +1,11 @@
-{"file":"eng","order":["it1","it2","eng","math","phy","brs"]}
+{
+    "file": "english",
+    "order": [
+        "it1",
+        "it2",
+        "english",
+        "math",
+        "physics",
+        "brs"
+    ]
+}
