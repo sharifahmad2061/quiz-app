@@ -278,13 +278,18 @@ function displayTimeLeft(element, seconds) {
 let start_btn = document.querySelector('#start-button > button');
 
 start_btn.addEventListener('click', startButtonHandler, { once: true });
+start_btn.addEventListener('click', (element) => {
+    element.currentTarget.style.display = 'none';
+}, { once: true });
+
+
 
 //end button functionality
 let end_btn = document.querySelector('#end-button > button');
 end_btn.addEventListener('click', () => {
 
     //maybe the last question was not stored so store it
-    storeAnswers(current_qs, returnAnswer());
+    // storeAnswers(current_qs, returnAnswer());
 
     //stop timer for current test
     clearInterval(countdown);
@@ -363,7 +368,7 @@ function markCurrentTest() {
         if (ans.hasOwnProperty(key)) {
             // const opt = ans[key];
             // console.log(ans[key], test_data[key].value[4]);
-            if (ans[key] == test_data[key].value[4]) {
+            if (ans[key] == questions[key]['ca']) {
                 score++;
             } else {
                 // console.log('given ', ans[key], 'stored ', test_data[key].value[4]);
@@ -836,8 +841,8 @@ function addButtons(number) {
 let radioButtons = document.querySelectorAll('input[name=mcq-answer]');
 radioButtons.forEach((radioButton) => {
     radioButton.addEventListener('change', (element) => {
-        console.log(next_qs);
-        storeAnswers(next_qs, element.currentTarget.value);
+        // console.log(next_qs - 1);
+        storeAnswers(next_qs - 1, element.currentTarget.value);
     })
 });
 
