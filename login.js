@@ -1,28 +1,3 @@
-// $.noConflict();
-//experimental code
-let sqlite3 = require('sqlite3').verbose();
-let db = new sqlite3.Database('db.sqlite3', sqlite3.OPEN_READONLY, (err) => {
-    if (err) {
-        console.error('error occured during file opening');
-    }
-    else {
-        console.log('db opened correctly');
-
-    }
-});
-let sql = 'SELECT * FROM english';
-db.all(sql, (err, rows) => {
-    if (err) {
-        throw err;
-    } else {
-        rows.forEach((row) => {
-            console.log(row.q, row.ca);
-        });
-    }
-});
-
-db.close();
-
 let usn = document.querySelector('#usn');
 let psd = document.querySelector('#psd');
 let login_btn = document.querySelector('#login');
