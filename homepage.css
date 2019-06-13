@@ -213,10 +213,43 @@ div>.option {
     grid-row: 5/6;
     border-left: none;
     border-bottom: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    /* justify-content: space-around; */
+    /* align-items: center; */
+}
+
+#progress-bar>#static-marks {
+    grid-column: 1/2;
+    grid-row: 1/2;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
+
+#progress-bar>#color-bar {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    z-index: -1;
+}
+
+#color-bar>#color-bar-1 {
+    background-color: red;
+    width: 0px;
+}
+
+#color-bar>#color-bar-2 {
+    background-color: green;
+    width: 0px;
+}
+
+/* #progress-bar::before {
+    width: 50px;
+    background-color: #007bff;
+} */
 
 #footer {
     grid-column: 2/4;

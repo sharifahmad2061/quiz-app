@@ -81,6 +81,7 @@ db.all(sql, [], (err, rows) => {
 });
 
 
+
 //variables
 let current_qs = 0;
 let previous_qs = 0;
@@ -139,6 +140,39 @@ function displayTimeLeft(element, seconds) {
     element.textContent = display;
 }
 
+
+//progress bar computations
+const bar1Questions = (total_qs * 40) / 100;
+// const bar2Questions = (total_qs * 60) / 100;
+
+let progress_bar = document.querySelector('#progress-bar');
+let color_bar_1 = document.querySelector('#color-bar-1');
+let color_bar_2 = document.querySelector('#color-bar-2');
+
+// const bar1Portion = (progress_bar_width * 40) / 100;
+// const bar2Portion = (progress_bar_width * 60) / 100;
+
+// const bar1Increment = bar1Portion / bar1Questions;
+// const bar2Increment = bar2Portion / bar2Questions;
+
+function incrementProgressBar() {
+    const progress_bar_width = progress_bar.clientWidth;
+    const increment = progress_bar_width / total_qs;
+
+    if ((total_qs - unattempted_qs) <= bar1Questions) {
+        if (color_bar_1.style.width == "") {
+            color_bar_1.style.width += increment + "px";
+        } else {
+            color_bar_1.style.width = parseFloat(color_bar_1.style.width.slice(0, -2)) + increment + "px";
+        }
+    } else {
+        if (color_bar_2.style.width == "") {
+            color_bar_2.style.width += increment + "px";
+        } else {
+            color_bar_2.style.width = parseFloat(color_bar_2.style.width.slice(0, -2)) + increment + "px";
+        }
+    }
+}
 
 //--------------------------------------------------------------
 // handling the no selection and marked for review functionality
@@ -340,8 +374,17 @@ function storeAnswers(questionNo, answer) {
     if (answer == null) {
         return;
     }
+
+    if (answers[c_test][questionNo] == undefined) {
+        incrementProgressBar();
+    }
     answers[c_test][questionNo] = answer;
+
     unattempted_qs = total_qs - Object.keys(answers[c_test]).length;
+    manipulateQsLeftAndMarkedForReviewAndCurrentQ();
+
+    let buttonToFlip = document.querySelector(`button[value='${questionNo + 1}']`);
+    buttonToFlip.style.backgroundColor = 'green';
 }
 // function returnAnswer() {
 //     let ans = document.querySelectorAll('#mcqs > input[name=mcq-answer]');
@@ -827,7 +870,6 @@ function addButtons(number) {
         btn.addEventListener('click', (element) => {
             // console.log(element.currentTarget.value);
             // the buttons start from 1 whereas questions array from 0
-            element.currentTarget.style.backgroundColor = 'green';
             showNextQuestion(parseInt(element.currentTarget.value) - 1);
         });
         // let anchor = document.createElement('a');
