@@ -376,15 +376,14 @@ function storeAnswers(questionNo, answer) {
     }
 
     if (answers[c_test][questionNo] == undefined) {
+        unattempted_qs = total_qs - Object.keys(answers[c_test]).length - 1;
         incrementProgressBar();
+        manipulateQsLeftAndMarkedForReviewAndCurrentQ();
+        let buttonToFlip = document.querySelector(`button[value='${questionNo + 1}']`);
+        buttonToFlip.style.backgroundColor = 'green';
     }
     answers[c_test][questionNo] = answer;
 
-    unattempted_qs = total_qs - Object.keys(answers[c_test]).length;
-    manipulateQsLeftAndMarkedForReviewAndCurrentQ();
-
-    let buttonToFlip = document.querySelector(`button[value='${questionNo + 1}']`);
-    buttonToFlip.style.backgroundColor = 'green';
 }
 // function returnAnswer() {
 //     let ans = document.querySelectorAll('#mcqs > input[name=mcq-answer]');
