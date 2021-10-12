@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/sharifahmad2061/quiz-app#readme",
   "dependencies": {
-    "electron": "^2.0.3"
+    "electron": "^11.5.0"
   },
   "devDependencies": {
     "electron-packager": "^12.0.1",
